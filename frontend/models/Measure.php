@@ -1,25 +1,25 @@
 <?php
 
-namespace common\models;
+namespace app\models;
 
 use Yii;
 
 /**
- * This is the model class for table "fnames".
+ * This is the model class for table "measure".
  *
  * @property int $id
  * @property string $name
  *
- * @property Flts[] $flts
+ * @property Good[] $goods
  */
-class Fname extends \yii\db\ActiveRecord
+class Measure extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'fnames';
+        return 'measure';
     }
 
     /**
@@ -29,7 +29,7 @@ class Fname extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['name'], 'string', 'max' => 50],
+            [['name'], 'string', 'max' => 45],
         ];
     }
 
@@ -40,15 +40,15 @@ class Fname extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Наименование',
+            'name' => 'Name',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFlts()
+    public function getGoods()
     {
-        return $this->hasMany(Flt::className(), ['fname_id' => 'id']);
+        return $this->hasMany(Good::className(), ['measure_id' => 'id']);
     }
 }

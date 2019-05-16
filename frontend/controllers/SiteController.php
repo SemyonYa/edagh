@@ -59,7 +59,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('indexx');
+        return $this->render('index');
     }
 
     public function actionCart() {

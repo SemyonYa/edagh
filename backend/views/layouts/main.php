@@ -35,12 +35,12 @@ AppAsset::register($this);
             <img onclick="adminHome()" class="ad-logo" src="/frontend/web/img/logo.svg" />
             <div>
                 <?php if (!Yii::$app->user->isGuest): ?>
-<!--                    <span class="btn btn-header"><a href="/site/signup">Рег</a></span>-->
-<!--                    <span class="btn btn-header"><a href="/site/login">Вход</a></span>-->
-<!--                --><?php //else: ?>
-<!--                    --><?php //echo Html::beginForm(['/site/logout'], 'post', ['id' => 'logoutform']) ?>
-<!--                    --><?php //echo Html::submitButton('Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout ']); ?>
-<!--                    --><?php //Html::endForm(); ?>
+                    <span class="btn btn-header"><a href="/site/signup">Рег</a></span>
+                    <span class="btn btn-header"><a href="/site/login">Вход</a></span>
+                <?php else: ?>
+                    <?php echo Html::beginForm(['/site/logout'], 'post', ['id' => 'logoutform']) ?>
+                    <?php echo Html::submitButton('Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout ']); ?>
+                    <?php Html::endForm(); ?>
                 <?php endif; ?>
             </div>
         </header>
