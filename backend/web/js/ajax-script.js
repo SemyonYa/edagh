@@ -1,16 +1,17 @@
 $(document).ready(function () {
-    const id = $(this).attr('data-id');
-    const name = $(this).attr('data-name');
-    const controller = $(this).attr('data-controller');
 
     $('.btn-remove').on('click', function () {
+        const id = $(this).attr('data-id');
+        const name = $(this).attr('data-name');
+        const controller = $(this).attr('data-controller');
+
         if (confirm('Удалить ' + name + '?')) {
             $.post({
-                url: '/admin/' + controller + '/delete?id=' + id
+                url: '/admin/' + controller.toLowerCase() + '/delete?id=' + id
             }).done(function (msg) {
-                alert(msg);
+                // alert();
                 if (msg) {
-                    LoadCategoryList();
+                    LoadList(controller);
                 } else {
                     alert('Невозможно удалить ' + name);
                 }

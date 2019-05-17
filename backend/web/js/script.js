@@ -4,8 +4,8 @@ $(document).ready(function () {
 
 
 
-function LoadCategoryList() {
-    $('#CategoryList').load('/admin/category/list');
+function LoadList(className) {
+    $('#' + className + 'List').load('/admin/' + className.toLowerCase() + '/list');
 }
 
 function GoTo(url) {

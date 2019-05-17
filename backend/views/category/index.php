@@ -20,5 +20,5 @@ $this->params['breadcrumbs'][] = $this->title;
     <div id="CategoryList"></div>
 </div>
 <script>
-    LoadCategoryList();
+    LoadList('Category');
 </script>

@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property int $ordering
  *
  * @property Good[] $goods
  */
@@ -29,6 +30,7 @@ class Measure extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['ordering'], 'integer'],
             [['name'], 'string', 'max' => 45],
         ];
     }
@@ -40,7 +42,8 @@ class Measure extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Наименование',
+            'ordering' => 'Сортировка',
         ];
     }
 

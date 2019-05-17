@@ -7,7 +7,7 @@
     </tr>
     </thead>
     <?php $i = 1; ?>
-    <?php foreach ($cats as $item): ?>
+    <?php foreach ($measures as $item): ?>
     <?php $controller = explode('\\', $item::className())[2] ?>
         <tr>
             <td><?= $item->ordering ?></td>
