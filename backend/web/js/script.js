@@ -1,6 +1,16 @@
 $(document).ready(function () {
-    // alert('123');
+
 });
+
+
+
+function LoadCategoryList() {
+    $('#CategoryList').load('/admin/category/list');
+}
+
+function GoTo(url) {
+    location = url;
+}
 function adminHome() {
-    location = '/admin';
+    GoTo('/admin')
 }

@@ -81,6 +81,7 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
     public function actionSignup()
     {
         $model = new SignupForm();
@@ -95,6 +96,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();
@@ -110,6 +112,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
     public function actionResetPassword($token)
     {
         try {
