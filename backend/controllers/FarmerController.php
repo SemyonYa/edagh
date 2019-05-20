@@ -2,16 +2,22 @@
 
 namespace backend\controllers;
 
+use common\models\User;
 use Yii;
-use common\models\Category;
-use common\models\CategorySearch;
+use common\models\Farmer;
+use common\models\FarmerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-class CategoryController extends Controller
+/**
+ * FarmerController implements the CRUD actions for Farmer model.
+ */
+class FarmerController extends Controller
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function behaviors()
     {
         return [
@@ -24,21 +30,22 @@ class CategoryController extends Controller
         ];
     }
 
-    public function actionIndex() {
+
+    public function actionIndex()
+    {
         return $this->render('index');
     }
 
     public function actionList()
     {
         $this->layout = 'empty';
-        $cats = Category::find()->all();
-
-        return $this->render('list', compact('cats'));
+        $farmers = Farmer::find()->all();
+        return $this->render('list', compact('farmers'));
     }
 
     public function actionCreate()
     {
-        $model = new Category();
+        $model = new Farmer();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -60,16 +67,20 @@ class CategoryController extends Controller
 
     public function actionDelete($id)
     {
-        if ($this->findModel($id)->delete()) {
-            return true;
-        } else {
-            return false;
-        }
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    public function actionUserlist($f_id) {
+        $this->layout = 'empty';
+        $users = User::find()->all();
+        return $this->render('userlist', compact('users', 'f_id'));
     }
 
     protected function findModel($id)
     {
-        if (($model = Category::findOne($id)) !== null) {
+        if (($model = Farmer::findOne($id)) !== null) {
             return $model;
         }
 

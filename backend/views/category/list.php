@@ -13,8 +13,8 @@
             <td><?= $item->ordering ?></td>
             <td><?= $item->name ?></td>
             <td>
-                <span onclick="GoTo('/admin/<?= $controller ?>/update?id=<?= $item->id ?>')" class="btn-action">Редактировать</span>
-                <span data-id="<?= $item->id ?>" data-name="<?= $item->name ?>" data-controller="<?= $controller ?>" class="btn-action btn-remove">Удалить</span>
+                <span onclick="GoTo('/admin/<?= strtolower($controller) ?>/update?id=<?= $item->id ?>')" class="btn-action">Редактировать</span>
+                <span data-id="<?= $item->id ?>" data-name="<?= $item->name ?>" data-controller="<?= strtolower($controller) ?>" class="btn-action btn-remove">Удалить</span>
             </td>
         </tr>
     <?php endforeach; ?>

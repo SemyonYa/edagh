@@ -186,11 +186,22 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
     public function getUserRoles() {
         return $this->hasMany(UserRole::className(), ['user_id' => 'id']);
     }
+
     public function getRoles() {
         return $this->hasMany(Role::className(), ['id' => 'role_id'])
-            ->viaTable('user_roles', ['user_id' => 'id']);
+            ->viaTable('user_role', ['user_id' => 'id']);
+    }
+
+    public function getFarmerUsers() {
+        return $this->hasMany(FarmerUser::className(), ['user_id' => 'id']);
+    }
+
+    public function getFarmers() {
+        return $this->hasMany(Farmer::className(), ['id' => 'farmer_id'])
+            ->viaTable('farmer_user', ['user_id' => 'id']);
     }
 }

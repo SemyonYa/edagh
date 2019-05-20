@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\MeasureSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Measures';
+$this->title = 'Единицы измерения';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="measure-index">

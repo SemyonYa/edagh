@@ -1,4 +1,28 @@
 /*
+    scroll
+*/
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+    width: 10px;
+    display: block;
+    background-color: rgba(43, 84, 44, 0.5);
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: rgba(43, 84, 44, 0.3);
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb:vertical, ::-webkit-scrollbar-thumb:horizontal {
+    height: 5px;
+    background-color: rgb(43, 84, 44);
+}
+/*
     OVERRIDE
 */
 .btn {
@@ -23,6 +47,7 @@
     border-radius: 3px;
     color: #e4e4e4;
     cursor: pointer;
+    margin: 2px;
 }
 input {
     border-radius: 0!important;
@@ -163,4 +188,152 @@ footer {
     .ad-category-table {
         width: 100%;
     }
+}
+
+
+/*MEASURE*/
+.ad-measure-form {
+    width: 600px;
+ }
+
+@media (max-width: 767px) {
+    .ad-measure-form {
+        width: 100%;
+    }
+}
+
+
+
+/*FARMER*/
+.ad-farmer-form {
+    width: 600px;
+}
+.ad-farmer-table {
+    font-size: 14px;
+    width: 800px;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+.ad-farmer-table td {
+    border: dotted 1px #e4e4e4;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+}
+.ad-farmer-table td:first-child {
+    width: 50px;
+}
+.ad-farmer-table td:nth-child(2) {
+    width: 45%;
+}
+.ad-farmer-table td:last-child {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.ad-farmer-table thead td {
+    background-color: #e4e4e4;
+    color: #4f7b30;
+    border-color: #4f7b30;
+    font-weight: 600;
+}
+.eda-userlist {
+    flex-basis: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.eda-userlist > h4 {
+    flex-basis: 100%;
+}
+.eda-userlist-item {
+    flex-basis: 100%;
+    margin: 4px 0;
+    border-radius: 4px;
+    border: solid 1px #4f7b30;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    line-height: 1;
+    transition: .3s;
+}
+.eda-userlist-item:hover {
+    border-color: #2b542c;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,.2);
+}
+.eda-userlist-item span {
+    padding: 8px;
+}
+.eda-userlist-item span.glyphicon-ok {
+    height: 100%;
+    background-color: #2b542c;
+    color: white;
+    padding: 8px;
+    top: unset;
+}
+@media (max-width: 767px) {
+    .ad-farmer-form {
+        width: 100%;
+    }
+    .ad-farmer-table {
+        width: 100%;
+    }
+}
+
+
+
+/*MODAL*/
+.eda-modal-wrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 19999999999999999999999999111;
+    top: 0;
+    left: 0;
+    background-color: rgba(255,255,255,.9);
+    justify-content: center;
+    align-items: center;
+    display: none;
+    transition: .3s;
+}
+.eda-modal {
+    width: 600px;
+    height: 50%;
+    border: dotted 1px #2b542c;
+    background-color: white;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,.3);
+    transition: .5s;
+}
+.eda-modal-wrap-on {
+    display: flex;
+}
+.eda-modal-on {
+    display: flex;
+}
+.eda-modal-close {
+    position: fixed;
+    top: 25%;
+    left: calc(50% + 300px);
+    /*text-align: right;*/
+}
+.eda-modal-close > span {
+    cursor: pointer;
+    padding: 0 20px;
+    font-size: 40px;
+    transition: .3s;
+}
+.eda-modal-close > span:hover {
+    color: darkred;
 }
