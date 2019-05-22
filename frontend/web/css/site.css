@@ -237,16 +237,19 @@ footer a {
 }
 .eda-main-ribbon {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     padding: 20px 20%;
+    flex-wrap: wrap;
 }
 .eda-main-ribbon-item {
     flex-basis: 15%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    text-align: center;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*justify-content: center;*/
     cursor: pointer;
+    margin: 3px;
 }
 .eda-main-ribbon-item > img {
     width: 75%;
@@ -254,6 +257,7 @@ footer a {
 .eda-main-ribbon-item > span {
     flex-basis: 100%;
     text-align: center;
+    padding: 0 5px;
 }
 .eda-main-f {
     display: flex;

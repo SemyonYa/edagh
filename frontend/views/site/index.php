@@ -19,30 +19,32 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
         <button class="btn btn-success eda-main-search-btn">НАЙТИ</button>
     </div>
     <div class="eda-main-ribbon">
-        <div class="eda-main-ribbon-item">
-            <img src="/frontend/web/img/meat-ico.svg"/>
-            <span>МЯСО</span>
-        </div>
-        <div class="eda-main-ribbon-item">
-            <img src="/frontend/web/img/fish-ico.svg"/>
-            <span>РЫБА</span>
-        </div>
-        <div class="eda-main-ribbon-item">
-            <img src="/frontend/web/img/cheese-ico.svg"/>
-            <span>СЫРЫ</span>
-        </div>
-        <div class="eda-main-ribbon-item">
-            <img src="/frontend/web/img/cabbage-ico.svg"/>
-            <span>ОВОЩИ</span>
-        </div>
-        <div class="eda-main-ribbon-item">
-            <img src="/frontend/web/img/berry-ico.svg"/>
-            <span>ЯГОДЫ</span>
-        </div>
-        <div class="eda-main-ribbon-item">
-            <img src="/frontend/web/img/herb-ico.svg"/>
-            <span>ЗЕЛЕНЬ</span>
-        </div>
+        <?php foreach ($categories as $category): ?>
+            <div class="eda-main-ribbon-item">
+                <img src="/frontend/web/img/category_icons/<?= $category->img ?>"/>
+                <span><?= mb_strtoupper($category->name) ?></span>
+            </div>
+        <?php endforeach; ?>
+        <!--        <div class="eda-main-ribbon-item">-->
+        <!--            <img src="/frontend/web/img/category_icons/fish-ico.svg"/>-->
+        <!--            <span>РЫБА</span>-->
+        <!--        </div>-->
+        <!--        <div class="eda-main-ribbon-item">-->
+        <!--            <img src="/frontend/web/img/category_icons/cheese-ico.svg"/>-->
+        <!--            <span>СЫРЫ</span>-->
+        <!--        </div>-->
+        <!--        <div class="eda-main-ribbon-item">-->
+        <!--            <img src="/frontend/web/img/category_icons/cabbage-ico.svg"/>-->
+        <!--            <span>ОВОЩИ</span>-->
+        <!--        </div>-->
+        <!--        <div class="eda-main-ribbon-item">-->
+        <!--            <img src="/frontend/web/img/category_icons/berry-ico.svg"/>-->
+        <!--            <span>ЯГОДЫ</span>-->
+        <!--        </div>-->
+        <!--        <div class="eda-main-ribbon-item">-->
+        <!--            <img src="/frontend/web/img/herb-ico.svg"/>-->
+        <!--            <span>ЗЕЛЕНЬ</span>-->
+        <!--        </div>-->
     </div>
     <div class="eda-space-line">
         <hr/>
@@ -56,7 +58,8 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
             <div class="eda-main-farmers-item"
                  style="background-image: url('/frontend/web/img/logo_dlyasvoih.png')"></div>
             <div class="eda-main-farmers-item" style="background-image: url('/frontend/web/img/logo_cesar.jpg')"></div>
-            <div class="eda-main-farmers-item" style="background-image: url('/frontend/web/img/logo_dlyasvoih.png')"></div>
+            <div class="eda-main-farmers-item"
+                 style="background-image: url('/frontend/web/img/logo_dlyasvoih.png')"></div>
             <div class="eda-main-farmers-item" style="background-image: url('/frontend/web/img/logo_soymik.png')"></div>
         </div>
         <h4><a href="/product/company-list">Смотреть все...</a></h4>

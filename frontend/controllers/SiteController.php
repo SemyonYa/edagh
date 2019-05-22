@@ -1,6 +1,8 @@
 <?php
+
 namespace frontend\controllers;
 
+use common\models\Category;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -59,15 +61,18 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $categories = Category::find()->orderBy('ordering')->all();
+        return $this->render('index', compact('categories'));
     }
 
-    public function actionCart() {
+    public function actionCart()
+    {
 
         return $this->render('cart');
     }
 
-    public function actionCreateOrder() {
+    public function actionCreateOrder()
+    {
         $this->layout = 'empty';
         return $this->render('create-order');
     }

@@ -32,7 +32,7 @@ AppAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
         <header>
-            <img onclick="adminHome()" class="ad-logo" src="/frontend/web/img/logo.svg" />
+            <img onclick="GoTo('/admin')" class="ad-logo" src="/frontend/web/img/logo.svg" />
             <div>
                 <?php if (!Yii::$app->user->isGuest): ?>
                     <span class="btn btn-header"><a href="/site/signup">Рег</a></span>

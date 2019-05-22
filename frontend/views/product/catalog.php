@@ -74,7 +74,7 @@ $this->title = 'Wanna fresh: Каталог товаров';
             <?php for ($i = 1; $i < 15; $i++): ?>
                 <div class="eda-catalog-goods-item" data-good-id="<?= $i ?>" data-toggle="modal" data-target="#GoodModal">
                     <div class="eda-catalog-goods-item-img"
-                         style="background-image: url('/frontend/web/img/fish4-ico.svg')"></div>
+                         style="background-image: url('/frontend/web/img/category_icons/fish4-ico.svg')"></div>
                     <span class="eda-catalog-goods-item-name">Фермерский продукт #<?= $i ?></span>
                 </div>
             <?php endfor; ?>

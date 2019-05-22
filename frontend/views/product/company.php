@@ -21,11 +21,11 @@ $this->title = 'Wanna fresh: Фермерское хозяйство';
             </div>
             <?php for ($i = 1; $i < 5; $i++): ?>
                 <div class="eda-company-goods-item">
-                    <img src="/frontend/web/img/cheese-ico.svg" />
+                    <img src="/frontend/web/img/category_icons/cheese-ico.svg" />
                     <p>Пармезан</p>
                 </div>
                 <div class="eda-company-goods-item">
-                    <img src="/frontend/web/img/cabbage-ico.svg" />
+                    <img src="/frontend/web/img/category_icons/cabbage-ico.svg" />
                     <p>Капуста</p>
                 </div>
             <?php endfor; ?>

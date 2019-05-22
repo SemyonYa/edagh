@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property string $img
  * @property int $ordering
  *
  * @property Good[] $goods
@@ -29,7 +30,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'img'], 'required'],
             [['ordering'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['name'], 'unique'],
@@ -45,6 +46,7 @@ class Category extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Наименование',
             'ordering' => 'Сортировка',
+            'img' => 'Иконка (svg, png)'
         ];
     }
 

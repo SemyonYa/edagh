@@ -14,6 +14,6 @@ $this->params['breadcrumbs'][] = 'Редактирование';
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', compact('model')) ?>
+    <?= $this->render('_form', compact('model', 'icon_names')) ?>
 
 </div>

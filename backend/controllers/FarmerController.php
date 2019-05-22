@@ -2,10 +2,12 @@
 
 namespace backend\controllers;
 
+use common\models\FarmerUser;
 use common\models\User;
 use Yii;
 use common\models\Farmer;
 use common\models\FarmerSearch;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -78,6 +80,21 @@ class FarmerController extends Controller
         return $this->render('userlist', compact('users', 'f_id'));
     }
 
+    public function actionAddUser($f_id, $u_id) {
+        if (FarmerUser::findOne(['farmer_id' => $f_id, 'user_id' => $u_id]) === null) {
+            $fu = new FarmerUser();
+            $fu->farmer_id = $f_id;
+            $fu->user_id = $u_id;
+            if ($fu->save()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+//        else {
+//            return Json::encode('Пользователь уже добавлен в другую организацию');
+//        }
+    }
     protected function findModel($id)
     {
         if (($model = Farmer::findOne($id)) !== null) {

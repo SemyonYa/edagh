@@ -157,6 +157,30 @@ footer {
 .ad-category-form {
     width: 600px;
 }
+.ad-category-form-imgs {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.ad-category-form-img {
+    width: 120px;
+    height: 120px;
+    background-image: url('/frontend/web/img/category_icons/berry-ico.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: dotted 1px #e4e4e4;
+    margin: 4px;
+    cursor: pointer;
+    transition: .5s;
+}
+.ad-category-form-img:hover {
+    border-color: #2b542c;
+}
+.ad-category-form-img-active {
+    border: solid 1px #4f7b30;
+    background-color: #e4e4e4;
+}
 .ad-category-table {
     font-size: 14px;
     width: 600px;
