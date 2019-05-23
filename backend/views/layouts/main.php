@@ -38,15 +38,17 @@ AppAsset::register($this);
                     <span class="btn btn-header"><a href="/admin/site/signup">Рег</a></span>
                     <span class="btn btn-header"><a href="/admin/site/login">Вход</a></span>
                 <?php else: ?>
-                    <?php echo Html::beginForm(['/site/logout'], 'post', ['id' => 'logoutform']) ?>
-                    <?php echo Html::submitButton('Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout ']); ?>
-                    <?php Html::endForm(); ?>
+                    <span class="btn-action" onclick="Logout()">Выход (<?= Yii::$app->user->identity->username ?>)</span>
+<!--                    --><?php //echo Html::beginForm(['/site/logout'], 'post', ['id' => 'logoutform']) ?>
+<!--                    --><?php //echo Html::submitButton('Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout ']); ?>
+<!--                    --><?php //Html::endForm(); ?>
                 <?php endif; ?>
             </div>
         </header>
 
         <div class="ad-wrap">
             <?= Breadcrumbs::widget([
+                'homeLink' => ['label' => 'Главная', 'url' => '/admin/a'],
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
             <? //= Alert::widget() ?>

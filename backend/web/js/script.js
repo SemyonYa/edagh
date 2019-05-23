@@ -87,4 +87,10 @@ function LoadList(className) {
 function GoTo(url) {
     location = url;
 }
-
+function Logout() {
+    $.post({
+        url: '/admin/site/logout'
+    }).done(function () {
+        alert('log out');
+    });
+}

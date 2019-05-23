@@ -17,7 +17,7 @@ class Au
         if (\Yii::$app->user->identity) {
             $user_id = \Yii::$app->user->identity->getId();
             if (User::findOne($user_id)->roles[0]->name !== 'r_admin')
-                throw new ForbiddenHttpException($user_id + '-');
+                throw new ForbiddenHttpException('Доступ разрешен только администратору');
             return true;
         } else {
             echo "<script>location='/admin/site/login';</script>";

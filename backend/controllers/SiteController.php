@@ -58,7 +58,10 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        if (\Yii::$app->user->identity) {
+            return $this->RedirectToAdminHomeByRole();
+        }
+        return $this->redirect('/admin/login');
     }
 
     public function actionA() {
@@ -108,7 +111,7 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->redirect('/admin');
+        return $this->redirect('/admin/login');
     }
 
     public function actionSignup()

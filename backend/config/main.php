@@ -69,7 +69,9 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'a' => 'site/a',
-                'f' => 'site/f'
+                'f' => 'site/f',
+                'login' => 'site/login',
+                'signup' => 'site/signup',
             ],
         ],
 
