@@ -244,20 +244,24 @@ footer a {
 }
 .eda-main-ribbon-item {
     flex-basis: 15%;
-    text-align: center;
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
-    /*justify-content: center;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     cursor: pointer;
-    margin: 3px;
+    margin-bottom: 10px;
 }
 .eda-main-ribbon-item > img {
     width: 75%;
+    height: 75%;
 }
 .eda-main-ribbon-item > span {
     flex-basis: 100%;
     text-align: center;
-    padding: 0 5px;
+    transition: .5s;
+}
+.eda-main-ribbon-item:hover > span {
+    color: #4f7b30;
+    text-shadow: 1px 1px 5px rgba(0,0,0,.2);
 }
 .eda-main-f {
     display: flex;

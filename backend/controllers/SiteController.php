@@ -1,10 +1,14 @@
 <?php
+
 namespace backend\controllers;
 
 use backend\models\PasswordResetRequestForm;
 use backend\models\ResetPasswordForm;
 use common\models\Au;
 use backend\models\SignupForm;
+use common\models\Farmer;
+use common\models\User;
+use http\Header;
 use Yii;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -57,21 +61,46 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionA() {
+        Au::isAdmin();
+        return $this->render('admin-page');
+    }
+
+    public function actionF() {
+        Au::isManager();
+        $farmer = Farmer::findOne(Au::isFarmer());
+        return $this->render('farmer-page', compact('farmer'));
+    }
+
     public function actionLogin()
     {
+
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->RedirectToAdminHomeByRole();
         }
 
         $model = new LoginForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->RedirectToAdminHomeByRole();
         } else {
             $model->password = '';
 
-            return $this->render('login', [
-                'model' => $model,
-            ]);
+            return $this->render('login', compact('model'));
+        }
+    }
+
+    public function RedirectToAdminHomeByRole()
+    {
+        $user_id = \Yii::$app->user->identity->getId();
+        $user = User::findOne($user_id);
+        $roles = $user->roles;
+        if (count($roles) > 0) {
+            if ($roles[0]->name === 'r_admin') {
+                return $this->redirect('/admin/a');
+            } elseif ($roles[0]->name === 'r_manager') {
+                return $this->redirect('/admin/f');
+            }
         }
     }
 
@@ -79,11 +108,12 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect('/admin');
     }
 
     public function actionSignup()
     {
+        Au::isAdmin();
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
@@ -92,9 +122,7 @@ class SiteController extends Controller
                 }
             }
         }
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
+        return $this->render('signup', compact('model'));
     }
 
     public function actionRequestPasswordReset()

@@ -107,6 +107,19 @@ footer {
 }
 
 /*
+    INDEX
+*/
+.ad-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30vh;
+}
+
+
+/*
     LOGIN
 */
 .ad-login {
@@ -126,6 +139,7 @@ footer {
 .ad-login-form input {
     text-align: center;
 }
+
 
 /*
     DICTIONARIES

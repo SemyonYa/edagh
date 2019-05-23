@@ -68,6 +68,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'a' => 'site/a',
+                'f' => 'site/f'
             ],
         ],
 

@@ -9,7 +9,7 @@ class Role extends \yii\db\ActiveRecord
 
     public static function tableName()
     {
-        return 'roles';
+        return 'role';
     }
 
     public function rules()
@@ -35,6 +35,6 @@ class Role extends \yii\db\ActiveRecord
 
     public function getUsers()
     {
-        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('user_roles', ['role_id' => 'id']);
+        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('user_role', ['role_id' => 'id']);
     }
 }

@@ -25,26 +25,6 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
                 <span><?= mb_strtoupper($category->name) ?></span>
             </div>
         <?php endforeach; ?>
-        <!--        <div class="eda-main-ribbon-item">-->
-        <!--            <img src="/frontend/web/img/category_icons/fish-ico.svg"/>-->
-        <!--            <span>РЫБА</span>-->
-        <!--        </div>-->
-        <!--        <div class="eda-main-ribbon-item">-->
-        <!--            <img src="/frontend/web/img/category_icons/cheese-ico.svg"/>-->
-        <!--            <span>СЫРЫ</span>-->
-        <!--        </div>-->
-        <!--        <div class="eda-main-ribbon-item">-->
-        <!--            <img src="/frontend/web/img/category_icons/cabbage-ico.svg"/>-->
-        <!--            <span>ОВОЩИ</span>-->
-        <!--        </div>-->
-        <!--        <div class="eda-main-ribbon-item">-->
-        <!--            <img src="/frontend/web/img/category_icons/berry-ico.svg"/>-->
-        <!--            <span>ЯГОДЫ</span>-->
-        <!--        </div>-->
-        <!--        <div class="eda-main-ribbon-item">-->
-        <!--            <img src="/frontend/web/img/herb-ico.svg"/>-->
-        <!--            <span>ЗЕЛЕНЬ</span>-->
-        <!--        </div>-->
     </div>
     <div class="eda-space-line">
         <hr/>

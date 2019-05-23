@@ -8,7 +8,7 @@ class UserRole extends \yii\db\ActiveRecord
 {
     public static function tableName()
     {
-        return 'user_roles';
+        return 'user_role';
     }
 
     public function rules()
