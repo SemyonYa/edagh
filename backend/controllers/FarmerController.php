@@ -2,13 +2,12 @@
 
 namespace backend\controllers;
 
+use backend\models\Image;
 use common\models\Au;
 use common\models\FarmerUser;
 use common\models\User;
 use Yii;
 use common\models\Farmer;
-use common\models\FarmerSearch;
-use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -65,12 +64,13 @@ class FarmerController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $image = new Image();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
 
-        return $this->render('update', compact('model'));
+        return $this->render('update', compact('model', 'image'));
     }
 
     public function actionDelete($id)
@@ -97,9 +97,10 @@ class FarmerController extends Controller
                 return false;
             }
         }
-//        else {
-//            return Json::encode('Пользователь уже добавлен в другую организацию');
-//        }
+    }
+
+    public function actionAddImage() {
+
     }
     protected function findModel($id)
     {

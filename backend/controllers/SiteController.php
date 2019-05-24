@@ -64,6 +64,11 @@ class SiteController extends Controller
         return $this->redirect('/admin/login');
     }
 
+    public function actionUserList() {
+        $users = User::find()->all();
+        return $this->render('user-list', compact('users'));
+    }
+
     public function actionA() {
         Au::isAdmin();
         return $this->render('admin-page');

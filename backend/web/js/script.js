@@ -22,6 +22,12 @@ $(document).ready(function () {
     $('.ad-category-form-img').on('click', function () {
         CategoryImgActivate(this);
     });
+    ///
+    // FARMER
+    ///
+    $('#image-id').on('change', function () {
+        alert($(this).val());
+    });
 });
 
 //////------------//////////////////--------------------/////////////////////-----------------------///////////////////

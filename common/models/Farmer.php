@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property string $description
  *
  * @property FarmerUser $farmerUser
  * @property User[] $users
@@ -32,6 +33,7 @@ class Farmer extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'string', 'max' => 45],
+            [['description'], 'string'],
             [['name'], 'unique'],
         ];
     }
@@ -44,6 +46,7 @@ class Farmer extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Наименование',
+            'description' => 'Описание',
         ];
     }
 

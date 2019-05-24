@@ -14,8 +14,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
+
     <div class="form-group">
-        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

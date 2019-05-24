@@ -72,6 +72,7 @@ return [
                 'f' => 'site/f',
                 'login' => 'site/login',
                 'signup' => 'site/signup',
+                'user' => 'site/user-list'
             ],
         ],
 

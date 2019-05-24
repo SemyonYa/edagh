@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7211afeb50d320d6e2226c9bc0a8f9e3",
+    "content-hash": "141636a452aa561ada83919a8bbe5aff",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -60,6 +60,27 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/9e8ec3d10fad04748176144f108d7355662ae75e",
                 "reference": "9e8ec3d10fad04748176144f108d7355662ae75e"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/lightbox2",
+            "version": "v2.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lokesh/lightbox2.git",
+                "reference": "500e07eff3198038656aeae401444b5544744851"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lokesh/lightbox2/zipball/500e07eff3198038656aeae401444b5544744851",
+                "reference": "500e07eff3198038656aeae401444b5544744851"
+            },
+            "require": {
+                "bower-asset/jquery": ">2"
             },
             "type": "bower-asset",
             "license": [
@@ -540,16 +561,16 @@
         },
         {
             "name": "noam148/yii2-image-manager",
-            "version": "1.2.11",
+            "version": "1.2.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/noam148/yii2-image-manager.git",
-                "reference": "458d69c60a7034772daeba5255edf61123810050"
+                "reference": "6e2216d7d2415b548ec6ae2ab25019e24b905a69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/noam148/yii2-image-manager/zipball/458d69c60a7034772daeba5255edf61123810050",
-                "reference": "458d69c60a7034772daeba5255edf61123810050",
+                "url": "https://api.github.com/repos/noam148/yii2-image-manager/zipball/6e2216d7d2415b548ec6ae2ab25019e24b905a69",
+                "reference": "6e2216d7d2415b548ec6ae2ab25019e24b905a69",
                 "shasum": ""
             },
             "require": {
@@ -585,7 +606,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2019-02-07T19:35:09+00:00"
+            "time": "2019-05-16T06:28:53+00:00"
         },
         {
             "name": "noam148/yii2-image-resize",
@@ -929,6 +950,48 @@
                 "shim"
             ],
             "time": "2019-02-06T07:57:58+00:00"
+        },
+        {
+            "name": "yeesoft/yii2-lightbox",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yeesoft/yii2-lightbox.git",
+                "reference": "5edee95567964b5c86d6a3b374ec476e9db20337"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yeesoft/yii2-lightbox/zipball/5edee95567964b5c86d6a3b374ec476e9db20337",
+                "reference": "5edee95567964b5c86d6a3b374ec476e9db20337",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/lightbox2": "~2.8",
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yeesoft\\lightbox\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Taras Makitra",
+                    "email": "makitrataras@gmail.com"
+                }
+            ],
+            "description": "Lightbox widget for Yii2",
+            "keywords": [
+                "lightbox",
+                "module",
+                "yii2"
+            ],
+            "time": "2017-03-01T11:30:59+00:00"
         },
         {
             "name": "yiisoft/yii2",
