@@ -2,21 +2,19 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
 /* @var $this yii\web\View */
-/* @var $model common\models\Farmer */
+/* @var $model common\models\Good */
 
 $this->title = 'Редактирование: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Фермерские хозяйства', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Мои товары', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Редактирование';
 ?>
-<div class="ad-farmer-update">
-    <input type="hidden" id="FarmerId" value="<?= $model->id ?>" />
+<div class="ad-good-update">
+
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', compact('model')) ?>
-
-    <div class="ad-farmer-update-imgs">
+    <div class="ad-good-update-imgs">
         <?php $form2 = ActiveForm::begin(); ?>
 
         <?= $form2->field($image, 'id')->widget(\noam148\imagemanager\components\ImageManagerInputWidget::className(), [
@@ -27,11 +25,10 @@ $this->params['breadcrumbs'][] = 'Редактирование';
         ]); ?>
 
         <?php ActiveForm::end(); ?>
-        <div class="ad-farmer-update-imglist" id="FarmerImgs">
-<!--            ajax-->
+        <div class="ad-good-update-imglist" id="GoodImgs">
+            <!--            ajax-->
         </div>
     </div>
-
 </div>
 <style>
     #image-id_name {
@@ -48,5 +45,5 @@ $this->params['breadcrumbs'][] = 'Редактирование';
     }
 </style>
 <script>
-    LoadFarmerImgList(<?= $model->id ?>);
+
 </script>

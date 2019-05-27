@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Image;
 use common\models\Au;
+use common\models\FarmerImg;
 use common\models\FarmerUser;
 use common\models\User;
 use Yii;
@@ -80,13 +81,15 @@ class FarmerController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionUserlist($f_id) {
+    public function actionUserlist($f_id)
+    {
         $this->layout = 'empty';
         $users = User::find()->all();
         return $this->render('userlist', compact('users', 'f_id'));
     }
 
-    public function actionAddUser($f_id, $u_id) {
+    public function actionAddUser($f_id, $u_id)
+    {
         if (FarmerUser::findOne(['farmer_id' => $f_id, 'user_id' => $u_id]) === null) {
             $fu = new FarmerUser();
             $fu->farmer_id = $f_id;
@@ -99,9 +102,44 @@ class FarmerController extends Controller
         }
     }
 
-    public function actionAddImage() {
-
+    public function actionImageList($farmer_id)
+    {
+        $this->layout = 'empty';
+        $f_imgs = FarmerImg::find()->where(['farmer_id' => $farmer_id])->all();
+        return $this->render('img-list', compact('f_imgs'));
     }
+
+    public function actionAddImage($farmer_id, $img_id)
+    {
+        $f_i = new FarmerImg();
+        $f_i->farmer_id = $farmer_id;
+        $f_i->img_id = $img_id;
+        $f_i->save();
+    }
+
+    public function actionRemoveImage($farmer_id, $img_id)
+    {
+        $f_i = FarmerImg::findOne(['farmer_id' => $farmer_id, 'img_id' => $img_id]);
+        $f_i->delete();
+    }
+
+    public function actionMainImage($farmer_id, $img_id) {
+        $f_is = FarmerImg::find()->where(['farmer_id' => $farmer_id])->all();
+        foreach ($f_is as $f_i) {
+            if ($f_i->is_main == 1 && $f_i->img_id != $img_id) {
+                $f_i->is_main = 0;
+                $f_i->save();
+            } elseif ($f_i->is_main == 0 && $f_i->img_id == $img_id) {
+                $f_i->is_main = 1;
+                $f_i->save();
+            }
+        }
+
+//        $f_i = FarmerImg::findOne(['farmer_id' => $farmer_id, 'img_id' => $img_id]);
+//        $f_i->is_main = 1;
+//        $f_i->save();
+    }
+
     protected function findModel($id)
     {
         if (($model = Farmer::findOne($id)) !== null) {

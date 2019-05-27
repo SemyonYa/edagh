@@ -22,11 +22,17 @@ $(document).ready(function () {
     $('.ad-category-form-img').on('click', function () {
         CategoryImgActivate(this);
     });
+
     ///
     // FARMER
     ///
     $('#image-id').on('change', function () {
-        alert($(this).val());
+        const farmerId = $('#FarmerId').val();
+        $.ajax({
+            url: '/admin/farmer/add-image?farmer_id=' + farmerId + '&img_id=' + $(this).val()
+        }).done(function () {
+            LoadFarmerImgList(farmerId);
+        });
     });
 });
 
@@ -36,7 +42,7 @@ $(document).ready(function () {
 
 
 ///
-// FARMER USER
+// FARMER
 ///
 function LoadUserList(farmerId) {
     $('#EdaModal').load('/admin/farmer/userlist?f_id=' + farmerId);
@@ -51,6 +57,30 @@ function AddFarmerUser(fId, uId) {
         } else {
             alert('Невозможно выбрать данного пользователя как администратора текущего фермерского хозяйства');
         }
+    });
+}
+
+function LoadFarmerImgList(farmerId) {
+    $('#FarmerImgs').load('/admin/farmer/image-list?farmer_id=' + farmerId);
+}
+
+function RemoveFarmerImg(imgId) {
+    if (confirm('Удалить изображение?')) {
+        const farmerId = $('#FarmerId').val();
+        $.ajax({
+            url: '/admin/farmer/remove-image?farmer_id=' + farmerId + '&img_id=' + imgId
+        }).done(function () {
+            LoadFarmerImgList(farmerId);
+        });
+    }
+}
+
+function MainFarmerImg(imgId) {
+    const farmerId = $('#FarmerId').val();
+    $.ajax({
+        url: '/admin/farmer/main-image?farmer_id=' + farmerId + '&img_id=' + imgId
+    }).done(function () {
+        LoadFarmerImgList(farmerId);
     });
 }
 
@@ -93,6 +123,7 @@ function LoadList(className) {
 function GoTo(url) {
     location = url;
 }
+
 function Logout() {
     $.post({
         url: '/admin/site/logout'

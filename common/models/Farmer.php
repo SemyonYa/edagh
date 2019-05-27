@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use noam148\imagemanager\models\ImageManager;
 use Yii;
 
 /**
@@ -72,5 +73,10 @@ class Farmer extends \yii\db\ActiveRecord
     public function getGoods()
     {
         return $this->hasMany(Good::className(), ['farmer_id' => 'id']);
+    }
+
+    public function getPoster() {
+        $f_i = FarmerImg::findOne(['farmer_id' => $this->id, 'is_main' => 1]);
+        return ($f_i) ? $f_i->img_id : null;
     }
 }

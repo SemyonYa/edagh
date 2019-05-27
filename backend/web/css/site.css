@@ -284,7 +284,7 @@ footer {
 
 .ad-farmer-table {
     font-size: 14px;
-    width: 800px;
+    width: 1000px;
     border-collapse: separate;
     border-spacing: 5px;
 }
@@ -305,11 +305,11 @@ footer {
 }
 
 .ad-farmer-table td:last-child {
-    width: 45%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    width: 200px;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*flex-wrap: wrap;*/
 }
 
 .ad-farmer-table thead td {
@@ -322,6 +322,37 @@ footer {
 .ad-farmer-update-imgs {
     flex-basis: 30%;
     padding: 0 10px;
+}
+
+.ad-farmer-update-imglist {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ad-farmer-update-img {
+    width: 150px;
+    height: 150px;
+    border: solid 1px #e4e4e4;
+    margin: 3px;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+.ad-farmer-update-img > span.glyphicon-remove {
+    color: darkred;
+    cursor: pointer;
+}
+.ad-farmer-update-img > span.glyphicon-ok {
+    align-self: flex-end;
+    color: whitesmoke;
+    font-size: 30px;
+    padding: 3px;
+    cursor: pointer;
 }
 
 .eda-userlist {
@@ -468,4 +499,59 @@ footer {
     .ad-user-table {
         width: 100%;
     }
+}
+
+
+/**
+    GOODS
+*/
+.ad-goods-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+    /*font-size: 14px;*/
+}
+.ad-goods-table td {
+    border: dotted 1px #e4e4e4;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+}
+
+.ad-goods-table thead td {
+    background-color: #e4e4e4;
+    color: #4f7b30;
+    border-color: #4f7b30;
+    font-weight: 600;
+}
+.ad-good-search {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.ad-good-search-input {
+    border-radius: 5px!important;
+    padding: 5px!important;
+    border: dotted 1px #2b542c;
+    font-size: 16px;
+    color: #555;
+    line-height: 1;
+    width: 500px;
+}
+.ad-good-search-input:focus {
+    border: solid 1px #4f7b30;
+}
+.ad-good-search-btn {
+    padding: 5px;
+    font-size: 16px;
+    margin: 0 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #4f7b30;
+    border: solid 0px white;
+    cursor: pointer;
+}
+.ad-good-form {
+    width: 600px;
 }

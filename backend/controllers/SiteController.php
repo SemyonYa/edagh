@@ -125,9 +125,9 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
+//                if (Yii::$app->getUser()->login($user)) {
+                    return $this->redirect('/admin/user');
+//                }
             }
         }
         return $this->render('signup', compact('model'));

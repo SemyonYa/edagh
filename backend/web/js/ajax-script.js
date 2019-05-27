@@ -27,10 +27,10 @@ $(document).ready(function () {
 
 
     // FARMER ADMIN
-    $('#LoadAdminListBtn').click(function () {
-        const farmerId = $(this).attr('data-farmerId');
-        LoadUserList(farmerId);
-    });
+    // $('#LoadAdminListBtn').click(function () {
+    //     const farmerId = $(this).attr('data-farmerId');
+    //     LoadUserList(farmerId);
+    // });
     // $('.eda-userlist-item').click(function () {
     //     //     // const userId = $(this).attr('data-userid');
     //     //     // alert(userId);

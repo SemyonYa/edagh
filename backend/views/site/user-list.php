@@ -1,5 +1,11 @@
-<h2>Управление пользователями</h2>
+<?php
+$this->title = "Управление пользователями";
 
+$this->params['breadcrumbs'][] = $this->title;
+?>
+
+<h2>Управление пользователями</h2>
+<a href="/admin/signup" class="btn btn-primary">Новый пользователь</a>
 <table class="ad-user-table">
     <thead>
     <tr>
@@ -7,8 +13,8 @@
         <td>Логин</td>
         <td>E-mail</td>
         <td>Роль</td>
-        <td>Фермерское хозяйство </td>
-<!--        <td></td>-->
+        <td>Фермерское хозяйство</td>
+        <!--        <td></td>-->
     </tr>
     </thead>
     <tbody>
