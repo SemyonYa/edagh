@@ -3,10 +3,6 @@ $(document).ready(function () {
         // alert('123');
         $('#CatalogFilter').toggleClass('eda-catalog-filters-slided'); //.css('transform', 'translateX(0px)');
     });
-    $('.eda-catalog-goods-item').click(function () {
-        let id = $(this).attr('data-good-id');
-        $('#GoodModal').load('/product/view?id=' + id);
-    });
     $('#FilterApplyBtn').click(function () {
         Filtering();
     });
@@ -61,13 +57,50 @@ function GoToCompanylistPage(no) {
 }
 
 
+///
+// CART
+///
+function BuyAnimation() {
+    $('#CartBlock').addClass('eda-header-cart-anima');
+    setTimeout(function () {
+        $('#CartBlock').removeClass('eda-header-cart-anima')
+    }, 300);
+}
+function BuyCounter() {
+    // let counter = 1 * 1 + 1 * $('#CartCounter').text();
+    $.ajax({
+        url: '/good/cart-counter'
+    }).done(function (counter) {
+        $('#CartCounter').text(counter);
+        alert(counter);
+    });
+}
+function AddGoodToCart(goodId) {
+    $.ajax({
+        url: '/good/to-cart',
+        data: {
+            good_id: goodId
+        },
+        method: 'POST'
+    }).done(function () {
+        BuyCounter();
+    });
+}
+
+function ClearCart() {
+    $.ajax({
+        url: '/good/clear-cart'
+    }).done(alert('clear'));
+}
+
 // ТРЕБУЮТ РЕАЛИЗАЦИИ
 function Filtering() {
     alert('Filtering --->>>');
 }
 
-function GoodToCart(id) {
-    alert('Add good ' + id + ' to cart -->>');
+function GoodToCart(goodId) {
+    BuyAnimation();
+    AddGoodToCart(goodId);
 }
 
 function RemoveGoodFromCart(good) {

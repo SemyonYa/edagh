@@ -26,7 +26,7 @@ $(document).ready(function () {
     ///
     // FARMER
     ///
-    $('#image-id').on('change', function () {
+    $('.ad-farmer-update #image-id').on('change', function () {
         const farmerId = $('#FarmerId').val();
         $.ajax({
             url: '/admin/farmer/add-image?farmer_id=' + farmerId + '&img_id=' + $(this).val()
@@ -34,6 +34,24 @@ $(document).ready(function () {
             LoadFarmerImgList(farmerId);
         });
     });
+    $('.ad-good-update #image-id').on('change', function () {
+        const goodId = $('#GoodId').val();
+        $.ajax({
+            url: '/admin/good/add-image?good_id=' + goodId + '&img_id=' + $(this).val()
+        }).done(function () {
+            LoadGoodImgList(goodId);
+        });
+    });
+    ///
+    // GOODS
+    ///
+    $('#AdSearchInput').on('input', function () {
+        AdGoodSearching($(this).val());
+    });
+    $('#AdSearchClearBtn').on('click', function () {
+        $('#AdSearchInput').val('');
+        $('.ad-goods-table tbody tr').removeClass('ad-goods-table-tr-hidden');
+    })
 });
 
 //////------------//////////////////--------------------/////////////////////-----------------------///////////////////
@@ -93,6 +111,47 @@ function CategoryImgActivate(obj) {
     });
     $(obj).addClass('ad-category-form-img-active');
     $('#category-img').val($(obj).attr('data-name'));
+}
+
+///
+// GOODS
+///
+function LoadGoodImgList(goodId) {
+    $('#GoodImgs').load('/admin/good/image-list?good_id=' + goodId);
+}
+
+function RemoveGoodImg(imgId) {
+    if (confirm('Удалить изображение?')) {
+        const goodId = $('#GoodId').val();
+        $.ajax({
+            url: '/admin/good/remove-image?good_id=' + goodId + '&img_id=' + imgId
+        }).done(function () {
+            LoadGoodImgList(goodId);
+        });
+    }
+}
+
+function MainGoodImg(imgId) {
+    const goodId = $('#GoodId').val();
+    $.ajax({
+        url: '/admin/good/main-image?good_id=' + goodId + '&img_id=' + imgId
+    }).done(function () {
+        LoadGoodImgList(goodId);
+    });
+}
+
+function AdGoodSearching(str) {
+    if (str.length > 1) {
+        $('.ad-goods-table tbody tr').each(function () {
+            if ($(this).text().toLowerCase().indexOf(str.toLowerCase()) == -1) {
+                $(this).addClass('ad-goods-table-tr-hidden');
+            } else {
+                $(this).removeClass('ad-goods-table-tr-hidden');
+            }
+        });
+    } else {
+        $('.ad-goods-table tbody tr').removeClass('ad-goods-table-tr-hidden');
+    }
 }
 
 

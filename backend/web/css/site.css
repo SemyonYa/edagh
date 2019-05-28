@@ -27,14 +27,13 @@
     OVERRIDE
 */
 .btn {
-    border-radius: 0;
+    border-radius: 4px;
     padding: 2px 30px;
     border: none;
 }
 
 .btn-primary, .btn-success {
     background-color: #4f7b30;
-    border-radius: 4px;
 }
 
 .btn-primary:hover, .btn-primary:active, .btn-primary:focus,
@@ -275,9 +274,11 @@ footer {
     align-items: flex-start;
     flex-wrap: wrap;
 }
+
 .ad-farmer-update h1 {
     flex-basis: 100%;
 }
+
 .ad-farmer-form {
     flex-basis: 35%;
 }
@@ -343,10 +344,12 @@ footer {
     align-items: flex-start;
 
 }
+
 .ad-farmer-update-img > span.glyphicon-remove {
     color: darkred;
     cursor: pointer;
 }
+
 .ad-farmer-update-img > span.glyphicon-ok {
     align-self: flex-end;
     color: whitesmoke;
@@ -511,6 +514,7 @@ footer {
     border-spacing: 5px;
     /*font-size: 14px;*/
 }
+
 .ad-goods-table td {
     border: dotted 1px #e4e4e4;
     border-radius: 5px;
@@ -524,24 +528,31 @@ footer {
     border-color: #4f7b30;
     font-weight: 600;
 }
+.ad-goods-table-tr-hidden {
+    display: none;
+}
+
 .ad-good-search {
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
+
 .ad-good-search-input {
-    border-radius: 5px!important;
-    padding: 5px!important;
+    border-radius: 5px !important;
+    padding: 5px !important;
     border: dotted 1px #2b542c;
     font-size: 16px;
     color: #555;
     line-height: 1;
     width: 500px;
 }
+
 .ad-good-search-input:focus {
     border: solid 1px #4f7b30;
 }
+
 .ad-good-search-btn {
     padding: 5px;
     font-size: 16px;
@@ -552,6 +563,56 @@ footer {
     border: solid 0px white;
     cursor: pointer;
 }
+
 .ad-good-form {
     width: 600px;
+}
+
+.ad-good-update {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.ad-good-update h1 {
+    flex-basis: 100%;
+}
+
+.ad-good-update-imgs {
+    flex-basis: 30%;
+    padding: 0 10px;
+}
+
+.ad-good-update-imglist {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ad-good-update-img {
+    width: 150px;
+    height: 150px;
+    border: solid 1px #e4e4e4;
+    margin: 3px;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+.ad-good-update-img > span.glyphicon-remove {
+    color: darkred;
+    cursor: pointer;
+}
+
+.ad-good-update-img > span.glyphicon-ok {
+    align-self: flex-end;
+    color: whitesmoke;
+    font-size: 30px;
+    padding: 3px;
+    cursor: pointer;
 }

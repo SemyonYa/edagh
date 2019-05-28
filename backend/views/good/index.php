@@ -13,10 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Добавить товар', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить товар', ['create'], ['class' => 'btn btn-primary']) ?>
     </p>
     <div class="ad-good-search">
-        <input class="ad-good-search-input" id="AdSearchInput"> <div class="ad-good-search-btn">Очистить</div>
+        <input class="ad-good-search-input" id="AdSearchInput"> <div class="ad-good-search-btn"  id="AdSearchClearBtn">Очистить</div>
     </div>
     <table class="ad-goods-table">
         <thead>
@@ -27,7 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <td>Краткое описание</td>
             <td>Цена</td>
             <td>Категория</td>
-<!--            <td>Действия</td>-->
         </tr>
         </thead>
         <tbody>
@@ -36,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td><?= $good->id ?></td>
                 <td>
                     <?php if ($good->poster): ?>
-                        <img src="<?= Yii::$app->imagemanager->getImagePath($good->poster) ?>" />
+                        <img src="<?= Yii::$app->imagemanager->getImagePath($good->poster) ?>" height="100"/>
                     <?php else: ?>
                         <span>нет изображения</span>
                     <?php endif; ?>
@@ -45,9 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td><?= $good->brief ?></td>
                 <td><?= $good->price ?> руб.</td>
                 <td><?= $good->category->name ?></td>
-<!--                <td>-->
-<!---->
-<!--                </td>-->
             </tr>
         <?php endforeach; ?>
         </tbody>

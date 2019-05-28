@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'farmer_id')->hiddenInput() ?>
 
     <?= $form->field($model, 'category_id')->dropdownList(
-        \common\models\Category::find()->select(['name', 'id'])->indexBy('id')->column(),
+        \common\models\Category::find()->orderBy('ordering')->select(['name', 'id'])->indexBy('id')->column(),
         ['prompt'=>'Выберите категорию...']
     ); ?>
 
@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'quantity')->textInput(['type' => 'number']) ?>
 
     <?= $form->field($model, 'measure_id')->dropdownList(
-        \common\models\Measure::find()->select(['name', 'id'])->indexBy('id')->column(),
+        \common\models\Measure::find()->orderBy('ordering')->select(['name', 'id'])->indexBy('id')->column(),
         ['prompt'=>'Выберите единицу измерения...']
     ); ?>
 

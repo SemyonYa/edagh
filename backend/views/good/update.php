@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = 'Редактирование';
 <div class="ad-good-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <input id="GoodId" value="<?= $model->id ?>" type="hidden" />
     <?= $this->render('_form', compact('model')) ?>
     <div class="ad-good-update-imgs">
         <?php $form2 = ActiveForm::begin(); ?>
@@ -45,5 +45,5 @@ $this->params['breadcrumbs'][] = 'Редактирование';
     }
 </style>
 <script>
-
+    LoadGoodImgList(<?= $model->id ?>);
 </script>

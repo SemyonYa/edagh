@@ -39,7 +39,7 @@ class MeasureController extends Controller
     public function actionList()
     {
         $this->layout = 'empty';
-        $measures = Measure::find()->all();
+        $measures = Measure::find()->orderBy('ordering')->all();
         return $this->render('list', compact('measures'));
     }
 

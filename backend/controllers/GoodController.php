@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Image;
 use common\models\Au;
+use common\models\GoodImg;
 use Yii;
 use common\models\Good;
 use yii\web\Controller;
@@ -49,7 +50,7 @@ class GoodController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($model->farmer_id == $farmer_id) {
                 if ($model->save()) {
-                    return $this->redirect(['index']);
+                    return $this->redirect('/admin/good/update?id=' . $model->id);
                 }
             }
         }
@@ -63,7 +64,7 @@ class GoodController extends Controller
         $image = new Image();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', compact('model', 'image'));
@@ -83,5 +84,40 @@ class GoodController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionImageList($good_id)
+    {
+        $this->layout = 'empty';
+        $g_imgs = GoodImg::find()->where(['good_id' => $good_id])->all();
+        return $this->render('img-list', compact('g_imgs'));
+    }
+
+    public function actionAddImage($good_id, $img_id)
+    {
+        $g_i = new GoodImg();
+        $g_i->good_id = $good_id;
+        $g_i->img_id = $img_id;
+        $g_i->save();
+    }
+
+    public function actionRemoveImage($good_id, $img_id)
+    {
+        $g_i = GoodImg::findOne(['good_id' => $good_id, 'img_id' => $img_id]);
+        $g_i->delete();
+    }
+
+    public function actionMainImage($good_id, $img_id) {
+        $g_is = GoodImg::find()->where(['good_id' => $good_id])->all();
+        foreach ($g_is as $g_i) {
+            if ($g_i->is_main == 1 && $g_i->img_id != $img_id) {
+                $g_i->is_main = 0;
+                $g_i->save();
+            } elseif ($g_i->is_main == 0 && $g_i->img_id == $img_id) {
+                $g_i->is_main = 1;
+                $g_i->save();
+            }
+        }
+
     }
 }

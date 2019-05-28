@@ -6,7 +6,7 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
         <div class="eda-head-img-caption">
             <h3>Доставка натуральных продуктов с фермерских хозяйств</h3>
             <p class="lead">ПРЯМИКОМ НА КУХОННЫЙ СТОЛ</p>
-            <p><a class="btn btn-success" href="/product/catalog">Перейти в каталог</a></p>
+            <p><a class="btn btn-success" href="/good/catalog">Перейти в каталог</a></p>
         </div>
     </div>
 
@@ -33,7 +33,7 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
         <h2>Ведущие бренды фермерских хозяйств</h2>
         <div class="eda-main-farmers">
             <div class="eda-main-farmers-item" style="background-image: url('/frontend/web/img/logo_soymik.png')"
-                 onclick="GoTo('/product/company?id=<?= 1 ?>')"></div>
+                 onclick="GoTo('/good/company?id=<?= 1 ?>')"></div>
             <div class="eda-main-farmers-item" style="background-image: url('/frontend/web/img/logo_cesar.jpg')"></div>
             <div class="eda-main-farmers-item"
                  style="background-image: url('/frontend/web/img/logo_dlyasvoih.png')"></div>
@@ -42,7 +42,7 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
                  style="background-image: url('/frontend/web/img/logo_dlyasvoih.png')"></div>
             <div class="eda-main-farmers-item" style="background-image: url('/frontend/web/img/logo_soymik.png')"></div>
         </div>
-        <h4><a href="/product/company-list">Смотреть все...</a></h4>
+        <h4><a href="/good/company-list">Смотреть все...</a></h4>
     </div>
 </div>
 

@@ -1,5 +1,7 @@
 <?php
 $this->title = 'Wanna fresh: Каталог товаров';
+
+
 ?>
 
 <div class="eda-catalog-wrap">
@@ -70,14 +72,8 @@ $this->title = 'Wanna fresh: Каталог товаров';
                 </div>
             </div>
         </div>
-        <div class="eda-catalog-goods">
-            <?php for ($i = 1; $i < 15; $i++): ?>
-                <div class="eda-catalog-goods-item" data-good-id="<?= $i ?>" data-toggle="modal" data-target="#GoodModal">
-                    <div class="eda-catalog-goods-item-img"
-                         style="background-image: url('/frontend/web/img/category_icons/fish4-ico.svg')"></div>
-                    <span class="eda-catalog-goods-item-name">Фермерский продукт #<?= $i ?></span>
-                </div>
-            <?php endfor; ?>
+        <div class="eda-catalog-goods" id="CatalogGoods">
+<!--            AJAX-->
         </div>
     </div>
 </div>
@@ -86,3 +82,6 @@ $this->title = 'Wanna fresh: Каталог товаров';
 <div class="modal fade" id="GoodModal" tabindex="-1" role="dialog" aria-labelledby="GoodModalLabel" aria-hidden="true">
     <!--AJAX-->
 </div>
+<script>
+    $('#CatalogGoods').load('/good/full-list');
+</script>
