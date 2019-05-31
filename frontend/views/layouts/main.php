@@ -39,7 +39,7 @@ AppAsset::register($this);
             </div>
             <div class="eda-header-cart" id="CartBlock" onclick="GoTo('/cart')">
 <!--                        <span></span><img src="/frontend/web/img/fish2-ico.svg" />-->
-                <span class="eda-header-cart-caption" id="CartCounter">7</span>
+                <span class="eda-header-cart-caption" id="CartCounter">0</span>
             </div>
         </header>
 

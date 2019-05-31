@@ -18,7 +18,7 @@
             </p>
         </div>
         <div class="eda-good-modal-btns">
-            <button type="button" class="btn eda-good-modal-cart" onclick="GoodToCart(<?= $good->id ?>)">
+            <button type="button" class="btn eda-good-modal-cart" onclick="GoodToCart(<?= $good->id ?>, <?= $good->farmer_id ?>)">
                 В корзину
             </button>
         </div>

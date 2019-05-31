@@ -7,7 +7,7 @@ $(document).ready(function () {
 ///
 //      BUY ANIMATION
 ///
-    $('#BuyAnimaBtn').on('click', function (e) { //
-
-    });
+//     $('#BuyAnimaBtn').on('click', function (e) { //
+//
+//     });
 });

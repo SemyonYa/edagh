@@ -3,6 +3,9 @@
 namespace frontend\controllers;
 
 use common\models\Category;
+use common\models\Farmer;
+use frontend\models\CartFarmerItem;
+use frontend\models\CartGoodItem;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -62,13 +65,28 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $categories = Category::find()->orderBy('ordering')->all();
-        return $this->render('index', compact('categories'));
+        $farmers = Farmer::find()->each(4);
+        return $this->render('index', compact('categories', 'farmers'));
     }
 
     public function actionCart()
     {
-
-        return $this->render('cart');
+        $session = \Yii::$app->session;
+        $cart = $session->get('cart');
+        $farmer_items = [];
+        if (count($cart) > 0) {
+            foreach ($cart as $farmer_id => $good_items) {
+                $farmer_item = new CartFarmerItem($farmer_id);
+                if (count($good_items) > 0) {
+                    foreach ($good_items as $good_id => $quantity) {
+                        $good_item = new CartGoodItem($good_id, $quantity);
+                        $farmer_item->cart_good_items[] = $good_item;
+                    }
+                    $farmer_items[] = $farmer_item;
+                }
+            }
+        }
+        return $this->render('cart', compact('farmer_items'));
     }
 
     public function actionCreateOrder()

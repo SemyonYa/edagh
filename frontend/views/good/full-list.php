@@ -4,7 +4,7 @@ use frontend\models\ImageOverride;
 
 /* @var $goods \common\models\Good[] */
 ?>
-
+<?php shuffle($goods); ?>
 <?php foreach ($goods as $good): ?>
     <div class="eda-catalog-goods-item" data-good-id="<?= $good->id ?>" data-toggle="modal"
          data-target="#GoodModal">

@@ -1,5 +1,7 @@
 <?php
 $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с фермерских хозяйств';
+/* @var $farmers \common\models\Farmer[] */
+/* @var $categories \common\models\Category */
 ?>
 <div class="eda-main">
     <div class="eda-head-img">
@@ -32,15 +34,10 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
     <div class="eda-main-f">
         <h2>Ведущие бренды фермерских хозяйств</h2>
         <div class="eda-main-farmers">
-            <div class="eda-main-farmers-item" style="background-image: url('/frontend/web/img/logo_soymik.png')"
-                 onclick="GoTo('/good/company?id=<?= 1 ?>')"></div>
-            <div class="eda-main-farmers-item" style="background-image: url('/frontend/web/img/logo_cesar.jpg')"></div>
-            <div class="eda-main-farmers-item"
-                 style="background-image: url('/frontend/web/img/logo_dlyasvoih.png')"></div>
-            <div class="eda-main-farmers-item" style="background-image: url('/frontend/web/img/logo_cesar.jpg')"></div>
-            <div class="eda-main-farmers-item"
-                 style="background-image: url('/frontend/web/img/logo_dlyasvoih.png')"></div>
-            <div class="eda-main-farmers-item" style="background-image: url('/frontend/web/img/logo_soymik.png')"></div>
+            <?php foreach ($farmers as $farmer): ?>
+            <div class="eda-main-farmers-item" style="background-image: url('<?= \frontend\models\ImageOverride::getPath($farmer->poster) ?>')"
+                 onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"></div>
+            <?php endforeach;  ?>
         </div>
         <h4><a href="/good/company-list">Смотреть все...</a></h4>
     </div>
