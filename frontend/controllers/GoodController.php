@@ -53,9 +53,18 @@ class GoodController extends Controller
         return $this->render('view', compact('good', 'in_cart'));
     }
 
-    public function actionSearchOnline($input) {
+    public function actionSearchOnline($input)
+    {
+        $this->layout = 'empty';
         $goods = Good::find()->where(['like', 'name', $input])->all();
-        return $this->render('search-online');
+        return $this->render('search-online', compact('goods'));
+    }
+
+    public function actionSearchResult($input)
+    {
+        $goods = Good::find()->where(['like', 'name', $input])->all();
+        $farmers = Farmer::find()->where(['like', 'name', $input])->all();
+        return $this->render('search-result', compact('goods', 'farmers'));
     }
 
     public function actionCompany($id)

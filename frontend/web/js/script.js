@@ -14,6 +14,18 @@ $(document).ready(function () {
     //     LoadGoodModal(id);
     // });
     BuyCounter();
+    $('.eda-main-search-btn').on('click', function () {
+        Search();
+    });
+    $('#SearchInput').on('input', function () {
+        let input = $(this).val().trim().toLowerCase();
+        if (input.length > 2) {
+            console.log(input);
+            $('#SearchOnlineResult').load('/good/search-online?input=' + input);
+        } else {
+            $('#SearchOnlineResult').empty();
+        }
+    });
 });
 
 
@@ -60,12 +72,19 @@ function GoToCompanylistPage(no) {
     });
 
 }
+
+function Search() {
+    let input = $('#SearchInput').val().trim().toLowerCase();
+    GoTo('/good/search-result?input=' + input);
+}
+
 ///
 // GOOD
 ///
 function LoadGoodModal(id) {
     $('#GoodModal').load('/good/view?id=' + id);
 }
+
 ///
 // CART
 ///
@@ -73,12 +92,14 @@ function GoodToCart(goodId, farmerId) {
     BuyAnimation();
     AddGoodToCart(goodId, farmerId);
 }
+
 function BuyAnimation() {
     $('#CartBlock').addClass('eda-header-cart-anima');
     setTimeout(function () {
         $('#CartBlock').removeClass('eda-header-cart-anima')
     }, 300);
 }
+
 function BuyCounter() {
     $.ajax({
         url: '/good/cart-counter'
@@ -86,6 +107,7 @@ function BuyCounter() {
         $('#CartCounter').text(counter);
     });
 }
+
 function AddGoodToCart(goodId, farmerId) {
     // alert(goodId + '-' + farmerId);
     $.ajax({
@@ -105,6 +127,7 @@ function ClearCart() {
         url: '/good/clear-cart'
     }).done(alert('clear'));
 }
+
 // COMPANY
 function FilteringCompanyGoods() {
     let cats = [];
@@ -126,6 +149,7 @@ function FilteringCompanyGoods() {
     // console.log($.inArray('1', cats));
 
 }
+
 // ТРЕБУЮТ РЕАЛИЗАЦИИ
 function Filtering() {
     alert('Filtering --->>>');

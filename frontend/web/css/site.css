@@ -228,6 +228,7 @@ footer a {
     text-align: center;
     background-color: rgba(255, 255, 255, .85);
     border: solid 1px #ccc;
+    width: 50%;
 }
 
 .eda-main .lead {
@@ -249,6 +250,16 @@ footer a {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.eda-search-online-result-wrap {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    /*height: 1px;*/
 }
 
 .jumbotron .btn-success {
@@ -260,21 +271,59 @@ footer a {
     border-radius: 3px;
     border: solid 1px #ccc;
     font-size: 1.1vw;
-    flex-basis: 40%;
+    flex-basis: 80%;
 }
 
 .eda-main-search-input:focus, .eda-main-search-input:active {
     outline: none;
     border-color: #4f7b30;
-
 }
 
 .eda-main-search-btn {
     font-size: 1.1vw !important;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     padding: 7px 21px;
+    flex-basis: 19%;
+}
+.eda-search-online-result-list-wrap {
+    flex-basis: 100%;
+    height: 1px;
+    z-index: 100000;
+    /*padding-top: 2px;*/
+}
+.eda-search-online-result {
+    /*width: calc(40vw + 96px);*/
+    flex-basis: 100%;
+    border: solid 1px #4f7b30;
+    border-top: none;
+    background-color: rgba(255,255,255,.9);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 6px 6px;
 }
 
+.eda-search-online-item {
+    flex-basis: 100%;
+    font-size: 16px;
+    padding: 6px;
+    border-radius: 6px;
+    border: dotted 1px #4f7b30;
+    margin-top: 6px;
+    cursor: pointer;
+}
+.eda-search-online-item:hover {
+    border: solid 1px #4f7b30;
+}
+
+.eda-search-no-results {
+    color: #4f7b30;
+    padding: 20px;
+    font-size: 20px;
+    line-height: 1;
+}
 .eda-main-ribbon {
     display: flex;
     justify-content: center;
@@ -1388,4 +1437,16 @@ footer a {
     .eda-farmers-and-goods > ul > li.active > a > span:nth-child(2) {
         top: +61px;
     }
+}
+
+
+/*
+    SEARCH
+ */
+.eda-search-result-poster {
+    width: 100px;
+    height: 90%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
