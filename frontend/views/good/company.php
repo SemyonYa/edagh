@@ -17,29 +17,25 @@ use frontend\models\ImageOverride;
         </div>
         <hr style="flex-basis: 100%; border-color: #1f7b1e" />
         <div class="eda-company-goods">
-            <h3>Продукты компании</h3>
+            <h3 onclick="FilteringCompanyGoods()">Продукты компании</h3>
             <div class="eda-company-goods-filters">
                 <?php foreach ($categories as $category): ?>
-                <label for="f1<?= $category->id ?>">
-                    <div class="eda-company-goods-filters-item"><input checked type="checkbox" name="flt_category" id="f1<?= $category->id ?>"/>
+                <label class="eda-company-goods-filters-item" for="f1<?= $category->id ?>">
+                    <input data-id="<?= $category->id ?>" checked type="checkbox" name="flt_category" id="f1<?= $category->id ?>" onchange="FilteringCompanyGoods()" />
                         <?= $category->name ?>
-                    </div>
                 </label>
                 <?php endforeach; ?>
             </div>
 <!--            <div class="eda-company-goods-item eda-company-goods-item-all" onclick="GoTo('/')">-->
 <!--                <p>ВСЕ ПРОДУКТЫ</p>-->
 <!--            </div>-->
-            <?php foreach ($farmer->goods as $good): ?>
-                <div data-toggle="modal" data-target="#GoodModal" class="eda-company-goods-item" data-good-id="<?= $good->id ?>"
-                     style="background-image: url('<?= ImageOverride::getPath($good->poster) ?>');">
-                    <p><?= $good->name ?></p>
-                </div>
-            <?php endforeach; ?>
+            <div id="CompanyGoodList" class="eda-company-good-list">
+<!--                ajax-->
+            </div>
         </div>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="GoodModal" tabindex="-1" role="dialog" aria-labelledby="GoodModalLabel" aria-hidden="true">
-    <!--AJAX-->
-</div>
+
+<script>
+    $('#CompanyGoodList').load('/good/farmer-good-list?farmer_id=<?= $farmer->id ?>');
+</script>

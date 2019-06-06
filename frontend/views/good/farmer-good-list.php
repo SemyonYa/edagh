@@ -2,9 +2,7 @@
 
 use frontend\models\ImageOverride;
 
-/* @var $goods \common\models\Good[] */
 ?>
-<?php shuffle($goods); ?>
 <?php foreach ($goods as $good): ?>
     <div data-toggle="modal" data-target="#GoodModal" class="eda-company-goods-item"
          data-category-id="<?= $good->category_id ?>"
@@ -13,3 +11,8 @@ use frontend\models\ImageOverride;
         <p><?= $good->name ?></p>
     </div>
 <?php endforeach; ?>
+
+<!-- Modal -->
+<div class="modal fade" id="GoodModal" tabindex="-1" role="dialog" aria-labelledby="GoodModalLabel" aria-hidden="true">
+    <!--AJAX-->
+</div>

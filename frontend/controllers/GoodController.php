@@ -40,7 +40,22 @@ class GoodController extends Controller
     {
         $this->layout = 'empty';
         $good = Good::findOne($id);
-        return $this->render('view', compact('good'));
+        $session = \Yii::$app->session;
+        $cart = $session->get('cart');
+        $in_cart = false;
+        if (count($cart) > 0) {
+            foreach ($cart as $farmer_id => $good_items) {
+                if (isset($good_items[$id])) {
+                    $in_cart = true;
+                }
+            }
+        }
+        return $this->render('view', compact('good', 'in_cart'));
+    }
+
+    public function actionSearchOnline($input) {
+        $goods = Good::find()->where(['like', 'name', $input])->all();
+        return $this->render('search-online');
     }
 
     public function actionCompany($id)
@@ -50,11 +65,32 @@ class GoodController extends Controller
         return $this->render('company', compact('farmer', 'categories'));
     }
 
+    public function actionFarmerGoodList($farmer_id)
+    {
+        $this->layout = 'empty';
+        $goods = Good::find()->where(['farmer_id' => $farmer_id])->all();
+        return $this->render('farmer-good-list', compact('goods'));
+    }
+
     public function actionCompanyList()
     {
 
         return $this->render('company-list');
     }
+
+    public function actionCategoryCompaniesAndGoods($category_id)
+    {
+        $category = Category::findOne($category_id);
+        $farmers = [];
+        foreach (Farmer::find()->all() as $farmer) {
+            if ($farmer->getGoods()->where(['category_id' => $category_id])->count() > 0) {
+                $farmers[] = $farmer;
+            }
+        }
+
+        return $this->render('category-companies-and-goods', compact('category', 'farmers'));
+    }
+
 
     public function actionToCart()
     {

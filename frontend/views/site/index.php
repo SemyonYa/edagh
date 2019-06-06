@@ -22,7 +22,7 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
     </div>
     <div class="eda-main-ribbon">
         <?php foreach ($categories as $category): ?>
-            <div class="eda-main-ribbon-item">
+            <div class="eda-main-ribbon-item" onclick="GoTo('/good/category-companies-and-goods?category_id=<?= $category->id ?>')">
                 <img src="/frontend/web/img/category_icons/<?= $category->img ?>"/>
                 <span><?= mb_strtoupper($category->name) ?></span>
             </div>
@@ -35,8 +35,8 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
         <h2>Ведущие бренды фермерских хозяйств</h2>
         <div class="eda-main-farmers">
             <?php foreach ($farmers as $farmer): ?>
-            <div class="eda-main-farmers-item" style="background-image: url('<?= \frontend\models\ImageOverride::getPath($farmer->poster) ?>')"
-                 onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"></div>
+                <div class="eda-main-farmers-item" style="background-image: url('<?= \frontend\models\ImageOverride::getPath($farmer->poster) ?>')"
+                     onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"></div>
             <?php endforeach;  ?>
         </div>
         <h4><a href="/good/company-list">Смотреть все...</a></h4>

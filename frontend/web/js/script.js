@@ -9,10 +9,10 @@ $(document).ready(function () {
     $('#OrderModal').on('show.bs.modal', function (e) {
         $('#OrderModal').load('/site/create-order');
     });
-    $('.eda-company-goods-item').click(function () {
-        let id = $(this).attr('data-good-id');
-        $('#GoodModal').load('/good/view?id=' + id);
-    });
+    // $('.eda-company-goods-item').click(function () {
+    //     let id = $(this).attr('data-good-id');
+    //     LoadGoodModal(id);
+    // });
     BuyCounter();
 });
 
@@ -60,8 +60,12 @@ function GoToCompanylistPage(no) {
     });
 
 }
-
-
+///
+// GOOD
+///
+function LoadGoodModal(id) {
+    $('#GoodModal').load('/good/view?id=' + id);
+}
 ///
 // CART
 ///
@@ -101,7 +105,27 @@ function ClearCart() {
         url: '/good/clear-cart'
     }).done(alert('clear'));
 }
+// COMPANY
+function FilteringCompanyGoods() {
+    let cats = [];
+    $('.eda-company-goods-filters-item input:checkbox:checked').each(function () {
+        cats.push($(this).attr('data-id'))
+    });
+    $('.eda-company-goods-item').each(function () {
+        // console.log($(this).attr('data-category-id'));
+        // console.log(typeof $(this).attr('data-category-id'));
+        // console.log($.inArray($(this).attr('data-category-id'), cats));
+        if ($.inArray($(this).attr('data-category-id'), cats) >= 0) {
+            $(this).removeClass('eda-hidden');
+        } else {
+            $(this).addClass('eda-hidden');
+        }
+    });
 
+    console.log(cats);
+    // console.log($.inArray('1', cats));
+
+}
 // ТРЕБУЮТ РЕАЛИЗАЦИИ
 function Filtering() {
     alert('Filtering --->>>');
