@@ -11,7 +11,7 @@ class ImageOverride
     {
         $i_man = ImageManager::findOne($img_id);
         if ($i_man != null) {
-            $dir_path = $_SERVER['DOCUMENT_ROOT'] . '/backend/web/assets/images/';
+            $dir_path = $_SERVER['DOCUMENT_ROOT'] . '/backend/web/imagemanager/';
             $extension = pathinfo($i_man->fileName, PATHINFO_EXTENSION);
             $file_path = $dir_path . $i_man->id . '_' . $i_man->fileHash . '.' . $extension;
 
