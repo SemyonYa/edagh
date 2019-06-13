@@ -93,6 +93,12 @@ function GoodToCart(goodId, farmerId) {
     AddGoodToCart(goodId, farmerId);
 }
 
+function GoodToCartSearch(goodId, farmerId) {
+    GoodToCart(goodId, farmerId);
+    $('#SearchOnlineResult').empty();
+    $('#SearchInput').val('');
+}
+
 function BuyAnimation() {
     $('#CartBlock').addClass('eda-header-cart-anima');
     setTimeout(function () {
@@ -127,7 +133,9 @@ function ClearCart() {
         url: '/good/clear-cart'
     }).done(alert('clear'));
 }
-
+function LoadCartInner() {
+    $('#CartInner').load('/site/cart-inner');
+}
 // COMPANY
 function FilteringCompanyGoods() {
     let cats = [];
@@ -155,9 +163,13 @@ function Filtering() {
     alert('Filtering --->>>');
 }
 
-function RemoveGoodFromCart(good) {
-    if (confirm('Действительно удалить товар ' + good + ' из корзины?')) {
-        alert('Удаляем! -->>');
+function RemoveGoodFromCart(obj) {
+    if (confirm('Действительно удалить товар ' + $(obj).attr('data-goodname') + ' из корзины?')) {
+        $.ajax({
+            url: '/site/remove-good-from-cart?good_id=' + $(obj).attr('data-goodid') + '&farmer_id=' + $(obj).attr('data-farmerid')
+        }).done(function () {
+            LoadCartInner();
+        });
     }
 }
 

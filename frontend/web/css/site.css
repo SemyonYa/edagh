@@ -318,6 +318,14 @@ footer a {
     align-items: center;
 
 }
+.eda-search-online-item > b {
+    padding: 0 10px;
+    color: #4f7b30;
+    font-size: 20px;
+}
+.eda-search-online-item-incart {
+    cursor: pointer;
+}
 .eda-search-online-item:hover {
     border: solid 1px #4f7b30;
 }
@@ -328,6 +336,7 @@ footer a {
     background-position: center center;
     background-repeat: no-repeat;
     -moz-background-size: contain;
+    margin-left: 10px;
 }
 .eda-search-no-results {
     color: #4f7b30;
