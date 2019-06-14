@@ -9,7 +9,7 @@
         <p><strong>Внимание!</strong></p>
         <p>Вы добавили в корзину товары с нескольких фермерских хозяйств. Просим обратить внимание, что
             будет
-            сформировано <?= count($hs) ?> заказа(ов), у каждого из которых свои срок и место доставки.</p>
+            сформировано <?= count($farmer_items) ?> заказа(ов), у каждого из которых свои срок и место доставки.</p>
         <!--                <pre>-->
         <!--                    --><?php
         //                    $session = Yii::$app->session;
@@ -51,7 +51,8 @@
                     </td>
                     <td><?= $cart_good_item->getSum() ?></td>
                     <td><span class="glyphicon glyphicon-remove eda-cart-remove"
-                              data-goodid="<?= $cart_good_item->good->id ?>" data-farmerid="<?= $farmer_item->farmer->id ?>"
+                              data-goodid="<?= $cart_good_item->good->id ?>"
+                              data-farmerid="<?= $farmer_item->farmer->id ?>"
                               data-goodname="<?= $cart_good_item->good->name ?>"
                               title="Удалить товар из корзины" onclick="RemoveGoodFromCart(this)"></span></td>
                 </tr>
@@ -79,6 +80,13 @@
         <button id="OrderSubmit" type="button" class="btn btn-submit-order" data-toggle="modal"
                 data-target="#OrderModal">Подтвердить заказ
         </button>
+    </p>
+    <p>
+        <pre>
+        <?php
+        var_dump($cart);
+        ?>
+        </pre>
     </p>
 <?php else: ?>
     <div class="alert alert-warning">

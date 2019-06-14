@@ -7,7 +7,7 @@ $(document).ready(function () {
         Filtering();
     });
     $('#OrderModal').on('show.bs.modal', function (e) {
-        $('#OrderModal').load('/site/create-order');
+        $('#OrderModal').load('/site/load-create-order-form');
     });
     // $('.eda-company-goods-item').click(function () {
     //     let id = $(this).attr('data-good-id');
@@ -128,14 +128,30 @@ function AddGoodToCart(goodId, farmerId) {
     });
 }
 
+function RemoveGoodFromCart(obj) {
+    if (confirm('Действительно удалить товар ' + $(obj).attr('data-goodname') + ' из корзины?')) {
+        $.ajax({
+            url: '/site/remove-good-from-cart?good_id=' + $(obj).attr('data-goodid') + '&farmer_id=' + $(obj).attr('data-farmerid')
+        }).done(function () {
+            LoadCartInner();
+            BuyCounter();
+        });
+    }
+}
+
 function ClearCart() {
     $.ajax({
-        url: '/good/clear-cart'
-    }).done(alert('clear'));
+        url: '/site/clear-cart'
+    }).done(function () {
+        LoadCartInner();
+        BuyCounter();
+    });
 }
+
 function LoadCartInner() {
     $('#CartInner').load('/site/cart-inner');
 }
+
 // COMPANY
 function FilteringCompanyGoods() {
     let cats = [];
@@ -163,16 +179,41 @@ function Filtering() {
     alert('Filtering --->>>');
 }
 
-function RemoveGoodFromCart(obj) {
-    if (confirm('Действительно удалить товар ' + $(obj).attr('data-goodname') + ' из корзины?')) {
-        $.ajax({
-            url: '/site/remove-good-from-cart?good_id=' + $(obj).attr('data-goodid') + '&farmer_id=' + $(obj).attr('data-farmerid')
-        }).done(function () {
-            LoadCartInner();
-        });
-    }
-}
 
 function CreateOrders() {
-    alert('Оформляется заказ -->>');
+    const email = $('#CreateOrderEmail').val();
+    const phone = $('#CreateOrderPhone').val();
+    const name = $('#CreateOrderName').val();
+    let errors = [];
+
+    let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if (name.trim() == '') {
+        errors.push('Имя не может быть незаполненным');
+    }
+    if (phone == '') {
+        errors.push('Телефон введен некорректно');
+    }
+    if (reg.test(email) == false) {
+        errors.push('E-mail не соответствует формату');
+    }
+    if (errors.length > 0) {
+        $('#CreateOrderErrors').empty();
+        $('#CreateOrderErrors').addClass('alert alert-danger');
+        for (let error of errors) {
+            $('#CreateOrderErrors').append('<p> - ' + error + '</p>');
+            console.log(error);
+        }
+    } else {
+
+        alert('+++Валидные данные+++');
+        $.post({
+            url: '/site/create-orders',
+            data: {
+                'order_email' : email,
+                'order_phone' : phone,
+                'order_name' : name
+            }
+        }).done();
+
+    }
 }
