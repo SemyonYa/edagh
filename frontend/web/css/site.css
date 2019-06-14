@@ -177,7 +177,7 @@ footer a {
     border: solid 1px #2b542c;
 }
 
-@media (orientation: portrait) {
+@media (orientation: portrait), (max-width: 500px) {
     footer {
         flex-wrap: wrap;
         padding: 20px 0;
@@ -188,9 +188,9 @@ footer a {
         padding: 20px 10%;
         margin: 5px 0;
     }
-}
 
-@media (orientation: portrait) and (max-width: 500px) {
+    /*}*/
+    /*@media (orientation: portrait) and (max-width: 500px) {*/
     .eda-logo {
         height: 80%;
     }
@@ -259,7 +259,6 @@ footer a {
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    /*height: 1px;*/
 }
 
 .jumbotron .btn-success {
@@ -285,18 +284,20 @@ footer a {
     padding: 7px 21px;
     flex-basis: 19%;
 }
+
 .eda-search-online-result-list-wrap {
     flex-basis: 100%;
     height: 1px;
     z-index: 100000;
     /*padding-top: 2px;*/
 }
+
 .eda-search-online-result {
     /*width: calc(40vw + 96px);*/
     flex-basis: 100%;
     border: solid 1px #4f7b30;
     border-top: none;
-    background-color: rgba(255,255,255,.9);
+    background-color: rgba(255, 255, 255, .9);
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .5);
     display: flex;
     justify-content: center;
@@ -318,17 +319,21 @@ footer a {
     align-items: center;
 
 }
+
 .eda-search-online-item > b {
     padding: 0 10px;
     color: #4f7b30;
     font-size: 20px;
 }
+
 .eda-search-online-item-incart {
     cursor: pointer;
 }
+
 .eda-search-online-item:hover {
     border: solid 1px #4f7b30;
 }
+
 .eda-search-online-item-ico {
     width: 30px;
     height: 30px;
@@ -338,12 +343,14 @@ footer a {
     -moz-background-size: contain;
     margin-left: 10px;
 }
+
 .eda-search-no-results {
     color: #4f7b30;
     padding: 20px;
     font-size: 20px;
     line-height: 1;
 }
+
 .eda-main-ribbon {
     display: flex;
     justify-content: center;
@@ -424,7 +431,7 @@ footer a {
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .5);
 }
 
-@media (orientation: portrait) {
+@media (orientation: portrait), (max-width: 500px) {
     .eda-head-img {
         height: 85vw;
     }
@@ -446,31 +453,28 @@ footer a {
         font-weight: 800;
     }
 
+    .eda-main .jumbotron {
+        padding: 10px;
+    }
+
     .eda-main-search-input {
-        font-size: 2vw;
-        flex-basis: 70%;
+        flex-basis: 79%;
+        padding: 5px 7px;
+        font-size: 4vw !important;
     }
 
     .eda-main-search-btn {
-        font-size: 2vw !important;
+        flex-basis: 20%;
+        padding: 5px 7px;
+        font-size: 4vw !important;
+    }
+
+    .eda-search-online-result-wrap {
+        flex-basis: 100%;
     }
 
     .eda-main-ribbon {
-        padding: 20px;
-    }
-
-    .eda-main-farmers {
-        width: 100%;
-    }
-}
-
-@media (orientation: portrait) and (max-width: 500px) {
-    .eda-main-ribbon {
-        padding: 0 20px;
-    }
-
-    .eda-main-ribbon {
-        padding: 0 7px;
+        padding: 7px;
     }
 
     .eda-main-ribbon-item {
@@ -483,12 +487,18 @@ footer a {
         max-height: 15vw;
     }
 
+    .eda-main-farmers {
+        width: 100%;
+    }
+
     .eda-main-farmers-item {
-        width: 40vw;
-        height: 40vw;
+        width: 30vw;
+        height: 30vw;
         margin: 10px 0;
     }
 }
+
+
 
 /*
     CATALOG
@@ -729,6 +739,7 @@ footer a {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 }
+
 .eda-good-modal-body-farmer {
     height: 100px;
     border: solid 2px #4f7b30;
@@ -737,10 +748,11 @@ footer a {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 9px 1px rgba(0,0,0,.3);
+    box-shadow: 0 0 9px 1px rgba(0, 0, 0, .3);
     margin: 10px;
     cursor: pointer;
 }
+
 .eda-good-modal-body-farmer-icon {
     flex-basis: 50%;
     height: 98%;
@@ -748,20 +760,23 @@ footer a {
     background-repeat: no-repeat;
     background-position: center center;
 }
+
 .eda-good-modal-body-farmer-name {
     flex-basis: 50%;
     font-size: 22px;
     color: #4f7b30;
     transition: .5s;
 }
+
 .eda-good-modal-body-farmer:hover .eda-good-modal-body-farmer-name {
     transform: scale(1.05);
 }
+
 .eda-good-modal-body {
-     flex-basis: 100%;
-     /*padding: 10px;*/
-     text-align: center;
- }
+    flex-basis: 100%;
+    /*padding: 10px;*/
+    text-align: center;
+}
 
 .eda-good-modal-body h2 {
     padding: 10px;
@@ -775,6 +790,7 @@ footer a {
 .eda-good-modal-body-itemname {
     font-weight: 600;
 }
+
 .eda-good-modal-body-price {
     width: 100%;
     padding: 10px;
@@ -782,8 +798,9 @@ footer a {
     background-color: #4f7b30;
     color: white;
     font-weight: 600;
-    box-shadow: 0 0 9px 1px rgba(0,0,0,.3);
+    box-shadow: 0 0 9px 1px rgba(0, 0, 0, .3);
 }
+
 .eda-good-modal-btns {
     flex-basis: 100%;
     align-self: flex-end;
@@ -801,14 +818,17 @@ footer a {
     align-items: center;
     border: solid 1px #2b542c;
 }
+
 .eda-good-modal-cart-added {
     color: #4f7b30;
     cursor: auto;
     border: solid 3px #4f7b30;
 }
+
 .eda-good-modal-cart-added:hover {
     color: #4f7b30;
 }
+
 .eda-good-modal-cart div {
     width: 20px;
     height: 20px;
@@ -1277,7 +1297,10 @@ footer a {
 .btn-submit-order {
     font-size: 20px;
     border: solid 2px #4f7b30;
-    color: #2b542c;
+    color: #d9534f;
+    color: #d9534f;
+    background-color: #4f7b30;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.5);
 }
 
 .modal-body > .form-control {
@@ -1345,6 +1368,7 @@ footer a {
     border-radius: 1vw;
     background-color: #eee;
 }
+
 .eda-farmers-and-goods-poster-wrap {
     flex-basis: 100%;
     display: flex;
@@ -1359,6 +1383,7 @@ footer a {
     background-repeat: no-repeat;
     background-position: center center;
 }
+
 .eda-farmers-and-goods > ul {
     flex-basis: 66%;
     height: 100px;
@@ -1367,6 +1392,7 @@ footer a {
     justify-content: space-around;
     align-items: center;
 }
+
 .eda-farmers-and-goods-g {
     width: 100%;
     display: flex;
@@ -1388,9 +1414,11 @@ footer a {
     height: 100%;
     text-align: center;
 }
+
 .nav-pills > li + li {
     margin-left: 0;
 }
+
 .eda-farmers-and-goods > ul > li > a {
     border: solid 1px #eee;
     display: flex;
@@ -1404,9 +1432,11 @@ footer a {
 .eda-farmers-and-goods > ul > li:first-child > a {
     border-radius: 1vw 0 0 1vw;
 }
+
 .eda-farmers-and-goods > ul > li:last-child > a {
     border-radius: 0 1vw 1vw 0;
 }
+
 .eda-farmers-and-goods > ul > li > a > span {
     flex-basis: 100%;
 }
@@ -1433,12 +1463,14 @@ footer a {
     /*padding: 1vw;*/
     padding-top: 10px;
 }
+
 .eda-farmers-and-goods .tab-pane {
     border: solid 2px #4f7b30;
     border-radius: 1vw;
     min-height: 50vh;
     padding: 1vw;
 }
+
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     background-color: #4f7b30;
 }
@@ -1447,14 +1479,17 @@ footer a {
     .eda-farmers-and-goods {
         padding: 10px;
     }
+
     .eda-farmers-and-goods-title {
         font-size: 3vw;
         height: 80px;
     }
+
     .eda-farmers-and-goods > ul {
         font-size: 3vw;
         height: 80px;
     }
+
     .eda-farmers-and-goods > ul > li.active > a > span:nth-child(2) {
         top: +61px;
     }

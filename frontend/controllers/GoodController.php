@@ -155,9 +155,4 @@ class GoodController extends Controller
         return $counter;
     }
 
-    public function actionClearCart()
-    {
-        $session = \Yii::$app->session;
-        $session->remove('cart');
-    }
 }

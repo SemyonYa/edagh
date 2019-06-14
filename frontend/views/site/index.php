@@ -15,7 +15,7 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
     <div class="jumbotron">
         <div class="eda-search-online-result-wrap">
             <input class="eda-main-search-input" id="SearchInput"
-                   placeholder="Начните вводить продукт, категорию или фермерское хозяйство..."/>
+                   placeholder="Начните вводить продукт..."/>
             <button class="btn btn-success eda-main-search-btn">НАЙТИ</button>
             <div class="eda-search-online-result-list-wrap" id="SearchOnlineResult">
                 <!--                ajax-->
@@ -44,13 +44,6 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
             <?php endforeach; ?>
         </div>
         <h4><a href="/good/company-list">Смотреть все...</a></h4>
-        <p>
-        <pre>
-            <?php
-            var_dump(Yii::$app->session->get('cart'));
-            ?>
-        </pre>
-        </p>
     </div>
 </div>
 

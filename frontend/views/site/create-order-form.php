@@ -6,9 +6,10 @@
         </div>
         <div class="modal-body">
             <h1>Данные для подтверждения заказа</h1>
-            <input class="form-control" id="Name" placeholder="Ваше имя" />
-            <input class="form-control" id="Phone" placeholder="Телефон" />
-            <input class="form-control" id="Email" placeholder="E-mail" />
+            <div id="CreateOrderErrors" class=""></div>
+            <input class="form-control" id="CreateOrderName" placeholder="Ваше имя" />
+            <input class="form-control" id="CreateOrderPhone" placeholder="Телефон" />
+            <input type="email" class="form-control" id="CreateOrderEmail" placeholder="E-mail" />
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>
@@ -16,3 +17,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#CreateOrderPhone').mask('+7 (999) 999-99-99');
+</script>

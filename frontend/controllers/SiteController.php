@@ -4,6 +4,8 @@ namespace frontend\controllers;
 
 use common\models\Category;
 use common\models\Farmer;
+use common\models\Order;
+use common\models\OrderGood;
 use frontend\models\CartFarmerItem;
 use frontend\models\CartGoodItem;
 use yii\web\Controller;
@@ -75,7 +77,8 @@ class SiteController extends Controller
         return $this->render('cart');
     }
 
-    public function actionCartInner() {
+    public function actionCartInner()
+    {
         $this->layout = 'empty';
         $session = \Yii::$app->session;
         $cart = $session->get('cart');
@@ -92,25 +95,76 @@ class SiteController extends Controller
                 }
             }
         }
-        return $this->render('cart-inner', compact('farmer_items'));
+        return $this->render('cart-inner', compact('farmer_items', 'cart'));
     }
 
-    public function actionRemoveGoodFromCart($good_id, $farmer_id) {
+    public function actionRemoveGoodFromCart($good_id, $farmer_id)
+    {
         $session = \Yii::$app->session;
         $cart = $session->get('cart');
         if (isset($cart[$farmer_id][$good_id])) {
             unset($cart[$farmer_id][$good_id]);
+            if (count($cart[$farmer_id]) == 0) {
+                unset($cart[$farmer_id]);
+            }
+            $session->set('cart', $cart);
         }
     }
 
-    public function actionRemoveFarmerFromCart($farmer_id) {
+    public function actionRemoveFarmerFromCart($farmer_id)
+    {
 
     }
 
-    public function actionCreateOrder()
+    public function actionClearCart()
+    {
+        $session = \Yii::$app->session;
+        $session->remove('cart');
+    }
+
+    public function actionLoadCreateOrderForm()
     {
         $this->layout = 'empty';
-        return $this->render('create-order');
+        return $this->render('create-order-form');
+    }
+
+    public function actionCreateOrders()
+    {
+        $session = \Yii::$app->session;
+        $cart = $session->get('cart');
+
+        $phone = $_POST['order_phone'];
+        $email = $_POST['order_email'];
+        $name = $_POST['order_name'];
+
+        $order_ids = [];
+
+        if (count($cart) > 0) {
+            foreach ($cart as $farmer_id => $goods) {
+                $order = new Order();
+                $order->name = $name;
+                $order->phone = $phone;
+                $order->email = $email;
+//                $order->date = new \DateTime();
+                $order->status = 0;
+                $order->no = 123654987;
+                if ($order->save()) {
+                    $order_ids[] = $order->id;
+                    if (count($goods) > 0) {
+                        foreach ($goods as $good_id => $q) {
+                            $order_good = new OrderGood();
+                            $order_good->order_id = $order->id;
+                            $order_good->good_id = $good_id;
+                            $order_good->quantity = $q;
+                            $order_good->save();
+                        }
+                    }
+                }
+            }
+        }
+        $session->set('card', []);
+
+        return $this->render('order-registred', compact('order_ids'));
     }
 
 }

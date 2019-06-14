@@ -5,7 +5,7 @@ $this->title = 'Корзина - WannaFresh';
 <div class="eda-cart-wrap">
     <div class="eda-cart">
         <h1><span>Корзина</span><span class="btn btn-danger eda-cart-clear"
-                                      ondblclick="ClearCart()">очистить корзину</span></h1>
+                                      onclick="ClearCart()">очистить корзину</span></h1>
         <div id="CartInner">
 
         </div>
