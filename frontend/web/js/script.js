@@ -152,34 +152,6 @@ function LoadCartInner() {
     $('#CartInner').load('/site/cart-inner');
 }
 
-// COMPANY
-function FilteringCompanyGoods() {
-    let cats = [];
-    $('.eda-company-goods-filters-item input:checkbox:checked').each(function () {
-        cats.push($(this).attr('data-id'))
-    });
-    $('.eda-company-goods-item').each(function () {
-        // console.log($(this).attr('data-category-id'));
-        // console.log(typeof $(this).attr('data-category-id'));
-        // console.log($.inArray($(this).attr('data-category-id'), cats));
-        if ($.inArray($(this).attr('data-category-id'), cats) >= 0) {
-            $(this).removeClass('eda-hidden');
-        } else {
-            $(this).addClass('eda-hidden');
-        }
-    });
-
-    console.log(cats);
-    // console.log($.inArray('1', cats));
-
-}
-
-// ТРЕБУЮТ РЕАЛИЗАЦИИ
-function Filtering() {
-    alert('Filtering --->>>');
-}
-
-
 function CreateOrders() {
     const email = $('#CreateOrderEmail').val();
     const phone = $('#CreateOrderPhone').val();
@@ -213,7 +185,47 @@ function CreateOrders() {
                 'order_phone' : phone,
                 'order_name' : name
             }
-        }).done();
+        }).done(function (msg) {
+            // GoTo('/site/order-registred');
+            console.log(msg);
+        });
 
     }
 }
+
+function EditCartQuantity(obj) {
+    const goodId = $(obj).attr('data-goodid');
+    const farmerId = $(obj).attr('data-farmerid');
+    const quantity = $(obj).val();
+    $.ajax({
+        url: '/site/edit-cart-quantity?farmer_id=' + farmerId + '&good_id=' + goodId + '&quantity=' +quantity
+    }).done();
+}
+// COMPANY
+function FilteringCompanyGoods() {
+    let cats = [];
+    $('.eda-company-goods-filters-item input:checkbox:checked').each(function () {
+        cats.push($(this).attr('data-id'))
+    });
+    $('.eda-company-goods-item').each(function () {
+        // console.log($(this).attr('data-category-id'));
+        // console.log(typeof $(this).attr('data-category-id'));
+        // console.log($.inArray($(this).attr('data-category-id'), cats));
+        if ($.inArray($(this).attr('data-category-id'), cats) >= 0) {
+            $(this).removeClass('eda-hidden');
+        } else {
+            $(this).addClass('eda-hidden');
+        }
+    });
+
+    console.log(cats);
+    // console.log($.inArray('1', cats));
+
+}
+
+// ТРЕБУЮТ РЕАЛИЗАЦИИ
+function Filtering() {
+    alert('Filtering --->>>');
+}
+
+

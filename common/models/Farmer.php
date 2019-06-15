@@ -2,8 +2,6 @@
 
 namespace common\models;
 
-use noam148\imagemanager\models\ImageManager;
-use Yii;
 
 /**
  * This is the model class for table "farmer".
@@ -15,6 +13,7 @@ use Yii;
  * @property FarmerUser $farmerUser
  * @property User[] $users
  * @property Good[] $goods
+ * @property Order[] $orders
  */
 class Farmer extends \yii\db\ActiveRecord
 {
@@ -78,5 +77,10 @@ class Farmer extends \yii\db\ActiveRecord
     public function getPoster() {
         $f_i = FarmerImg::findOne(['farmer_id' => $this->id, 'is_main' => 1]);
         return ($f_i) ? $f_i->img_id : null;
+    }
+
+    public function getOrders()
+    {
+        return $this->hasMany(Order::className(), ['farmer_id' => 'id']);
     }
 }

@@ -77,7 +77,6 @@ class GoodController extends Controller
                 }
             }
         }
-//        var_dump($cart_ids);die;
         $goods = Good::find()->where(['like', 'name', $input])->all();
         return $this->render('search-online', compact('goods', 'cart_ids'));
     }
@@ -103,10 +102,10 @@ class GoodController extends Controller
         return $this->render('farmer-good-list', compact('goods'));
     }
 
-    public function actionCompanyList()
+    public function actionFarmerList()
     {
-
-        return $this->render('company-list');
+        $farmers = Farmer::find()->all();
+        return $this->render('farmer-list', compact('farmers'));
     }
 
     public function actionCategoryCompaniesAndGoods($category_id)

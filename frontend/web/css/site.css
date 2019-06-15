@@ -499,7 +499,6 @@ footer a {
 }
 
 
-
 /*
     CATALOG
 */
@@ -1300,7 +1299,7 @@ footer a {
     color: #d9534f;
     color: #d9534f;
     background-color: #4f7b30;
-    text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
 }
 
 .modal-body > .form-control {
@@ -1505,4 +1504,21 @@ footer a {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+
+/*
+    ORDERS
+ */
+.eda-order-success-wrap {
+    padding: 40px;
+}
+
+.eda-order-success {
+    padding: 20px;
+    margin: 20px 0;
+    border: dotted 1px #4f7b30;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
 }

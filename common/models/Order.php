@@ -17,6 +17,9 @@ use Yii;
  *
  * @property OrderGood $orderGood
  * @property Good[] $goods
+ * @property int $farmer_id
+ * @property Farmer $farmer
+ * @property OrderGood[] $orderGoods
  */
 class Order extends \yii\db\ActiveRecord
 {
@@ -34,9 +37,9 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'no', 'name', 'phone', 'email'], 'required'],
+            [['no', 'name', 'phone', 'email', 'farmer_id'], 'required'],
             [['date'], 'safe'],
-            [['no', 'status'], 'integer'],
+            [['no', 'status', 'farmer_id'], 'integer'],
             [['name', 'email'], 'string', 'max' => 100],
             [['phone'], 'string', 'max' => 50],
         ];
@@ -55,15 +58,20 @@ class Order extends \yii\db\ActiveRecord
             'name' => 'Name',
             'phone' => 'Phone',
             'email' => 'Email',
+            'farmer_id' => 'Farmer'
         ];
     }
 
+    public function getFarmer()
+    {
+        return $this->hasOne(Farmer::className(), ['id' => 'farmer_id']);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOrderGood()
+    public function getOrderGoods()
     {
-        return $this->hasOne(OrderGood::className(), ['order_id' => 'id']);
+        return $this->hasMany(OrderGood::className(), ['order_id' => 'id']);
     }
 
     /**
@@ -72,5 +80,15 @@ class Order extends \yii\db\ActiveRecord
     public function getGoods()
     {
         return $this->hasMany(Good::className(), ['id' => 'good_id'])->viaTable('order_good', ['order_id' => 'id']);
+    }
+
+    public function getSum() {
+        $sum = 0;
+//        echo '<pre>';
+//        var_dump($this->orderGoods);die;
+        foreach ($this->orderGoods as $order_good) {
+            $sum += $order_good->quantity * $order_good->good->price;
+        }
+        return $sum;
     }
 }

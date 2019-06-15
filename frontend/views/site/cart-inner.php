@@ -10,12 +10,6 @@
         <p>Вы добавили в корзину товары с нескольких фермерских хозяйств. Просим обратить внимание, что
             будет
             сформировано <?= count($farmer_items) ?> заказа(ов), у каждого из которых свои срок и место доставки.</p>
-        <!--                <pre>-->
-        <!--                    --><?php
-        //                    $session = Yii::$app->session;
-        //                    print_r($session->get('cart'));
-        //                    ?>
-        <!--                </pre>-->
     </div>
 <?php endif; ?>
 <?php if (count($farmer_items) > 0): ?>
@@ -46,8 +40,9 @@
                     <td><?= $cart_good_item->good->name ?></td>
                     <td><?= $cart_good_item->good->price ?> </td>
                     <td>
-                        <input class="form-control" type="number" value="<?= $cart_good_item->quantity ?>"
-                               step="1"/>
+                        <input min="1" class="form-control" type="number" value="<?= $cart_good_item->quantity ?>"
+                               oninput="EditCartQuantity(this)" data-farmerid="<?= $farmer_item->farmer->id ?>"
+                               data-goodid="<?= $cart_good_item->good->id ?>" />
                     </td>
                     <td><?= $cart_good_item->getSum() ?></td>
                     <td><span class="glyphicon glyphicon-remove eda-cart-remove"
@@ -81,13 +76,13 @@
                 data-target="#OrderModal">Подтвердить заказ
         </button>
     </p>
-    <p>
-        <pre>
-        <?php
-        var_dump($cart);
-        ?>
-        </pre>
-    </p>
+<!--    <p>-->
+<!--    <pre>-->
+<!--        --><?php
+//        var_dump($cart);
+//        ?>
+<!--        </pre>-->
+<!--    </p>-->
 <?php else: ?>
     <div class="alert alert-warning">
         Корзина пуста!

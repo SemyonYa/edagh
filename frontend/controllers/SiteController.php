@@ -14,6 +14,7 @@ use yii\filters\AccessControl;
 
 class SiteController extends Controller
 {
+    public $enableCsrfValidation = false;
     public function beforeAction($action)
     {
         $session = \Yii::$app->session;
@@ -136,7 +137,6 @@ class SiteController extends Controller
         $phone = $_POST['order_phone'];
         $email = $_POST['order_email'];
         $name = $_POST['order_name'];
-
         $order_ids = [];
 
         if (count($cart) > 0) {
@@ -145,7 +145,8 @@ class SiteController extends Controller
                 $order->name = $name;
                 $order->phone = $phone;
                 $order->email = $email;
-//                $order->date = new \DateTime();
+                $order->farmer_id = $farmer_id;
+//                $order->date = 0;
                 $order->status = 0;
                 $order->no = 123654987;
                 if ($order->save()) {
@@ -162,9 +163,30 @@ class SiteController extends Controller
                 }
             }
         }
-        $session->set('card', []);
+        $this->actionClearCart();
+        $ids = '';
+        foreach ($order_ids as $order_id) {
+            $ids .= $order_id . ';';
+        }
 
-        return $this->render('order-registred', compact('order_ids'));
+        return $this->redirect('/site/order-registred?order_ids='.$ids);
+    }
+
+    public function actionOrderRegistred($order_ids) {
+        $ids = explode(';', $order_ids);
+        foreach ($ids as $n => $id) {
+            if (empty($id)) unset($ids[$n]);
+        }
+        $orders = Order::findAll($ids);
+        return $this->render('order-registred', compact('ids', 'orders'));
+    }
+
+    public function actionEditCartQuantity($farmer_id, $good_id, $quantity) {
+        $session = \Yii::$app->session;
+        $cart = $session->get('cart');
+        $cart[$farmer_id][$good_id] = $quantity;
+        $session->set('cart', $cart);
+        return json_encode($cart);
     }
 
 }

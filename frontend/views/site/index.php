@@ -6,8 +6,8 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
 <div class="eda-main">
     <div class="eda-head-img">
         <div class="eda-head-img-caption">
-            <h3>Доставка натуральных продуктов с фермерских хозяйств</h3>
-            <p class="lead">ПРЯМИКОМ НА КУХОННЫЙ СТОЛ</p>
+            <h3>Доставка продуктов с фермерских хозяйств</h3>
+            <p class="lead">ВКУСНО и ПОЛЕЗНО</p>
             <p><a class="btn btn-success" href="/good/catalog">Перейти в каталог</a></p>
         </div>
     </div>
@@ -43,7 +43,7 @@ $this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с 
                      onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"></div>
             <?php endforeach; ?>
         </div>
-        <h4><a href="/good/company-list">Смотреть все...</a></h4>
+        <h4><a href="/good/farmer-list">Смотреть все...</a></h4>
     </div>
 </div>
 

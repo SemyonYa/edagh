@@ -1,44 +1,50 @@
-<?php if (count($order_ids) == 1): ?>
-    <h2>Заказ №<?= $order_ids[0] ?> оформлен</h2>
-<?php else: ?>
-    <?php
-    $orders = '';
-    foreach ($order_ids as $order_id) {
-        $orders .= $order_id . ', ';
-    }
-    $orders = substr($orders, 0, strlen($orders) - 3);
-    ?>
-    <h2> Оформлены заказы №№<?= $orders ?> </h2>
-<?php endif; ?>
-    <h4>СОСТАВ ЗАКАЗА</h4>
-<?php foreach ($order_ids as $order_id): ?>
-    <?php $order = \common\models\Order::findOne($order_id); ?>
-    <table>
-        <thead>
-        <tr>
-            <td colspan="5"></td>
-        </tr>
-        <tr>
-            <td>№</td>
-            <td>Наименование товара</td>
-            <td>Цена, руб.</td>
-            <td>Кол-во</td>
-            <td>Сумма, &#8381;</td>
-            <td></td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td colspan="5"></td>
-        </tr>
-        <tr>
-            <td>№</td>
-            <td>Наименование товара</td>
-            <td>Цена, руб.</td>
-            <td>Кол-во</td>
-            <td>Сумма, &#8381;</td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-<?php endforeach; ?>
+<?php
+//var_dump($orders);
+
+use common\models\Order;
+
+/* @var $orders Order[] */
+?>
+<div class="eda-order-success-wrap">
+    <div class="alert alert-success">УСПЕШНО</div>
+    <?php foreach ($orders as $order): ?>
+        <div class="eda-order-success">
+            <h2>Заказ №<?= $order->id ?></h2>
+            <h4><?= $order->farmer->name ?></h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <td colspan="5"></td>
+                </tr>
+                <tr>
+                    <td>№</td>
+                    <td>Наименование товара</td>
+                    <td>Цена, руб.</td>
+                    <td>Кол-во</td>
+                    <td>Сумма, &#8381;</td>
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $n = 1; ?>
+                <?php foreach ($order->orderGoods as $order_good): ?>
+                    <tr>
+                        <td><?= $n++ ?></td>
+                        <td><?= $order_good->good->name ?></td>
+                        <td><?= $order_good->good->price ?> руб.</td>
+                        <td><?= $order_good->quantity ?></td>
+                        <td><?= $order_good->quantity * $order_good->good->price ?></td>
+                        <td></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                    <td><b><?= $order->getSum() ?></b></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    <?php endforeach; ?>
+</div>
