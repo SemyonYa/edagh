@@ -52,6 +52,12 @@ $(document).ready(function () {
         $('#AdSearchInput').val('');
         $('.ad-goods-table tbody tr').removeClass('ad-goods-table-tr-hidden');
     })
+    ///
+    // ORDERS
+    ///
+    $('.eda-order-status-item').on('click', function () {
+        LoadOrders($(this).attr('data-status'));
+    });
 });
 
 //////------------//////////////////--------------------/////////////////////-----------------------///////////////////
@@ -154,7 +160,15 @@ function AdGoodSearching(str) {
     }
 }
 
-
+///
+// ORDERS
+///
+function LoadOrders(status) {
+    $('#EdaOrders').load('/admin/order/list?status=' + status);
+}
+function LoadOrderInfo(id) {
+    $('#OrderInfoModal').load('/admin/order/info?id=' + id);
+}
 ///
 // MODAL
 ///
