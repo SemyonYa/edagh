@@ -93,8 +93,20 @@ class GoodController extends Controller
     public function actionSearchResult($input)
     {
         $goods = Good::find()->where(['like', 'name', $input])->all();
-        $farmers = Farmer::find()->where(['like', 'name', $input])->all();
-        return $this->render('search-result', compact('goods', 'farmers'));
+        $f_ids = [];
+        foreach ($goods as $good) {
+            if (!in_array($good->farmer_id, $f_ids)) {
+                $f_ids[] = $good->farmer_id;
+            }
+        }
+        $farmers2 = Farmer::find()->where(['like', 'name', $input])->select('id')->all();
+        foreach ($farmers2 as $item) {
+            if (!in_array($item->id, $f_ids)) {
+                $f_ids[] = $item->id;
+            }
+        }
+        $farmers = Farmer::findAll($f_ids);
+        return $this->render('search-result', compact('goods', 'farmers', 'f_ids'));
     }
 
     public function actionCompany($id)

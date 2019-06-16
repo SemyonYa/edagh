@@ -616,3 +616,99 @@ footer {
     padding: 3px;
     cursor: pointer;
 }
+
+/*
+    ORDERS
+*/
+.eda-order-index {
+
+}
+.eda-order-status {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.eda-order-status-item {
+    padding: 6px;
+    border-radius: 6px;
+    border: dotted 1px #4f7b30;
+    color: #4f7b30;
+    margin-right: 12px;
+    cursor: pointer;
+    transition: 1s;
+}
+.eda-order-status-item-active {
+    border: solid 1px #4f7b30;
+    background-color: #4f7b30;
+    color: white;
+    /*font-weight: 600;*/
+    cursor: auto;
+}
+.eda-order-table {
+    width: 60%;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+.eda-order-table td {
+    border: dotted 1px #e4e4e4;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+}
+.eda-order-table thead td {
+    background-color: #4f7b30;
+    color: white;
+    font-weight: 600;
+}
+.eda-order-table tbody tr {
+    cursor: pointer;
+}
+.eda-order-info {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.eda-order-info > h3 {
+    flex-basis: 100%;
+    text-align: center;
+    margin: 0;
+}
+.eda-order-info > h5 {
+    flex-basis: 100%;
+    font-weight: 600;
+    text-align: center;
+}
+.eda-order-info-table {
+    flex-basis: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+.eda-order-info-table td {
+    border: dotted 1px #e4e4e4;
+    border-radius: 5px;
+    padding: 5px;
+}
+.eda-order-info-table td:first-child, .eda-order-info-table td:last-child {
+    text-align: center;
+}
+.eda-order-info-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.eda-order-info-status-item {
+    padding: 6px;
+    border-radius: 6px;
+    border: dotted 1px #4f7b30;
+    color: #4f7b30;
+    margin-right: 12px;
+    cursor: pointer;
+}
+.eda-order-info-status-item-active {
+    background-color: #4f7b30;
+    color: white;
+    /*font-weight: 600;*/
+    cursor: auto;
+}
