@@ -52,6 +52,12 @@ $(document).ready(function () {
         $('#AdSearchInput').val('');
         $('.ad-goods-table tbody tr').removeClass('ad-goods-table-tr-hidden');
     })
+    ///
+    // ORDERS
+    ///
+    $('.eda-order-status-item').on('click', function () {
+        LoadOrders($(this).attr('data-status'));
+    });
 });
 
 //////------------//////////////////--------------------/////////////////////-----------------------///////////////////
@@ -151,6 +157,30 @@ function AdGoodSearching(str) {
         });
     } else {
         $('.ad-goods-table tbody tr').removeClass('ad-goods-table-tr-hidden');
+    }
+}
+
+///
+// ORDERS
+///
+function LoadOrders(status) {
+    $('#EdaOrders').load('/admin/order/list?status=' + status);
+}
+
+function LoadOrderInfo(id) {
+    $('#OrderInfoModal').load('/admin/order/info?id=' + id);
+}
+
+function SetOrderStatus(obj) {
+    if (confirm('Перевести заказ в статус "' + $(obj).text() + '"')) {
+        const status = $(obj).attr('data-status');
+        const id = $(obj).attr('data-id');
+        $.ajax({
+            url: '/admin/order/set-status?id=' + id + '&status=' + status
+        }).done(function () {
+            LoadOrders(status);
+            $('#OrderInfoModal').modal('hide');
+        });
     }
 }
 
