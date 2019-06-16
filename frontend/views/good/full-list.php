@@ -13,3 +13,6 @@ use frontend\models\ImageOverride;
         <p><?= $good->name ?></p>
     </div>
 <?php endforeach; ?>
+<?php if (count($goods) === 0): ?>
+    <div class="alert alert-warning">Нет товаров по данным критериям!</div>
+<?php endif; ?>

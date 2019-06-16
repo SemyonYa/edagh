@@ -1,8 +1,13 @@
 <?php
 $this->title = 'Wanna fresh: Каталог товаров';
-
-$cats = \common\models\Category::find()->all();
-$farmers = \common\models\Farmer::find()->all();
+use common\models\Farmer;
+use common\models\Category;
+/*
+ * @var $cats Category[]
+ * @var $farmers Farmer[]
+ */
+$cats = Category::find()->all();
+$farmers = Farmer::find()->all();
 ?>
 
 <div class="eda-catalog-wrap">
@@ -24,9 +29,10 @@ $farmers = \common\models\Farmer::find()->all();
                     <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body">
                             <?php foreach ($cats as $cat): ?>
-                            <div class="eda-catalog-filters-item"><input type="checkbox" name="flt_category"
-                                                                         id="f1<?= $cat->id ?>"/>
-                                <label for="f1<?= $cat->id ?>"><?= $cat->name ?></label></div>
+                                <div class="eda-catalog-filters-item">
+                                    <input class="eda-catalog-filters-category" type="checkbox" name="flt_category"
+                                           id="f1<?= $cat->id ?>" value="<?= $cat->id ?>"/>
+                                    <label for="f1<?= $cat->id ?>"><?= $cat->name ?></label></div>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -44,7 +50,9 @@ $farmers = \common\models\Farmer::find()->all();
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body">
                             <?php foreach ($farmers as $farmer): ?>
-                                <div class="eda-catalog-filters-item"><input type="checkbox" name="flt_category" id="f2<?= $farmer->id ?>"/>
+                                <div class="eda-catalog-filters-item">
+                                    <input class="eda-catalog-filters-farmer" type="checkbox" name="flt_farmer"
+                                           id="f2<?= $farmer->id ?>" value="<?= $farmer->id ?>"/>
                                     <label for="f2<?= $farmer->id ?>"><?= $farmer->name ?></label></div>
                             <?php endforeach; ?>
                         </div>

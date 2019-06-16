@@ -41,7 +41,16 @@ class GoodController extends Controller
     public function actionFullList()
     {
         $this->layout = 'empty';
-        $goods = Good::find()->all();
+        $f_ids = $_POST['f_ids'];
+        $c_ids = $_POST['c_ids'];
+        $goods = Good::find();
+        if ($f_ids) {
+            $goods = $goods->where(['in', 'farmer_id', $f_ids]);
+        }
+        if ($c_ids) {
+            $goods = $goods->andWhere(['in', 'category_id', $c_ids]);
+        }
+        $goods = $goods->all();
         return $this->render('full-list', compact('goods'));
     }
 

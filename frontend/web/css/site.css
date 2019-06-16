@@ -1211,7 +1211,12 @@ footer a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
 
+.eda-cart-refresh {
+    cursor: pointer;
+    color: #4f7b30;
+    font-size: 18px;
 }
 
 .eda-cart-clear {

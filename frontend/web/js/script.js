@@ -225,7 +225,22 @@ function FilteringCompanyGoods() {
 
 // ТРЕБУЮТ РЕАЛИЗАЦИИ
 function Filtering() {
-    alert('Filtering --->>>');
+    let cIds = [];
+    let fIds = [];
+    $('input.eda-catalog-filters-category:checkbox:checked').each(function () {
+        cIds.push($(this).val());
+    });
+    $('input.eda-catalog-filters-farmer:checkbox:checked').each(function () {
+        fIds.push($(this).val());
+    });
+    $('#CatalogGoods').load('/good/full-list', {
+        'f_ids': fIds,
+        'c_ids': cIds
+    });
+    console.log('cats');
+    console.log(cIds);
+    console.log('farmers');
+    console.log(fIds);
 }
 
 
