@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\Au;
 use Yii;
 use common\models\Order;
 use common\models\OrderSearch;
@@ -37,7 +38,9 @@ class OrderController extends Controller
     public function actionList($status)
     {
         $this->layout = 'empty';
-        $orders = Order::find()->where(['status' => $status])->all();
+        Au::isManager();
+        $farmer_id = Au::isFarmer();
+        $orders = Order::find()->where(['status' => $status, 'farmer_id' => $farmer_id])->all();
         return $this->render('list', compact('orders'));
     }
 
@@ -48,6 +51,11 @@ class OrderController extends Controller
         return $this->render('info', compact('order'));
     }
 
+    public function actionSetStatus($id, $status) {
+        $order = Order::findOne($id);
+        $order->status = $status;
+        $order->save();
+    }
 
 
 

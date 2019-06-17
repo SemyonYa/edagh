@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </thead>
         <tbody>
         <?php foreach ($goods as $good): ?>
-            <tr ondblclick="GoTo('/admin/good/update?id=<?= $good->id ?>')">
+            <tr onclick="GoTo('/admin/good/update?id=<?= $good->id ?>')">
                 <td><?= $good->id ?></td>
                 <td>
                     <?php if ($good->poster): ?>

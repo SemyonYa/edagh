@@ -166,9 +166,25 @@ function AdGoodSearching(str) {
 function LoadOrders(status) {
     $('#EdaOrders').load('/admin/order/list?status=' + status);
 }
+
 function LoadOrderInfo(id) {
     $('#OrderInfoModal').load('/admin/order/info?id=' + id);
 }
+
+function SetOrderStatus(obj) {
+    if (confirm('Перевести заказ в статус "' + $(obj).text() + '"')) {
+        const status = $(obj).attr('data-status');
+        const id = $(obj).attr('data-id');
+        $.ajax({
+            url: '/admin/order/set-status?id=' + id + '&status=' + status
+        }).done(function () {
+            LoadOrders(status);
+            $('#OrderInfoModal').modal('hide');
+        });
+    }
+}
+
+
 ///
 // MODAL
 ///

@@ -19,9 +19,9 @@ use common\models\Order;
             <?php endforeach; ?>
         </table>
         <div class="eda-order-info-status">
-            <div class="eda-order-info-status-item eda-order-info-status-item-active">Новый</div>
-            <div class="eda-order-info-status-item">В работе</div>
-            <div class="eda-order-info-status-item">Выполнен</div>
+            <div class="eda-order-info-status-item eda-order-info-status-item-active" data-status="0" data-id="<?= $order->id ?>" onclick="SetOrderStatus(this)">Новый</div>
+            <div class="eda-order-info-status-item" data-status="1" data-id="<?= $order->id ?>" onclick="SetOrderStatus(this)">В работе</div>
+            <div class="eda-order-info-status-item" data-status="2" data-id="<?= $order->id ?>" onclick="SetOrderStatus(this)">Выполнен</div>
         </div>
     </div>
 </div>
