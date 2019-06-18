@@ -3,21 +3,12 @@
 namespace backend\controllers;
 
 use common\models\Au;
-use Yii;
 use common\models\Order;
-use common\models\OrderSearch;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * OrderController implements the CRUD actions for Order model.
- */
 class OrderController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
         return [
@@ -47,15 +38,25 @@ class OrderController extends Controller
     public function actionInfo($id)
     {
         $this->layout = 'empty';
+        Au::isManager();
+        $farmer_id = Au::isFarmer();
         $order = Order::findOne($id);
-        return $this->render('info', compact('order'));
+        if ($farmer_id === $order->farmer_id) {
+            return $this->render('info', compact('order'));
+        }
     }
 
-    public function actionSetStatus($id, $status) {
+    public function actionSetStatus($id, $status)
+    {
         $order = Order::findOne($id);
-        $order->status = $status;
-        $order->save();
+        Au::isManager();
+        $farmer_id = Au::isFarmer();
+        if ($farmer_id === $order->farmer_id) {
+            $order->status = $status;
+            $order->save();
+        }
     }
+}
 
 
 
@@ -108,4 +109,3 @@ class OrderController extends Controller
 //
 //        throw new NotFoundHttpException('The requested page does not exist.');
 //    }
-}

@@ -165,21 +165,49 @@ function AdGoodSearching(str) {
 ///
 function LoadOrders(status) {
     $('#EdaOrders').load('/admin/order/list?status=' + status);
+    SetStatusColor(status);
 }
 
 function LoadOrderInfo(id) {
     $('#OrderInfoModal').load('/admin/order/info?id=' + id);
 }
 
+function SetStatusColor(status) {
+    $('.eda-order-status-item').each(function () {
+        // alert($(this).attr('data-status') + ' --- ' + status);
+        if ($(this).attr('data-status') == status) {
+            $(this).addClass('eda-order-status-item-active');
+        } else {
+            $(this).removeClass('eda-order-status-item-active');
+        }
+    });
+}
+
+function SetInfoStatusColor(status) {
+    $('.eda-order-info-status-item').each(function () {
+        if ($(this).attr('data-status') == status) {
+            $(this).addClass('eda-order-info-status-item-active');
+        } else {
+            $(this).removeClass('eda-order-info-status-item-active');
+        }
+    });
+
+}
+
 function SetOrderStatus(obj) {
     if (confirm('Перевести заказ в статус "' + $(obj).text() + '"')) {
         const status = $(obj).attr('data-status');
+        const currentStatus = $(obj).attr('data-current-status');
         const id = $(obj).attr('data-id');
         $.ajax({
             url: '/admin/order/set-status?id=' + id + '&status=' + status
         }).done(function () {
-            LoadOrders(status);
-            $('#OrderInfoModal').modal('hide');
+            // LoadOrders(currentStatus);
+            // $('#OrderInfoModal').modal('hide');
+            $('#OrderInfoModal').on('hidden.bs.modal', function () {
+                LoadOrders(currentStatus);
+            });
+            SetInfoStatusColor(status);
         });
     }
 }

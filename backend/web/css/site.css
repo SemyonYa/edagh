@@ -635,12 +635,13 @@ footer {
     color: #4f7b30;
     margin-right: 12px;
     cursor: pointer;
+    transition: 1s;
 }
 .eda-order-status-item-active {
     border: solid 1px #4f7b30;
     background-color: #4f7b30;
     color: white;
-    font-weight: 600;
+    /*font-weight: 600;*/
     cursor: auto;
 }
 .eda-order-table {
@@ -708,6 +709,6 @@ footer {
 .eda-order-info-status-item-active {
     background-color: #4f7b30;
     color: white;
-    font-weight: 600;
+    /*font-weight: 600;*/
     cursor: auto;
 }

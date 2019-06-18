@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <div class="eda-order-status">
-        <div class="eda-order-status-item eda-order-status-item-active" data-status="0" id="NewOrdersBtn">Поступившие заказы</div>
+        <div class="eda-order-status-item" data-status="0" id="NewOrdersBtn">Поступившие заказы</div>
         <div class="eda-order-status-item" data-status="1" id="WorkOrdersBtn">Заказы в работе</div>
         <div class="eda-order-status-item" data-status="2" id="CompletedOrdersBtn">Выполненные заказы</div>
     </div>
