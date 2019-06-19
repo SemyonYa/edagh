@@ -212,6 +212,33 @@ function SetOrderStatus(obj) {
     }
 }
 
+///
+// REPORT
+///
+function CheckReportParams() {
+    const dateIn = $('#ReportDateIn').val();
+    const dateOut = $('#ReportDateOut').val();
+    const cats = $('#ReportCategories').val();
+    console.log(dateIn + '  *-*   ' + dateOut);
+    console.log(cats);
+}
+
+function SearchGoodForReport(obj) {
+    const input = $(obj).val().trim().toLowerCase();
+    if (input.length > 1) {
+    $('#ReportSearchResult').load('/admin/report/search?input=' + input);
+        console.log(input);
+    } else {
+        $('#ReportSearchResult').empty();
+    }
+    // $.ajax().done(function () {
+    // });
+}
+
+function SelectGoodToReport() {
+    $('#ReportSearchResult').empty();
+
+}
 
 ///
 // MODAL

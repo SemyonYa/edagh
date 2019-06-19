@@ -3,3 +3,4 @@
 
 <h2><a href="/admin/good">Мои товары</a></h2>
 <h2><a href="/admin/order">Мои заказы</a></h2>
+<h2><a href="/admin/report">Отчёты</a></h2>

@@ -528,6 +528,7 @@ footer {
     border-color: #4f7b30;
     font-weight: 600;
 }
+
 .ad-goods-table-tr-hidden {
     display: none;
 }
@@ -623,11 +624,13 @@ footer {
 .eda-order-index {
 
 }
+
 .eda-order-status {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
+
 .eda-order-status-item {
     padding: 6px;
     border-radius: 6px;
@@ -637,6 +640,7 @@ footer {
     cursor: pointer;
     transition: 1s;
 }
+
 .eda-order-status-item-active {
     border: solid 1px #4f7b30;
     background-color: #4f7b30;
@@ -644,25 +648,30 @@ footer {
     /*font-weight: 600;*/
     cursor: auto;
 }
+
 .eda-order-table {
     width: 60%;
     border-collapse: separate;
     border-spacing: 5px;
 }
+
 .eda-order-table td {
     border: dotted 1px #e4e4e4;
     border-radius: 5px;
     padding: 5px;
     text-align: center;
 }
+
 .eda-order-table thead td {
     background-color: #4f7b30;
     color: white;
     font-weight: 600;
 }
+
 .eda-order-table tbody tr {
     cursor: pointer;
 }
+
 .eda-order-info {
     padding: 10px;
     display: flex;
@@ -670,34 +679,41 @@ footer {
     align-items: center;
     flex-wrap: wrap;
 }
+
 .eda-order-info > h3 {
     flex-basis: 100%;
     text-align: center;
     margin: 0;
 }
+
 .eda-order-info > h5 {
     flex-basis: 100%;
     font-weight: 600;
     text-align: center;
 }
+
 .eda-order-info-table {
     flex-basis: 100%;
     border-collapse: separate;
     border-spacing: 5px;
 }
+
 .eda-order-info-table td {
     border: dotted 1px #e4e4e4;
     border-radius: 5px;
     padding: 5px;
 }
+
 .eda-order-info-table td:first-child, .eda-order-info-table td:last-child {
     text-align: center;
 }
+
 .eda-order-info-status {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .eda-order-info-status-item {
     padding: 6px;
     border-radius: 6px;
@@ -706,9 +722,81 @@ footer {
     margin-right: 12px;
     cursor: pointer;
 }
+
 .eda-order-info-status-item-active {
     background-color: #4f7b30;
     color: white;
     /*font-weight: 600;*/
     cursor: auto;
+}
+
+/*
+    REPORT
+*/
+.ad-report {
+    width: 100%;
+}
+
+.ad-report-params {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.ad-report-params-item {
+    width: 400px;
+    padding: 10px;
+    border-radius: 6px;
+    border: solid 1px #4f7b30;
+    min-height: 200px;
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,.4);
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+.ad-report-params-item > * {
+    flex-basis: 100%;
+}
+.ad-report-params-item > h4 {
+    margin: 0;
+    padding-top: 5px;
+}
+.ad-report-params-item > b {
+    font-size: 10px;
+}
+input.ad-report-params-item-period {
+    border: solid 1px #4f7b30;
+    background-color: white;
+    border-radius: 3px!important;
+    padding: 3px!important;
+    outline: none;
+}
+
+select.ad-report-params-item-cats {
+    border: solid 1px #4f7b30;
+    background-color: white;
+    border-radius: 3px!important;
+    padding: 3px!important;
+    outline: none;
+}
+input.ad-report-params-item-goods {
+    border: solid 1px #4f7b30;
+    background-color: white;
+    border-radius: 3px!important;
+    padding: 3px!important;
+    outline: none;
+}
+.ad-report-params-item-search-result {
+    height: 1px;
+    background-color: #4f7b30;
+    width: 100%;
+}
+.ad-report-params-item-search-result-item {
+    background-color: whitesmoke;
+    padding: 3px;
+    margin: 3px;
+    cursor: pointer;
 }
