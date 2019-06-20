@@ -219,25 +219,49 @@ function CheckReportParams() {
     const dateIn = $('#ReportDateIn').val();
     const dateOut = $('#ReportDateOut').val();
     const cats = $('#ReportCategories').val();
+    const goods = [];
+    $('#ReportGoodlist > div').each(function () {
+        goods.push(1 * $(this).attr('data-goodid'));
+    });
     console.log(dateIn + '  *-*   ' + dateOut);
+    console.log('cats');
     console.log(cats);
+    console.log('goods');
+    console.log(goods);
+    $('#ReportResult').load('/admin/report/result', {
+        'date_in': dateIn,
+        'date_out': dateOut,
+        'categories': cats,
+        'goods': goods
+    });
 }
 
 function SearchGoodForReport(obj) {
     const input = $(obj).val().trim().toLowerCase();
     if (input.length > 1) {
-    $('#ReportSearchResult').load('/admin/report/search?input=' + input);
-        console.log(input);
+        $('#ReportSearchResult').load('/admin/report/search?input=' + input);
     } else {
         $('#ReportSearchResult').empty();
     }
-    // $.ajax().done(function () {
-    // });
 }
 
-function SelectGoodToReport() {
-    $('#ReportSearchResult').empty();
+function SelectGoodToReport(goodId, goodName) {
+    let goodIds = [];
+    $('#ReportGoodlist > div').each(function () {
+        goodIds.push(1 * $(this).attr('data-goodid'));
+    });
+    console.log(goodIds);
+    console.log(goodId);
+    console.log(goodIds.indexOf(goodId));
 
+    if (goodIds.indexOf(goodId) === -1) {
+        $('#ReportSearchResult').empty();
+        $('#ReportGoodlist').append('<div data-goodid="' + goodId + '" onclick="RemoveGoodFromReport(this)">' + goodName + '</div>');
+    }
+}
+
+function RemoveGoodFromReport(obj) {
+    $(obj).remove();
 }
 
 ///

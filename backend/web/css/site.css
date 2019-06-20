@@ -791,12 +791,38 @@ input.ad-report-params-item-goods {
 }
 .ad-report-params-item-search-result {
     height: 1px;
-    background-color: #4f7b30;
+    /*background-color: #4f7b30;*/
     width: 100%;
+    z-index: 10245698;
 }
 .ad-report-params-item-search-result-item {
     background-color: whitesmoke;
     padding: 3px;
     margin: 3px;
     cursor: pointer;
+}
+.ad-report-params-item-goodlist {
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+.ad-report-params-item-goodlist > div {
+    padding: 3px;
+    margin: 3px;
+    border-radius: 3px;
+    background-color: #4f7b30;
+    color: white;
+    cursor: pointer;
+}
+.ad-report-params-item-goodlist > div::after {
+    content: '\2718';
+    color: #d58512;
+    margin-left: 5px;
+}
+.ad-report-result {
+    flex-basis: 100%;
+    border: dotted 1px #eee;
+    margin-top: 40px;
+    padding: 10px;
 }

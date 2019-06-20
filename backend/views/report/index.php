@@ -39,4 +39,7 @@ $this->title = 'Формирование отчётов';
 
     </div>
     <button class="btn btn-primary" type="button" onclick="CheckReportParams()">Проверить параметры</button>
+    <div class="ad-report-result" id="ReportResult">
+        ajax
+    </div>
 </div>
