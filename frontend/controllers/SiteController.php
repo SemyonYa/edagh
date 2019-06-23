@@ -146,7 +146,7 @@ class SiteController extends Controller
                 $order->phone = $phone;
                 $order->email = $email;
                 $order->farmer_id = $farmer_id;
-//                $order->date = 0;
+                $order->date = date('Y-m-d');
                 $order->status = 0;
                 $order->no = 123654987;
                 if ($order->save()) {
@@ -160,6 +160,7 @@ class SiteController extends Controller
                             $order_good->save();
                         }
                     }
+                    $this->actionSendOrder($order->id);
                 }
             }
         }
@@ -187,6 +188,17 @@ class SiteController extends Controller
         $cart[$farmer_id][$good_id] = $quantity;
         $session->set('cart', $cart);
         return json_encode($cart);
+    }
+
+    public function actionSendOrder($order_id = 17) {
+        $order = Order::findOne($order_id);
+        \Yii::$app->mailer->compose('i', compact('order'))
+            ->setFrom('mygarbage86@yandex.ru')
+            ->setTo($order->email)
+            ->setSubject('WannaFresh: заказ №' . $order->id)
+//            ->setTextBody('Текст сообщения')
+//            ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
+            ->send();
     }
 
 }

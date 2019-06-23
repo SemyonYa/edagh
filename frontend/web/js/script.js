@@ -85,6 +85,25 @@ function LoadGoodModal(id) {
     $('#GoodModal').load('/good/view?id=' + id);
 }
 
+function Filtering() {
+    let cIds = [];
+    let fIds = [];
+    $('input.eda-catalog-filters-category:checkbox:checked').each(function () {
+        cIds.push($(this).val());
+    });
+    $('input.eda-catalog-filters-farmer:checkbox:checked').each(function () {
+        fIds.push($(this).val());
+    });
+    $('#CatalogGoods').load('/good/full-list', {
+        'f_ids': fIds,
+        'c_ids': cIds
+    });
+    // console.log('cats');
+    // console.log(cIds);
+    // console.log('farmers');
+    // console.log(fIds);
+}
+
 ///
 // CART
 ///
@@ -224,23 +243,12 @@ function FilteringCompanyGoods() {
 }
 
 // ТРЕБУЮТ РЕАЛИЗАЦИИ
-function Filtering() {
-    let cIds = [];
-    let fIds = [];
-    $('input.eda-catalog-filters-category:checkbox:checked').each(function () {
-        cIds.push($(this).val());
+function SendOrder() {
+    $.ajax({
+        url: '/site/send-order'
+    }).done(function () {
+        alert();
     });
-    $('input.eda-catalog-filters-farmer:checkbox:checked').each(function () {
-        fIds.push($(this).val());
-    });
-    $('#CatalogGoods').load('/good/full-list', {
-        'f_ids': fIds,
-        'c_ids': cIds
-    });
-    console.log('cats');
-    console.log(cIds);
-    console.log('farmers');
-    console.log(fIds);
 }
 
 

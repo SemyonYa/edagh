@@ -3,6 +3,7 @@ $this->title = 'Корзина - WannaFresh';
 
 ?>
 <div class="eda-cart-wrap">
+<!--    <button onclick="SendOrder()">Send Order</button>-->
     <div class="eda-cart">
         <h1>
             <span>Корзина <span class="glyphicon glyphicon-refresh eda-cart-refresh" onclick="LoadCartInner()"

@@ -58,6 +58,9 @@ $(document).ready(function () {
     $('.eda-order-status-item').on('click', function () {
         LoadOrders($(this).attr('data-status'));
     });
+    $('.ad-report-type').on('click', function () {
+        CheckRadio($(this).val());
+    });
 });
 
 //////------------//////////////////--------------------/////////////////////-----------------------///////////////////
@@ -216,6 +219,7 @@ function SetOrderStatus(obj) {
 // REPORT
 ///
 function CheckReportParams() {
+    const reportType = $('input[name=ReportType]:checked').val();
     const dateIn = $('#ReportDateIn').val();
     const dateOut = $('#ReportDateOut').val();
     const cats = $('#ReportCategories').val();
@@ -228,12 +232,26 @@ function CheckReportParams() {
     console.log(cats);
     console.log('goods');
     console.log(goods);
-    $('#ReportResult').load('/admin/report/result', {
-        'date_in': dateIn,
-        'date_out': dateOut,
-        'categories': cats,
-        'goods': goods
-    });
+    console.log(reportType);
+    if (reportType === 'ReportTypeCat') {
+        $('#ReportResult').load('/admin/report/result-cat', {
+            'date_in': dateIn,
+            'date_out': dateOut,
+            'categories': cats
+        });
+    } else if (reportType === 'ReportTypeGood') {
+        $('#ReportResult').load('/admin/report/result-good', {
+            'date_in': dateIn,
+            'date_out': dateOut,
+            'goods': goods
+        });
+    }
+    else if (reportType === 'ReportTypeOrder') {
+        $('#ReportResult').load('/admin/report/result-order', {
+            'date_in': dateIn,
+            'date_out': dateOut
+        });
+    }
 }
 
 function SearchGoodForReport(obj) {
@@ -246,6 +264,7 @@ function SearchGoodForReport(obj) {
 }
 
 function SelectGoodToReport(goodId, goodName) {
+    $('input[name=ReportType]').val();
     let goodIds = [];
     $('#ReportGoodlist > div').each(function () {
         goodIds.push(1 * $(this).attr('data-goodid'));
@@ -264,6 +283,17 @@ function RemoveGoodFromReport(obj) {
     $(obj).remove();
 }
 
+function CheckRadio(id) {
+    $('.ad-report-params-item').each(function () {
+        if ($(this).attr('data-radio') === id || ($(this).attr('data-radio') === 'ReportTypePeriod')) {
+            $(this).addClass('ad-report-params-item-active')
+            $(this).find('*').css('color', '');
+        } else {
+            $(this).removeClass('ad-report-params-item-active')
+            $(this).find('*').css('color', '#555');
+        }
+    });
+}
 ///
 // MODAL
 ///

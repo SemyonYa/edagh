@@ -1,7 +1,9 @@
 <?php
 $this->title = 'Wanna fresh: Каталог товаров';
+
 use common\models\Farmer;
 use common\models\Category;
+
 /*
  * @var $cats Category[]
  * @var $farmers Farmer[]

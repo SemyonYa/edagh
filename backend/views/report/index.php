@@ -9,7 +9,7 @@ $this->title = 'Формирование отчётов';
         Укажиет параметры для формирования отчета.
     </div>
     <div class="ad-report-params">
-        <div class="ad-report-params-item">
+        <div class="ad-report-params-item" data-radio="ReportTypePeriod">
             <h4>Период:</h4>
             <b class="text-danger text-uppercase">оба параметра являются обязательными.</b>
             <label for="ReportDateIn">С</label>
@@ -17,8 +17,11 @@ $this->title = 'Формирование отчётов';
             <label for="ReportDateOut">По</label>
             <input type="date" class="ad-report-params-item-period" id="ReportDateOut" value="<?= $defaults['date_out'] ?>" />
         </div>
-        <div class="ad-report-params-item">
-            <h4>Категории продуктов</h4>
+        <div class="ad-report-params-item" data-radio="ReportTypeCat">
+            <h4>
+                <span>По категориям</span>
+                <input type="radio" value="ReportTypeCat" class="ad-report-type" name="ReportType" />
+            </h4>
             <b class="text-danger text-uppercase">необязательный параметр. можно выбрать несколько, удерживая ctrl.</b>
             <select multiple size="5" class="ad-report-params-item-cats" id="ReportCategories">
                 <?php foreach ($cats as $cat): ?>
@@ -26,14 +29,22 @@ $this->title = 'Формирование отчётов';
                 <?php endforeach; ?>
             </select>
         </div>
-        <div class="ad-report-params-item">
-            <h4>Продукты</h4>
+        <div class="ad-report-params-item" data-radio="ReportTypeGood">
+            <h4>
+                <span>По продуктам</span>
+                <input type="radio" value="ReportTypeGood" class="ad-report-type" name="ReportType" />
+            </h4>
             <b class="text-danger text-uppercase">начните вводить наименование продукта, чтобы добавить его в список</b>
             <input type="text" class="ad-report-params-item-goods" id="ReportGoods" oninput="SearchGoodForReport(this)" />
             <div class="ad-report-params-item-search-result" id="ReportSearchResult"></div>
             <div class="ad-report-params-item-goodlist" id="ReportGoodlist"></div>
         </div>
-        <div class="ad-report-params-item">
+        <div class="ad-report-params-item ad-report-params-item-active" data-radio="ReportTypeOrder">
+            <h4>
+                <span>По заказам</span>
+                <input type="radio" value="ReportTypeOrder" class="ad-report-type" name="ReportType" checked />
+            </h4>
+            <b class="text-danger text-uppercase">Будет сформирован отчет по заказам</b>
 
         </div>
 
@@ -43,3 +54,6 @@ $this->title = 'Формирование отчётов';
         ajax
     </div>
 </div>
+<script>
+    CheckRadio('ReportTypeOrder');
+</script>

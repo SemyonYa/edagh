@@ -748,14 +748,19 @@ footer {
     width: 400px;
     padding: 10px;
     border-radius: 6px;
-    border: solid 1px #4f7b30;
     min-height: 200px;
-    box-shadow: 1px 1px 5px 0px rgba(0,0,0,.4);
     margin: 10px;
     display: flex;
     justify-content: center;
     align-content: flex-start;
     flex-wrap: wrap;
+    transition: .5s;
+    box-shadow: none;
+    border: solid 1px #e4e4e4;
+}
+.ad-report-params-item-active {
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,.4);
+    border-color: #4f7b30;
 }
 .ad-report-params-item > * {
     flex-basis: 100%;
@@ -763,6 +768,10 @@ footer {
 .ad-report-params-item > h4 {
     margin: 0;
     padding-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #4f7b30;
 }
 .ad-report-params-item > b {
     font-size: 10px;
@@ -825,4 +834,7 @@ input.ad-report-params-item-goods {
     border: dotted 1px #eee;
     margin-top: 40px;
     padding: 10px;
+}
+.ad-report-type {
+    zoom: 2;
 }

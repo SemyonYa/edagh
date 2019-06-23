@@ -10,6 +10,7 @@ use yii\web\Controller;
 
 class ReportController extends Controller
 {
+    public $enableCsrfValidation = false;
     public function actions()
     {
         return [
@@ -35,7 +36,7 @@ class ReportController extends Controller
         return $this->render('search-result', compact('goods'));
     }
 
-    public function actionResult()
+    public function actionResultOrder()
     {
         $this->layout = 'empty';
         $date_in = $_POST['date_in'];
@@ -47,6 +48,6 @@ class ReportController extends Controller
 //            $orders = $orders->andWhere('in', );
 //        }
 //        $orders = $orders->all();
-        return $this->render('result', compact('date_in', 'date_out', 'categories', 'goods', 'orders'));
+        return $this->render('result-order', compact('date_in', 'date_out', 'categories', 'goods', 'orders'));
     }
 }

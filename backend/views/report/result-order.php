@@ -43,7 +43,6 @@ use common\models\Order;
                     <?php endforeach; ?>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <!--            </tbody>-->
         </table>
     <?php endif; ?>
 </div>

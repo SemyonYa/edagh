@@ -41,8 +41,8 @@ class GoodController extends Controller
     public function actionFullList()
     {
         $this->layout = 'empty';
-        $f_ids = $_POST['f_ids'];
-        $c_ids = $_POST['c_ids'];
+        $f_ids = \Yii::$app->request->post('f_ids'); //$_POST['f_ids'];
+        $c_ids = \Yii::$app->request->post('c_ids');
         $goods = Good::find();
         if ($f_ids) {
             $goods = $goods->where(['in', 'farmer_id', $f_ids]);

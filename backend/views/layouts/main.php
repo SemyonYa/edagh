@@ -48,8 +48,8 @@ AppAsset::register($this);
 
 <div class="ad-wrap">
     <?php
+    $home = 'f';
     if (\Yii::$app->user->identity) {
-        $home = 'f';
         if (\common\models\User::findOne(\Yii::$app->user->identity->getId())->roles[0]->name === 'r_admin') {
             $home = 'a';
         }
