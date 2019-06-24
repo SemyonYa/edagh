@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\ReportCategory;
 use common\models\Category;
 use common\models\Good;
 use common\models\Order;
@@ -11,6 +12,7 @@ use yii\web\Controller;
 class ReportController extends Controller
 {
     public $enableCsrfValidation = false;
+
     public function actions()
     {
         return [
@@ -44,10 +46,30 @@ class ReportController extends Controller
         $categories = $_POST['categories'];
         $goods = $_POST['goods'];
         $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->orderBy('date')->all();
-//        if ($categories) {
-//            $orders = $orders->andWhere('in', );
-//        }
-//        $orders = $orders->all();
         return $this->render('result-order', compact('date_in', 'date_out', 'categories', 'goods', 'orders'));
+    }
+
+    public function actionResultCategory()
+    {
+        $this->layout = 'empty';
+        $date_in = $_POST['date_in'];
+        $date_out = $_POST['date_out'] . ' 23:59:59';
+        $categories = Category::findAll($_POST['categories']);
+        $report_categories = [];
+        foreach ($categories as $category) {
+            $report_categories[] = new ReportCategory($category);
+        }
+        $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->all();
+        return $this->render('result-category');
+    }
+
+    public function actionResultGood()
+    {
+        $this->layout = 'empty';
+        $date_in = $_POST['date_in'];
+        $date_out = $_POST['date_out'] . ' 23:59:59';
+        $categories = $_POST['goods'];
+
+        return $this->render('result-good');
     }
 }
