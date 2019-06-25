@@ -38,7 +38,7 @@ use common\models\Order;
                         <tr>
                             <td colspan="2"></td>
                             <td><?= $order_good->good->name ?> (<b><?= $order_good->quantity ?></b>)</td>
-                            <td><?= $order_good->quantity * $order_good->good->price ?></td>
+                            <td><?= $order_good->quantity * $order_good->price ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>

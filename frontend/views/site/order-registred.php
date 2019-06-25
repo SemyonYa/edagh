@@ -31,9 +31,9 @@ use common\models\Order;
                     <tr>
                         <td><?= $n++ ?></td>
                         <td><?= $order_good->good->name ?></td>
-                        <td><?= $order_good->good->price ?> руб.</td>
+                        <td><?= $order_good->price ?> руб.</td>
                         <td><?= $order_good->quantity ?></td>
-                        <td><?= $order_good->quantity * $order_good->good->price ?></td>
+                        <td><?= $order_good->quantity * $order_good->price ?></td>
                         <td></td>
                     </tr>
                 <?php endforeach; ?>

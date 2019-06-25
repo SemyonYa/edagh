@@ -234,7 +234,7 @@ function CheckReportParams() {
     console.log(goods);
     console.log(reportType);
     if (reportType === 'ReportTypeCat') {
-        $('#ReportResult').load('/admin/report/result-cat', {
+        $('#ReportResult').load('/admin/report/result-category', {
             'date_in': dateIn,
             'date_out': dateOut,
             'categories': cats

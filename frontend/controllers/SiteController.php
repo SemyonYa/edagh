@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\Category;
 use common\models\Farmer;
+use common\models\Good;
 use common\models\Order;
 use common\models\OrderGood;
 use frontend\models\CartFarmerItem;
@@ -157,6 +158,7 @@ class SiteController extends Controller
                             $order_good->order_id = $order->id;
                             $order_good->good_id = $good_id;
                             $order_good->quantity = $q;
+                            $order_good->price = Good::findOne($good_id)->price;
                             $order_good->save();
                         }
                     }

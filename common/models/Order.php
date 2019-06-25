@@ -84,10 +84,8 @@ class Order extends \yii\db\ActiveRecord
 
     public function getSum() {
         $sum = 0;
-//        echo '<pre>';
-//        var_dump($this->orderGoods);die;
         foreach ($this->orderGoods as $order_good) {
-            $sum += $order_good->quantity * $order_good->good->price;
+            $sum += $order_good->quantity * $order_good->price;
         }
         return $sum;
     }

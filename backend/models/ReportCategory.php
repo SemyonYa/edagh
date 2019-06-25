@@ -2,19 +2,28 @@
 
 namespace backend\models;
 use common\models\Category;
-use common\models\Good;
+use common\models\OrderGood;
 
 /* @var $category Category */
-/* @var $report_goods ReportGood[] */
+/* @var $order_goods OrderGood[] */
 
 class ReportCategory
 {
     public $category;
-    public $report_goods;
+    public $order_goods;
 
     public function __construct(Category $_category)
     {
         $this->category = $_category;
-        $report_goods = [];
+        $this->order_goods = [];
     }
+
+    public function getSum() {
+        $sum = 0;
+        foreach ($this->order_goods as $order_good) {
+            $sum += $order_good->getSum();
+        }
+        return $sum;
+    }
+
 }

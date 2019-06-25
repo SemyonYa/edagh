@@ -3,9 +3,11 @@
 namespace backend\controllers;
 
 use backend\models\ReportCategory;
+use backend\models\ReportGood;
 use common\models\Category;
 use common\models\Good;
 use common\models\Order;
+use common\models\OrderGood;
 use yii\web\Controller;
 
 
@@ -57,10 +59,23 @@ class ReportController extends Controller
         $categories = Category::findAll($_POST['categories']);
         $report_categories = [];
         foreach ($categories as $category) {
-            $report_categories[] = new ReportCategory($category);
+            $report_categories[$category->id] = new ReportCategory($category);
         }
         $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->all();
-        return $this->render('result-category');
+        $order_ids = [];
+        foreach ($orders as $order) {
+            $order_ids[] = $order->id;
+        }
+        $order_goods = OrderGood::find()->where(['in', 'order_id', $order_ids])->all();
+
+        foreach ($order_goods as $order_good) {
+//            var_dump($order_good->good->category_id);
+            if (isset($report_categories[$order_good->good->category_id])) {
+                $report_categories[$order_good->good->category_id]->order_goods[] = $order_good;
+            }
+        }
+//        var_dump($report_categories[1]);
+        return $this->render('result-category', compact('report_categories'));
     }
 
     public function actionResultGood()

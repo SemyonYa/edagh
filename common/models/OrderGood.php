@@ -10,16 +10,13 @@ use Yii;
  * @property int $order_id
  * @property int $good_id
  * @property int $quantity
+ * @property double $price
  *
  * @property Good $good
  * @property Order $order
  */
 class OrderGood extends \yii\db\ActiveRecord
 {
-//    public function __construct(array $config = [])
-//    {
-//        parent::__construct($config);
-//    }
 
     public static function tableName()
     {
@@ -29,7 +26,8 @@ class OrderGood extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_id', 'good_id', 'quantity'], 'required'],
+            [['order_id', 'good_id', 'quantity', 'price'], 'required'],
+            [['price'], 'double'],
             [['order_id', 'good_id', 'quantity'], 'integer'],
             [['order_id', 'good_id'], 'unique', 'targetAttribute' => ['order_id', 'good_id']],
             [['good_id'], 'exist', 'skipOnError' => true, 'targetClass' => Good::className(), 'targetAttribute' => ['good_id' => 'id']],
@@ -43,6 +41,7 @@ class OrderGood extends \yii\db\ActiveRecord
             'order_id' => 'Order ID',
             'good_id' => 'Good ID',
             'quantity' => 'Quantity',
+            'price' => 'Price'
         ];
     }
 
@@ -57,5 +56,9 @@ class OrderGood extends \yii\db\ActiveRecord
     public function getOrder()
     {
         return $this->hasOne(Order::className(), ['id' => 'order_id']);
+    }
+
+    public function getSum() {
+        return $this->quantity * $this->price;
     }
 }
