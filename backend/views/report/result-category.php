@@ -4,7 +4,10 @@
 
 <div class="ad-report-result-inner">
     <?php if (count($report_categories) > 0): ?>
-        <table class="table table-bordered">
+        <table class="table table-hover">
+            <tr>
+                <th colspan="4" class="ad-report-title">Отчёт по категориям</th>
+            </tr>
             <?php $n = 1; ?>
             <?php foreach ($report_categories as $report_category): ?>
                 <tr>

@@ -7,7 +7,10 @@ use common\models\Order;
 <div class="ad-report-result-inner">
     <?php if (count($orders) > 0): ?>
         <?php $current_date = null; ?>
-        <table class="table table-bordered">
+        <table class="table table-hover">
+            <tr>
+                <th colspan="4" class="ad-report-title">Отчёт по заказам</th>
+            </tr>
             <tr>
                 <th>№ заказа</th>
                 <th>Данные заказчика</th>

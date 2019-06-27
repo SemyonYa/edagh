@@ -57,24 +57,25 @@ class ReportController extends Controller
         $date_in = $_POST['date_in'];
         $date_out = $_POST['date_out'] . ' 23:59:59';
         $categories = Category::findAll($_POST['categories']);
+
         $report_categories = [];
         foreach ($categories as $category) {
             $report_categories[$category->id] = new ReportCategory($category);
         }
+
         $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->all();
         $order_ids = [];
         foreach ($orders as $order) {
             $order_ids[] = $order->id;
         }
+
         $order_goods = OrderGood::find()->where(['in', 'order_id', $order_ids])->all();
 
         foreach ($order_goods as $order_good) {
-//            var_dump($order_good->good->category_id);
             if (isset($report_categories[$order_good->good->category_id])) {
                 $report_categories[$order_good->good->category_id]->order_goods[] = $order_good;
             }
         }
-//        var_dump($report_categories[1]);
         return $this->render('result-category', compact('report_categories'));
     }
 
@@ -83,8 +84,27 @@ class ReportController extends Controller
         $this->layout = 'empty';
         $date_in = $_POST['date_in'];
         $date_out = $_POST['date_out'] . ' 23:59:59';
-        $categories = $_POST['goods'];
+        $good_ids = $_POST['goods'];
+        $goods = Good::findAll($good_ids);
 
-        return $this->render('result-good');
+        $report_goods = [];
+        foreach ($goods as $good) {
+            $report_goods[$good->id] = new ReportGood($good);
+        }
+
+        $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->all();
+        $order_ids = [];
+        foreach ($orders as $order) {
+            $order_ids[] = $order->id;
+        }
+
+        $order_goods = OrderGood::find()->where(['in', 'order_id', $order_ids])->andWhere(['in', 'good_id', $good_ids])->all();
+
+        foreach ($order_goods as $order_good) {
+            $report_goods[$order_good->good_id]->sum += $order_good->getSum();
+            $report_goods[$order_good->good_id]->q++;
+        }
+
+        return $this->render('result-good', compact('report_goods'));
     }
 }
