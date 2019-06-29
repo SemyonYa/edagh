@@ -1,22 +1,24 @@
 <?php
-//
-//namespace backend\models;
-//use common\models\OrderGood;
-//
-///* @var $order_good OrderGood */
-//
-//class ReportGood
-//{
-//    public $order_good;
-//    public $q;
-//
-//    public function __construct(OrderGood $_order_good, int $_q)
-//    {
-//        $this->order_good = $_order_good;
-//        $this->q = $_q;
-//    }
-//
+
+namespace backend\models;
+use common\models\Good;
+
+/* @var $order_good Good */
+
+class ReportGood
+{
+    public $good;
+    public $q;
+    public $sum;
+
+    public function __construct(Good $_good)
+    {
+        $this->good = $_good;
+        $this->q = 0;
+        $this->sum = 0;
+    }
+
 //    public function getSum() {
-//        return $this->order_good->price * $this->q;
+//        return $this->order_good->price * $this->order_good->q;
 //    }
-//}
+}

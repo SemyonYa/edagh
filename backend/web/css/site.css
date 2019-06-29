@@ -838,3 +838,21 @@ input.ad-report-params-item-goods {
 .ad-report-type {
     zoom: 2;
 }
+
+.ad-report-result-inner {
+    width: 100%;
+}
+.ad-report-result-inner table {
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+.ad-report-result-inner table td, .ad-report-result-inner table th {
+    border: dotted 1px #e4e4e4;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+}
+.ad-report-result-inner table th {
+    background-color: #4f7b30;
+    color: white;
+}

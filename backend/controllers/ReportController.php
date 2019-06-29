@@ -69,12 +69,10 @@ class ReportController extends Controller
         $order_goods = OrderGood::find()->where(['in', 'order_id', $order_ids])->all();
 
         foreach ($order_goods as $order_good) {
-//            var_dump($order_good->good->category_id);
             if (isset($report_categories[$order_good->good->category_id])) {
                 $report_categories[$order_good->good->category_id]->order_goods[] = $order_good;
             }
         }
-//        var_dump($report_categories[1]);
         return $this->render('result-category', compact('report_categories'));
     }
 
@@ -83,8 +81,23 @@ class ReportController extends Controller
         $this->layout = 'empty';
         $date_in = $_POST['date_in'];
         $date_out = $_POST['date_out'] . ' 23:59:59';
-        $categories = $_POST['goods'];
-
-        return $this->render('result-good');
+        $good_ids = $_POST['goods'];
+        $goods = Good::findAll($good_ids);
+        $report_goods = [];
+        foreach ($goods as $good) {
+            $report_goods[$good->id] = new ReportGood($good);
+        }
+        $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->all();
+        $order_ids = [];
+        foreach ($orders as $order) {
+            $order_ids[] = $order->id;
+        }
+        $order_goods = OrderGood::find()->where(['in', 'order_id', $order_ids])->andWhere(['in', 'good_id', $good_ids])->all();
+//            var_dump($good_ids);die;
+        foreach ($order_goods as $order_good) {
+            $report_goods[$order_good->good_id]->q += $order_good->quantity;
+            $report_goods[$order_good->good_id]->sum += $order_good->quantity * $order_good->price;
+        }
+        return $this->render('result-good', compact('report_goods'));
     }
 }

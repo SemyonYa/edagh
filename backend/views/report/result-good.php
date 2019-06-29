@@ -1,9 +1,9 @@
 <?php
-/* @var $report_categories \backend\models\ReportCategory[] */
+/* @var $report_goods \backend\models\ReportGood[] */
 ?>
 
 <div class="ad-report-result-inner">
-    <?php if (count($report_categories) > 0): ?>
+    <?php if (count($report_goods) > 0): ?>
         <table class="table table-hover">
             <tr>
                 <th>№</th>
@@ -12,12 +12,12 @@
                 <th>Сумма</th>
             </tr>
             <?php $n = 1; ?>
-            <?php foreach ($report_categories as $report_category): ?>
+            <?php foreach ($report_goods as $report_good): ?>
                 <tr>
                     <td><?= $n++ ?></td>
-                    <td><?= $report_category->category->name ?></td>
-                    <td><?= count($report_category->order_goods) ?></td>
-                    <td><?= $report_category->getSum() ?> руб.</td>
+                    <td><?= $report_good->good->name ?></td>
+                    <td><?= $report_good->q ?></td>
+                    <td><?= $report_good->sum ?> руб.</td>
                 </tr>
             <?php endforeach; ?>
         </table>

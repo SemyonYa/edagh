@@ -66,6 +66,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Farmer::className(), ['id' => 'farmer_id']);
     }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -82,11 +83,27 @@ class Order extends \yii\db\ActiveRecord
         return $this->hasMany(Good::className(), ['id' => 'good_id'])->viaTable('order_good', ['order_id' => 'id']);
     }
 
-    public function getSum() {
+    public function getSum()
+    {
         $sum = 0;
         foreach ($this->orderGoods as $order_good) {
             $sum += $order_good->quantity * $order_good->price;
         }
         return $sum;
+    }
+
+    public function sendMailToAdmin()
+    {
+
+    }
+
+    public function sendMailToFarmer()
+    {
+
+    }
+
+    public function sendMailToCustomer()
+    {
+
     }
 }

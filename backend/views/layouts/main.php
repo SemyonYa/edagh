@@ -35,7 +35,7 @@ AppAsset::register($this);
     <img onclick="GoTo('/admin')" class="ad-logo" src="/frontend/web/img/logo.svg"/>
     <div>
         <?php if (Yii::$app->user->isGuest): ?>
-            <span class="btn btn-header"><a href="/admin/site/signup">Рег</a></span>
+            <span class="btn btn-header"><a href="/admin/password-reset">Восстановить пароль</a></span>
             <span class="btn btn-header"><a href="/admin/site/login">Вход</a></span>
         <?php else: ?>
             <span class="btn-action" onclick="Logout()">Выход (<?= Yii::$app->user->identity->username ?>)</span>
