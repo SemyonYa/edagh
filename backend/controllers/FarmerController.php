@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\Image;
+use backend\models\NewPassword;
 use common\models\Au;
 use common\models\FarmerImg;
 use common\models\FarmerUser;

@@ -252,6 +252,12 @@ function CheckReportParams() {
             'date_out': dateOut
         });
     }
+    else if (reportType === 'ReportTypeClient') {
+        $('#ReportResult').load('/admin/report/result-client', {
+            'date_in': dateIn,
+            'date_out': dateOut
+        });
+    }
 }
 
 function SearchGoodForReport(obj) {

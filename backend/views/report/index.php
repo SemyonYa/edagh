@@ -47,6 +47,14 @@ $this->title = 'Формирование отчётов';
             <b class="text-danger text-uppercase">Будет сформирован отчет по заказам</b>
 
         </div>
+        <div class="ad-report-params-item" data-radio="ReportTypeClient">
+            <h4>
+                <span>По клиентам</span>
+                <input type="radio" value="ReportTypeClient" class="ad-report-type" name="ReportType"/>
+            </h4>
+            <b class="text-danger text-uppercase">Будет сформирован отчет по клиентам</b>
+
+        </div>
 
     </div>
     <button class="btn btn-primary" type="button" onclick="CheckReportParams()">Проверить параметры</button>

@@ -1,3 +1,7 @@
+<?php
+$this->title = 'Администратор WannaFresh';
+?>
+
 <h1>You are ADMIN</h1>
 
 <h2><a href="/admin/user">Пользователи</a></h2>

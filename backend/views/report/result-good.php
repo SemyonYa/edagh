@@ -6,6 +6,9 @@
     <?php if (count($report_goods) > 0): ?>
         <table class="table table-hover">
             <tr>
+                <td colspan="4" class="ad-report-title">Отчёт по товарам</td>
+            </tr>
+            <tr>
                 <th>№</th>
                 <th>Наименование</th>
                 <th>Количество</th>

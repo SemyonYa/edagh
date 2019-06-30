@@ -855,4 +855,8 @@ input.ad-report-params-item-goods {
 .ad-report-result-inner table th {
     background-color: #4f7b30;
     color: white;
+    border: solid 1px #4f7b30;
+}
+.ad-report-result-inner table td.ad-report-title {
+    border: solid 2px #4f7b30;
 }

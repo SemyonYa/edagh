@@ -1,5 +1,5 @@
 <?php
-$this->title = 'Wanna fresh: Каталог товаров';
+$this->title = 'Каталог товаров Wanna Fresh';
 
 use common\models\Farmer;
 use common\models\Category;

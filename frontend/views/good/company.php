@@ -1,5 +1,5 @@
 <?php
-$this->title = 'Wanna fresh: Фермерское хозяйство';
+$this->title = 'Wanna Fresh: ' . $farmer->name;
 
 use frontend\models\ImageOverride;
 

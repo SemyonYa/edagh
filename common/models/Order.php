@@ -94,7 +94,14 @@ class Order extends \yii\db\ActiveRecord
 
     public function sendMailToAdmin()
     {
-
+        Yii::$app->mailer
+            ->compose('i', compact('order'))
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ': Заказы'])
+            ->setTo($this->email)
+            ->setSubject('WannaFresh: заказ №' . $this->id)
+//            ->setTextBody('Текст сообщения')
+//            ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
+            ->send();
     }
 
     public function sendMailToFarmer()
@@ -102,7 +109,7 @@ class Order extends \yii\db\ActiveRecord
 
     }
 
-    public function sendMailToCustomer()
+    public function sendMailToClient()
     {
 
     }

@@ -6,12 +6,12 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Farmer */
 
-$this->title = 'Редактирование: ' . $model->name;
+$this->title = 'Профиль: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Профиль'];
 ?>
 <div class="ad-farmer-update">
     <input type="hidden" id="FarmerId" value="<?= $model->id ?>" />
-    <button class="btn btn-primary" onclick="alert('change passwd')">Изменить пароль</button>
+    <a href="/admin/site/new-password" class="btn btn-primary">Изменить пароль</a>
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', compact('model')) ?>

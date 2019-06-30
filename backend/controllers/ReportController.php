@@ -100,4 +100,14 @@ class ReportController extends Controller
         }
         return $this->render('result-good', compact('report_goods'));
     }
+
+    public function actionResultClient()
+    {
+        $this->layout = 'empty';
+        $date_in = $_POST['date_in'];
+        $date_out = $_POST['date_out'] . ' 23:59:59';
+        $clients = Order::find()->select(['id', 'name', 'phone', 'email'] )->groupBy('email')->all();
+
+        return $this->render('result-client', compact('clients'));
+    }
 }
