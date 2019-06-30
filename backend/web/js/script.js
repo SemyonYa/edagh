@@ -223,6 +223,7 @@ function CheckReportParams() {
     const dateIn = $('#ReportDateIn').val();
     const dateOut = $('#ReportDateOut').val();
     const cats = $('#ReportCategories').val();
+    const farmer = $('#ReportFarmer').val();
     const goods = [];
     $('#ReportGoodlist > div').each(function () {
         goods.push(1 * $(this).attr('data-goodid'));
@@ -237,25 +238,29 @@ function CheckReportParams() {
         $('#ReportResult').load('/admin/report/result-category', {
             'date_in': dateIn,
             'date_out': dateOut,
-            'categories': cats
+            'categories': cats,
+            'farmer': farmer
         });
     } else if (reportType === 'ReportTypeGood') {
         $('#ReportResult').load('/admin/report/result-good', {
             'date_in': dateIn,
             'date_out': dateOut,
-            'goods': goods
+            'goods': goods,
+            'farmer': farmer
         });
     }
     else if (reportType === 'ReportTypeOrder') {
         $('#ReportResult').load('/admin/report/result-order', {
             'date_in': dateIn,
-            'date_out': dateOut
+            'date_out': dateOut,
+            'farmer': farmer
         });
     }
     else if (reportType === 'ReportTypeClient') {
         $('#ReportResult').load('/admin/report/result-client', {
             'date_in': dateIn,
-            'date_out': dateOut
+            'date_out': dateOut,
+            'farmer': farmer
         });
     }
 }

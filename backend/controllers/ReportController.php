@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\ReportCategory;
 use backend\models\ReportGood;
+use common\models\Au;
 use common\models\Category;
 use common\models\Good;
 use common\models\Order;
@@ -40,14 +41,25 @@ class ReportController extends Controller
         return $this->render('search-result', compact('goods'));
     }
 
-    public function actionResultOrder()
+    public function actionResultOrder($farmer_id = null)
     {
+        Au::isManager();
         $this->layout = 'empty';
+        if ($farmer_id === null) {
+            $farmer_id = Au::isFarmer();
+        }
         $date_in = $_POST['date_in'];
         $date_out = $_POST['date_out'] . ' 23:59:59';
         $categories = $_POST['categories'];
         $goods = $_POST['goods'];
-        $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->orderBy('date')->all();
+        if (!$farmer_id) {
+            $farmer_id = \Yii::$app->request->post('farmer');
+        }
+        $orders = Order::find()->where(['between', 'date', $date_in, $date_out]);
+        if ($farmer_id) {
+            $orders = $orders->andWhere(['farmer_id' => $farmer_id]);
+        }
+        $orders = $orders->orderBy('date')->all();
         return $this->render('result-order', compact('date_in', 'date_out', 'categories', 'goods', 'orders'));
     }
 
