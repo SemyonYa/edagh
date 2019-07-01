@@ -6,6 +6,7 @@ use backend\models\ReportCategory;
 use backend\models\ReportGood;
 use common\models\Au;
 use common\models\Category;
+use common\models\Farmer;
 use common\models\Good;
 use common\models\Order;
 use common\models\OrderGood;
@@ -28,10 +29,11 @@ class ReportController extends Controller
     public function actionIndex()
     {
         $cats = Category::find()->all();
+        $farmers = Farmer::find()->all();
         $defaults = [];
         $defaults['date_in'] = date('Y-m-') . '01';
         $defaults['date_out'] = date('Y-m-t');
-        return $this->render('index', compact('defaults', 'cats'));
+        return $this->render('index', compact('defaults', 'cats', 'farmers'));
     }
 
     public function actionSearch($input)
@@ -41,39 +43,54 @@ class ReportController extends Controller
         return $this->render('search-result', compact('goods'));
     }
 
-    public function actionResultOrder($farmer_id = null)
+    public function actionResultOrder()
     {
-        Au::isManager();
         $this->layout = 'empty';
-        if ($farmer_id === null) {
-            $farmer_id = Au::isFarmer();
-        }
+        Au::isManager();
         $date_in = $_POST['date_in'];
         $date_out = $_POST['date_out'] . ' 23:59:59';
         $categories = $_POST['categories'];
         $goods = $_POST['goods'];
-        if (!$farmer_id) {
-            $farmer_id = \Yii::$app->request->post('farmer');
+
+        $farmer_id = \Yii::$app->request->post('farmer');
+        if ($farmer_id === '0') {
+            $farmer_id = Au::isFarmer();
         }
-        $orders = Order::find()->where(['between', 'date', $date_in, $date_out]);
-        if ($farmer_id) {
+
+        $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->orderBy('date');
+        if ($farmer_id !== 'all') {
             $orders = $orders->andWhere(['farmer_id' => $farmer_id]);
         }
-        $orders = $orders->orderBy('date')->all();
+        $orders = $orders->all();
+//        var_dump($orders);die;
         return $this->render('result-order', compact('date_in', 'date_out', 'categories', 'goods', 'orders'));
     }
 
     public function actionResultCategory()
     {
         $this->layout = 'empty';
+        Au::isManager();
+
         $date_in = $_POST['date_in'];
         $date_out = $_POST['date_out'] . ' 23:59:59';
         $categories = Category::findAll($_POST['categories']);
+
+        $farmer_id = \Yii::$app->request->post('farmer');
+        if ($farmer_id === '0') {
+            $farmer_id = Au::isFarmer();
+        }
+
         $report_categories = [];
         foreach ($categories as $category) {
             $report_categories[$category->id] = new ReportCategory($category);
         }
-        $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->all();
+
+        $orders = Order::find()->where(['between', 'date', $date_in, $date_out]);
+        if ($farmer_id !== 'all') {
+            $orders = $orders->andWhere(['farmer_id' => $farmer_id]);
+        }
+        $orders = $orders->all();
+
         $order_ids = [];
         foreach ($orders as $order) {
             $order_ids[] = $order->id;
@@ -91,15 +108,27 @@ class ReportController extends Controller
     public function actionResultGood()
     {
         $this->layout = 'empty';
+        Au::isManager();
+
         $date_in = $_POST['date_in'];
         $date_out = $_POST['date_out'] . ' 23:59:59';
         $good_ids = $_POST['goods'];
+
+        $farmer_id = \Yii::$app->request->post('farmer');
+        if ($farmer_id === '0') {
+            $farmer_id = Au::isFarmer();
+        }
+
         $goods = Good::findAll($good_ids);
         $report_goods = [];
         foreach ($goods as $good) {
             $report_goods[$good->id] = new ReportGood($good);
         }
-        $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->all();
+        $orders = Order::find()->where(['between', 'date', $date_in, $date_out]);
+        if ($farmer_id !== 'all') {
+            $orders = $orders->andWhere(['farmer_id' => $farmer_id]);
+        }
+        $orders = $orders->all();
         $order_ids = [];
         foreach ($orders as $order) {
             $order_ids[] = $order->id;
@@ -116,9 +145,20 @@ class ReportController extends Controller
     public function actionResultClient()
     {
         $this->layout = 'empty';
+        Au::isManager();
+
+        $farmer_id = \Yii::$app->request->post('farmer');
+        if ($farmer_id === '0') {
+            $farmer_id = Au::isFarmer();
+        }
+
         $date_in = $_POST['date_in'];
         $date_out = $_POST['date_out'] . ' 23:59:59';
-        $clients = Order::find()->select(['id', 'name', 'phone', 'email'] )->groupBy('email')->all();
+        $clients = Order::find()->where(['between', 'date', $date_in, $date_out]);
+        if ($farmer_id !== 'all') {
+            $clients = $clients->andWhere(['farmer_id' => $farmer_id]);
+        }
+        $clients = $clients->select(['id', 'name', 'phone', 'email'])->groupBy('email')->all();
 
         return $this->render('result-client', compact('clients'));
     }
