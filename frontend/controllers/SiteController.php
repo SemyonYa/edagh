@@ -162,10 +162,14 @@ class SiteController extends Controller
                             $order_good->save();
                         }
                     }
-                    $this->actionSendOrder($order->id);
+//                    $this->actionSendOrder($order->id);
+                    $order->sendMailToOrdermail();
+                    $order->sendMailToClient();
+                    $order->sendMailToFarmer();
                 }
             }
         }
+
         $this->actionClearCart();
         $ids = '';
         foreach ($order_ids as $order_id) {

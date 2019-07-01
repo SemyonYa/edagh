@@ -1,5 +1,7 @@
 <?php
+
 use common\models\User;
+
 /* @var $this \yii\web\View */
 $this->title = 'Формирование отчётов';
 ?>
@@ -67,7 +69,12 @@ $this->title = 'Формирование отчётов';
                     <span>ФХ</span>
                 </h4>
                 <b class="text-danger text-uppercase">Выберите фермерское хозяйство</b>
-                <input type="hidden" value="0" id="ReportFarmer"/>
+                <select id="ReportFarmer" class="ad-report-params-item-farmers  ">
+                    <option value="all" selected>По всем</option>
+                    <?php foreach ($farmers as $farmer): ?>
+                        <option value="<?= $farmer->id ?>"><?= $farmer->name ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
         <?php else: ?>
             <input type="hidden" value="0" id="ReportFarmer"/>
