@@ -9,7 +9,7 @@ use common\models\Order;
         <?php $current_date = null; ?>
         <table class="table table-hover">
             <tr>
-                <th colspan="4" class="ad-report-title">Отчёт по заказам</th>
+                <td colspan="4" class="ad-report-title">Отчёт по заказам</td>
             </tr>
             <tr>
                 <th>№ заказа</th>

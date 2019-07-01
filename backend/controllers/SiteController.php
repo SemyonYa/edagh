@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use backend\models\NewPassword;
+use backend\models\NewPasswordAdmin;
 use backend\models\PasswordResetRequestForm;
 use backend\models\ResetPasswordForm;
 use common\models\Au;
@@ -64,17 +66,20 @@ class SiteController extends Controller
         return $this->redirect('/admin/login');
     }
 
-    public function actionUserList() {
+    public function actionUserList()
+    {
         $users = User::find()->all();
         return $this->render('user-list', compact('users'));
     }
 
-    public function actionA() {
+    public function actionA()
+    {
         Au::isAdmin();
         return $this->render('admin-page');
     }
 
-    public function actionF() {
+    public function actionF()
+    {
         Au::isManager();
         $farmer = Farmer::findOne(Au::isFarmer());
         return $this->render('farmer-page', compact('farmer'));
@@ -126,7 +131,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
 //                if (Yii::$app->getUser()->login($user)) {
-                    return $this->redirect('/admin/user');
+                return $this->redirect('/admin/user');
 //                }
             }
         }
@@ -163,5 +168,42 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    public function actionNewPassword($farmer_id = null)
+    {
+        Au::isManager();
+        if ($farmer_id === null) {
+            $farmer_id = Au::isFarmer();
+        }
+        $model = new NewPassword();
+        $error = '';
+        if ($model->load(Yii::$app->request->post())) {
+            $user = Farmer::findOne($farmer_id)->users[0];
+            if (($user->validatePassword($model->old_password)) && ($model->new_password === $model->repeat_password)) {
+                $user->setPassword($model->new_password);
+                $user->save();
+                $this->actionLogout();
+            }
+            $error = 'Что-то не то!';
+        }
+        return $this->render('new-password', compact('model', 'error'));
+    }
+
+    public function actionNewPasswordAdmin($user_id)
+    {
+        Au::isAdmin();
+        $model = new NewPasswordAdmin();
+        $error = '';
+        $user = User::findOne($user_id);
+        if ($model->load(Yii::$app->request->post())) {
+            if (($model->new_password === $model->repeat_password)) {
+                $user->setPassword($model->new_password);
+                $user->save();
+                return $this->redirect('/admin/farmer');
+            }
+            $error = 'Пароли не совпадают!';
+        }
+        return $this->render('new-password-admin', compact('model', 'error', 'user'));
     }
 }

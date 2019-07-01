@@ -1,5 +1,5 @@
 <?php
-$this->title = 'Корзина - WannaFresh';
+$this->title = 'Корзина Wanna Fresh';
 
 ?>
 <div class="eda-cart-wrap">

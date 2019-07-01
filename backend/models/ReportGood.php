@@ -3,19 +3,22 @@
 namespace backend\models;
 use common\models\Good;
 
-/* @var $good Good */
+/* @var $order_good Good */
 
 class ReportGood
 {
     public $good;
-    public $sum;
     public $q;
+    public $sum;
 
     public function __construct(Good $_good)
     {
         $this->good = $_good;
-        $this->sum = 0;
         $this->q = 0;
+        $this->sum = 0;
     }
 
+//    public function getSum() {
+//        return $this->order_good->price * $this->order_good->q;
+//    }
 }

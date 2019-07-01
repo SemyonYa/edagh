@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <td>
                 <span class="btn-action">назначить роль</span>
                 <span class="btn-action">прикрепить к ФХ</span>
-                <span class="btn-action">сбросить пароль</span>
+                <a href="/admin/site/new-password-admin?user_id=<?= $user->id ?>" class="btn-action">сбросить пароль</a>
             </td>
         </tr>
     <?php endforeach; ?>

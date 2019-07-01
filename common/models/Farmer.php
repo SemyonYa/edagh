@@ -33,6 +33,7 @@ class Farmer extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'string', 'max' => 45],
+            [['email'], 'email'],
             [['description'], 'string'],
             [['name'], 'unique'],
         ];
@@ -47,6 +48,7 @@ class Farmer extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Наименование',
             'description' => 'Описание',
+            'email' => 'E-mail'
         ];
     }
 

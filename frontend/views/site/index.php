@@ -1,5 +1,5 @@
 <?php
-$this->title = 'ХОЧУ СВЕЖЕГО: Доставка продуктов с фермерских хозяйств';
+$this->title = 'Wanna Fresh: Доставка продуктов с фермерских хозяйств';
 /* @var $farmers \common\models\Farmer[] */
 /* @var $categories \common\models\Category */
 ?>

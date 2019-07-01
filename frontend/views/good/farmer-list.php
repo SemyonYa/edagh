@@ -1,6 +1,6 @@
 <?php
 use frontend\models\ImageOverride;
-$this->title = 'Список фермерских хозяйств - WannaFresh';
+$this->title = 'Список фермерских хозяйств WannaFresh';
 ?>
 <div class="eda-companylist-wrap">
     <h1>Фермерские хозяйства</h1>

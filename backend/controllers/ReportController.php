@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\ReportCategory;
 use backend\models\ReportGood;
+use common\models\Au;
 use common\models\Category;
 use common\models\Good;
 use common\models\Order;
@@ -40,14 +41,25 @@ class ReportController extends Controller
         return $this->render('search-result', compact('goods'));
     }
 
-    public function actionResultOrder()
+    public function actionResultOrder($farmer_id = null)
     {
+        Au::isManager();
         $this->layout = 'empty';
+        if ($farmer_id === null) {
+            $farmer_id = Au::isFarmer();
+        }
         $date_in = $_POST['date_in'];
         $date_out = $_POST['date_out'] . ' 23:59:59';
         $categories = $_POST['categories'];
         $goods = $_POST['goods'];
-        $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->orderBy('date')->all();
+        if (!$farmer_id) {
+            $farmer_id = \Yii::$app->request->post('farmer');
+        }
+        $orders = Order::find()->where(['between', 'date', $date_in, $date_out]);
+        if ($farmer_id) {
+            $orders = $orders->andWhere(['farmer_id' => $farmer_id]);
+        }
+        $orders = $orders->orderBy('date')->all();
         return $this->render('result-order', compact('date_in', 'date_out', 'categories', 'goods', 'orders'));
     }
 
@@ -57,18 +69,15 @@ class ReportController extends Controller
         $date_in = $_POST['date_in'];
         $date_out = $_POST['date_out'] . ' 23:59:59';
         $categories = Category::findAll($_POST['categories']);
-
         $report_categories = [];
         foreach ($categories as $category) {
             $report_categories[$category->id] = new ReportCategory($category);
         }
-
         $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->all();
         $order_ids = [];
         foreach ($orders as $order) {
             $order_ids[] = $order->id;
         }
-
         $order_goods = OrderGood::find()->where(['in', 'order_id', $order_ids])->all();
 
         foreach ($order_goods as $order_good) {
@@ -86,25 +95,31 @@ class ReportController extends Controller
         $date_out = $_POST['date_out'] . ' 23:59:59';
         $good_ids = $_POST['goods'];
         $goods = Good::findAll($good_ids);
-
         $report_goods = [];
         foreach ($goods as $good) {
             $report_goods[$good->id] = new ReportGood($good);
         }
-
         $orders = Order::find()->where(['between', 'date', $date_in, $date_out])->all();
         $order_ids = [];
         foreach ($orders as $order) {
             $order_ids[] = $order->id;
         }
-
         $order_goods = OrderGood::find()->where(['in', 'order_id', $order_ids])->andWhere(['in', 'good_id', $good_ids])->all();
-
+//            var_dump($good_ids);die;
         foreach ($order_goods as $order_good) {
-            $report_goods[$order_good->good_id]->sum += $order_good->getSum();
-            $report_goods[$order_good->good_id]->q++;
+            $report_goods[$order_good->good_id]->q += $order_good->quantity;
+            $report_goods[$order_good->good_id]->sum += $order_good->quantity * $order_good->price;
         }
-
         return $this->render('result-good', compact('report_goods'));
+    }
+
+    public function actionResultClient()
+    {
+        $this->layout = 'empty';
+        $date_in = $_POST['date_in'];
+        $date_out = $_POST['date_out'] . ' 23:59:59';
+        $clients = Order::find()->select(['id', 'name', 'phone', 'email'] )->groupBy('email')->all();
+
+        return $this->render('result-client', compact('clients'));
     }
 }

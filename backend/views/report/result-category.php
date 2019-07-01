@@ -6,7 +6,13 @@
     <?php if (count($report_categories) > 0): ?>
         <table class="table table-hover">
             <tr>
-                <th colspan="4" class="ad-report-title">Отчёт по категориям</th>
+                <td colspan="4" class="ad-report-title">Отчёт по категориям</td>
+            </tr>
+            <tr>
+                <th>№</th>
+                <th>Наименование</th>
+                <th>Количество</th>
+                <th>Сумма</th>
             </tr>
             <?php $n = 1; ?>
             <?php foreach ($report_categories as $report_category): ?>
