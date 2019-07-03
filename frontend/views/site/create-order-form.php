@@ -14,6 +14,7 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>
             <button type="button" class="btn btn-primary" onclick="CreateOrders()">Подтвердить</button>
+            <a class="btn btn-primary" href="/site/create-orders" onclick="CreateOrders2(event)">qwe</a>
         </div>
     </div>
 </div>

@@ -2,10 +2,10 @@
 $this->title = 'Администрирование: ' . $farmer->name;
 ?>
 
-<h1>You are FARMER</h1>
-<h4><?= $farmer->name ?></h4>
-
-<h2><a href="/admin/good">Мои товары</a></h2>
-<h2><a href="/admin/order">Мои заказы</a></h2>
-<h2><a href="/admin/report">Отчёты</a></h2>
-<h2><a href="/admin/farmer/self-update">Профиль</a></h2>
+<h1><?= $farmer->name ?></h1>
+<div class="ad-list">
+    <div class="ad-item"><a href="/admin/good">Мои товары</a></div>
+    <div class="ad-item"><a href="/admin/order">Мои заказы</a></div>
+    <div class="ad-item"><a href="/admin/report">Отчёты</a></div>
+    <div class="ad-item"><a href="/admin/farmer/self-update">Профиль</a></div>
+</div>

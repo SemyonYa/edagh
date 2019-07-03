@@ -212,6 +212,48 @@ function CreateOrders() {
     }
 }
 
+function CreateOrders2() {
+    const email = $('#CreateOrderEmail').val();
+    const phone = $('#CreateOrderPhone').val();
+    const name = $('#CreateOrderName').val();
+    let errors = [];
+
+    let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if (name.trim() == '') {
+        errors.push('Имя не может быть незаполненным');
+    }
+    if (phone == '') {
+        errors.push('Телефон введен некорректно');
+    }
+    if (reg.test(email) == false) {
+        errors.push('E-mail не соответствует формату');
+    }
+    if (errors.length > 0) {
+        $('#CreateOrderErrors').empty();
+        $('#CreateOrderErrors').addClass('alert alert-danger');
+        for (let error of errors) {
+            $('#CreateOrderErrors').append('<p> - ' + error + '</p>');
+            console.log(error);
+        }
+        event.preventDefault();
+    } else {
+
+        alert('+++Валидные данные+++');
+        $.post({
+            url: '/site/create-orders',
+            data: {
+                'order_email' : email,
+                'order_phone' : phone,
+                'order_name' : name
+            }
+        }).done(function (msg) {
+            // GoTo('/site/order-registred');
+            console.log(msg);
+        });
+
+    }
+}
+
 function EditCartQuantity(obj) {
     const goodId = $(obj).attr('data-goodid');
     const farmerId = $(obj).attr('data-farmerid');

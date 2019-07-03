@@ -4,8 +4,6 @@
 <h1>Заказ №<?= $order->id . '-' . date('Y') ?></h1>
 <h4>Для компании <?= $order->farmer->name ?></h4>
 <br>
-<br>
-<br>
 <div class="mail-order-client">
     <h2>Информация о заказчике:</h2>
     <p><?= $order->name ?></p>

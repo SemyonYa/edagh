@@ -30,7 +30,7 @@ use frontend\models\ImageOverride;
         </div>
         <div class="tab-pane fade" id="goods">
             <div class="eda-farmers-and-goods-g">
-                <?php foreach ($category->goods as $good): ?>
+                <?php foreach ($category_goods as $good): ?>
                     <div data-toggle="modal" data-target="#GoodModal" class="eda-company-goods-item"
                          data-category-id="<?= $good->category_id ?>"
                          style="background-image: url('<?= ImageOverride::getPath($good->poster) ?>');"
