@@ -1,5 +1,5 @@
 <?php
-//var_dump($orders);
+$this->title = 'Заказы зарегистрированы';
 
 use common\models\Order;
 

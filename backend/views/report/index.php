@@ -81,9 +81,9 @@ $this->title = 'Формирование отчётов';
         <?php endif; ?>
 
     </div>
-    <button class="btn btn-primary" type="button" onclick="CheckReportParams()">Проверить параметры</button>
+    <button class="btn btn-primary" type="button" onclick="CheckReportParams()">Сформировать</button>
     <div class="ad-report-result" id="ReportResult">
-        ajax
+<!--        ajax-->
     </div>
 </div>
 <script>

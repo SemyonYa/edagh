@@ -8,6 +8,7 @@ namespace common\models;
  *
  * @property int $id
  * @property string $name
+ * @property string $email
  * @property string $description
  *
  * @property FarmerUser $farmerUser

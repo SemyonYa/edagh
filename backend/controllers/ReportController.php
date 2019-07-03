@@ -47,10 +47,10 @@ class ReportController extends Controller
     {
         $this->layout = 'empty';
         Au::isManager();
-        $date_in = $_POST['date_in'];
-        $date_out = $_POST['date_out'] . ' 23:59:59';
-        $categories = $_POST['categories'];
-        $goods = $_POST['goods'];
+        $date_in = \Yii::$app->request->post('date_in');
+        $date_out = \Yii::$app->request->post('date_out');
+        $categories = \Yii::$app->request->post('categories');
+        $goods = \Yii::$app->request->post('goods');
 
         $farmer_id = \Yii::$app->request->post('farmer');
         if ($farmer_id === '0') {
@@ -71,8 +71,8 @@ class ReportController extends Controller
         $this->layout = 'empty';
         Au::isManager();
 
-        $date_in = $_POST['date_in'];
-        $date_out = $_POST['date_out'] . ' 23:59:59';
+        $date_in = \Yii::$app->request->post('date_in');
+        $date_out = \Yii::$app->request->post('date_out');
         $categories = Category::findAll($_POST['categories']);
 
         $farmer_id = \Yii::$app->request->post('farmer');
@@ -110,9 +110,9 @@ class ReportController extends Controller
         $this->layout = 'empty';
         Au::isManager();
 
-        $date_in = $_POST['date_in'];
-        $date_out = $_POST['date_out'] . ' 23:59:59';
-        $good_ids = $_POST['goods'];
+        $date_in = \Yii::$app->request->post('date_in');
+        $date_out = \Yii::$app->request->post('date_out');
+        $good_ids = \Yii::$app->request->post('goods');
 
         $farmer_id = \Yii::$app->request->post('farmer');
         if ($farmer_id === '0') {
@@ -134,7 +134,6 @@ class ReportController extends Controller
             $order_ids[] = $order->id;
         }
         $order_goods = OrderGood::find()->where(['in', 'order_id', $order_ids])->andWhere(['in', 'good_id', $good_ids])->all();
-//            var_dump($good_ids);die;
         foreach ($order_goods as $order_good) {
             $report_goods[$order_good->good_id]->q += $order_good->quantity;
             $report_goods[$order_good->good_id]->sum += $order_good->quantity * $order_good->price;
@@ -152,8 +151,8 @@ class ReportController extends Controller
             $farmer_id = Au::isFarmer();
         }
 
-        $date_in = $_POST['date_in'];
-        $date_out = $_POST['date_out'] . ' 23:59:59';
+        $date_in = \Yii::$app->request->post('date_in');
+        $date_out = \Yii::$app->request->post('date_out');
         $clients = Order::find()->where(['between', 'date', $date_in, $date_out]);
         if ($farmer_id !== 'all') {
             $clients = $clients->andWhere(['farmer_id' => $farmer_id]);

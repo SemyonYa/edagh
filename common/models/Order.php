@@ -92,12 +92,14 @@ class Order extends \yii\db\ActiveRecord
         return $sum;
     }
 
-    public function sendMailToAdmin()
+    public function sendMailToOrdermail()
     {
+        $order = $this;
         Yii::$app->mailer
             ->compose('i', compact('order'))
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ': Заказы'])
-            ->setTo($this->email)
+            ->setFrom(Yii::$app->params['infoEmail'])
+//            ->setFrom([Yii::$app->params['infoEmail'] => Yii::$app->name . ': Заказы'])
+            ->setTo(Yii::$app->params['ordersEmail'])
             ->setSubject('WannaFresh: заказ №' . $this->id)
 //            ->setTextBody('Текст сообщения')
 //            ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
@@ -106,11 +108,27 @@ class Order extends \yii\db\ActiveRecord
 
     public function sendMailToFarmer()
     {
-
+        $order = $this;
+        Yii::$app->mailer
+            ->compose('i', compact('order'))
+            ->setFrom(Yii::$app->params['infoEmail'])
+            ->setTo($this->farmer->email)
+            ->setSubject('WannaFresh: заказ №' . $this->id)
+//            ->setTextBody('Текст сообщения')
+//            ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
+            ->send();
     }
 
     public function sendMailToClient()
     {
-
+        $order = $this;
+        Yii::$app->mailer
+            ->compose('i', compact('order'))
+            ->setFrom(Yii::$app->params['infoEmail'])
+            ->setTo($this->email)
+            ->setSubject('WannaFresh: заказ №' . $this->id)
+//            ->setTextBody('Текст сообщения')
+//            ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
+            ->send();
     }
 }

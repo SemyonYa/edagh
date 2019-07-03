@@ -116,6 +116,33 @@ footer {
     box-shadow: 1px -1px 5px 1px rgba(0, 0, 0, .3);
 }
 
+.ad-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.ad-item {
+    flex-basis: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ad-item > a {
+    border: dotted 1px #4f7b30;
+    border-radius: 6px;
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    transition: .5s;
+}
+.ad-item > a:hover {
+    box-shadow: 1px 1px 10px 2px rgba(0,0,0,.3);
+}
+
 /*
     INDEX
 */

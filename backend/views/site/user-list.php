@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <td> <?= (count($user->farmers) > 0) ? $user->farmers[0]->name : 'нет ФХ' ?> </td>
             <td>
                 <span class="btn-action">назначить роль</span>
-                <span class="btn-action">прикрепить к ФХ</span>
+<!--                <span class="btn-action">прикрепить к ФХ</span>-->
                 <a href="/admin/site/new-password-admin?user_id=<?= $user->id ?>" class="btn-action">сбросить пароль</a>
             </td>
         </tr>

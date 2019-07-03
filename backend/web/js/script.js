@@ -234,20 +234,29 @@ function CheckReportParams() {
     console.log('goods');
     console.log(goods);
     console.log(reportType);
+    $('#ReportResult').empty();
     if (reportType === 'ReportTypeCat') {
-        $('#ReportResult').load('/admin/report/result-category', {
-            'date_in': dateIn,
-            'date_out': dateOut,
-            'categories': cats,
-            'farmer': farmer
-        });
+        if (cats.length === 0) {
+            alert('Нужно выбрать хотя бы одну категорию');
+        } else {
+            $('#ReportResult').load('/admin/report/result-category', {
+                'date_in': dateIn,
+                'date_out': dateOut,
+                'categories': cats,
+                'farmer': farmer
+            });
+        }
     } else if (reportType === 'ReportTypeGood') {
-        $('#ReportResult').load('/admin/report/result-good', {
-            'date_in': dateIn,
-            'date_out': dateOut,
-            'goods': goods,
-            'farmer': farmer
-        });
+        if (goods.length === 0) {
+            alert('Нужно выбрать хотя бы один товар');
+        } else {
+            $('#ReportResult').load('/admin/report/result-good', {
+                'date_in': dateIn,
+                'date_out': dateOut,
+                'goods': goods,
+                'farmer': farmer
+            });
+        }
     }
     else if (reportType === 'ReportTypeOrder') {
         $('#ReportResult').load('/admin/report/result-order', {

@@ -2,10 +2,11 @@
 $this->title = 'Администратор WannaFresh';
 ?>
 
-<h1>You are ADMIN</h1>
-
-<h2><a href="/admin/user">Пользователи</a></h2>
-<h2><a href="/admin/category">Категории</a></h2>
-<h2><a href="/admin/measure">Единицы измерения</a></h2>
-<h2><a href="/admin/farmer">Фермерские хозяйства</a></h2>
-<h2><a href="/admin/report">Отчёты</a></h2>
+<h1>ADMINISTRATOR</h1>
+<div class="ad-list">
+    <div class="ad-item"><a href="/admin/user">Пользователи</a></div>
+    <div class="ad-item"><a href="/admin/farmer">Фермерские хозяйства</a></div>
+    <div class="ad-item"><a href="/admin/category">Категории</a></div>
+    <div class="ad-item"><a href="/admin/measure">Единицы измерения</a></div>
+    <div class="ad-item"><a href="/admin/report">Отчёты</a></div>
+</div>
