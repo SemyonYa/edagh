@@ -15,6 +15,7 @@ use Yii;
  * @property int $measure_id
  * @property string $brief
  * @property string $description
+ * @property boolean $invisible
  *
  * @property Category $category
  * @property Farmer $farmer
@@ -35,10 +36,11 @@ class Good extends \yii\db\ActiveRecord
         return [
             [['name', 'farmer_id', 'category_id', 'price', 'measure_id', 'quantity'], 'required'],
             [['farmer_id', 'category_id', 'measure_id', 'quantity'], 'integer'],
+            [['is_visible'], 'boolean'],
             [['price'], 'number'],
             [['description'], 'string'],
             [['name', 'brief'], 'string', 'max' => 100],
-            [['name'], 'unique'],
+//            [['name'], 'unique'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['farmer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Farmer::className(), 'targetAttribute' => ['farmer_id' => 'id']],
             [['measure_id'], 'exist', 'skipOnError' => true, 'targetClass' => Measure::className(), 'targetAttribute' => ['measure_id' => 'id']],
@@ -57,6 +59,7 @@ class Good extends \yii\db\ActiveRecord
             'measure_id' => 'Единица измерения',
             'brief' => 'Краткое описание',
             'description' => 'Полное описание',
+            'is_visible' => 'скрыть',
         ];
     }
 
