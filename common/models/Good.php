@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property int $farmer_id
  * @property int $category_id
+ * @property int $quantity
  * @property string $price
  * @property int $measure_id
  * @property string $brief

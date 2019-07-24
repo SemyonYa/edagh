@@ -4,24 +4,25 @@ $this->title = 'Wanna Fresh: Доставка продуктов с фермер
 /* @var $categories \common\models\Category */
 ?>
 <div class="eda-main">
-    <div class="eda-head-img">
-        <div class="eda-head-img-caption">
-            <h3>Доставка продуктов с фермерских хозяйств</h3>
-            <p class="lead">ВКУСНО и ПОЛЕЗНО</p>
-            <p><a class="btn btn-success" href="/good/catalog">Перейти в каталог</a></p>
-        </div>
-    </div>
-
     <div class="jumbotron">
         <div class="eda-search-online-result-wrap">
+            <p>ДОСТАВКА ПРОДУКТОВ С ФЕРМЕРСКИХ ХОЗЯЙСТВ</p>
             <input class="eda-main-search-input" id="SearchInput"
-                   placeholder="Начните вводить продукт..."/>
+                   placeholder="ВВЕДИТЕ ПРОДУКТ..."/>
             <button class="btn btn-success eda-main-search-btn">НАЙТИ</button>
             <div class="eda-search-online-result-list-wrap" id="SearchOnlineResult">
                 <!--                ajax-->
             </div>
         </div>
     </div>
+    <div class="eda-head-img">
+        <div class="eda-head-img-caption">
+<!--            <h3>Доставка продуктов с фермерских хозяйств</h3>-->
+            <p class="lead">ВКУСНО и ПОЛЕЗНО</p>
+            <p><a class="btn btn-success" href="/good/catalog">Перейти в каталог</a></p>
+        </div>
+    </div>
+
     <div class="eda-main-ribbon">
         <?php foreach ($categories as $category): ?>
             <div class="eda-main-ribbon-item"

@@ -6,9 +6,10 @@ $this->title = 'Корзина Wanna Fresh';
 <!--    <button onclick="SendOrder()">Send Order</button>-->
     <div class="eda-cart">
         <h1>
-            <span>Корзина <span class="glyphicon glyphicon-refresh eda-cart-refresh" onclick="LoadCartInner()"
-                                title="Пересчитать"></span></span><span class="btn btn-danger eda-cart-clear"
-                                                                        onclick="ClearCart()">очистить корзину</span>
+            <span>Корзина
+<!--                <span class="glyphicon glyphicon-refresh eda-cart-refresh" onclick="LoadCartInner()" title="Пересчитать"></span>-->
+            </span>
+            <span class="btn btn-danger eda-cart-clear" onclick="ClearCart()">очистить корзину</span>
         </h1>
         <div id="CartInner">
             <!--AJAX-->

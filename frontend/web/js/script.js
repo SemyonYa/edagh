@@ -112,6 +112,10 @@ function GoodToCart(goodId, farmerId) {
     AddGoodToCart(goodId, farmerId);
 }
 
+// function AddGoodQuantityInCart(goodId, farmerId) {
+//
+// }
+
 function GoodToCartSearch(goodId, farmerId) {
     GoodToCart(goodId, farmerId);
     $('#SearchOnlineResult').empty();
@@ -142,8 +146,15 @@ function AddGoodToCart(goodId, farmerId) {
             farmer_id: farmerId
         },
         method: 'POST'
-    }).done(function () {
+    }).done(function (msg) {
         BuyCounter();
+        // alert(msg);
+        if (msg == 1) {
+            $('#GoodToCartBtn').addClass('eda-good-modal-cart-added');
+            $('#GoodToCartBtnInner').empty();
+            $('#GoodToCartBtnInner').append('(<span></span>) Добавлено &#10004;');
+        }
+        $('#GoodToCartBtnInner > span').text(msg);
     });
 }
 
@@ -200,9 +211,9 @@ function CreateOrders() {
         $.post({
             url: '/site/create-orders',
             data: {
-                'order_email' : email,
-                'order_phone' : phone,
-                'order_name' : name
+                'order_email': email,
+                'order_phone': phone,
+                'order_name': name
             }
         }).done(function (msg) {
             // GoTo('/site/order-registred');
@@ -242,9 +253,9 @@ function CreateOrders2() {
         $.post({
             url: '/site/create-orders',
             data: {
-                'order_email' : email,
-                'order_phone' : phone,
-                'order_name' : name
+                'order_email': email,
+                'order_phone': phone,
+                'order_name': name
             }
         }).done(function (msg) {
             // GoTo('/site/order-registred');
@@ -259,9 +270,10 @@ function EditCartQuantity(obj) {
     const farmerId = $(obj).attr('data-farmerid');
     const quantity = $(obj).val();
     $.ajax({
-        url: '/site/edit-cart-quantity?farmer_id=' + farmerId + '&good_id=' + goodId + '&quantity=' +quantity
-    }).done();
+        url: '/site/edit-cart-quantity?farmer_id=' + farmerId + '&good_id=' + goodId + '&quantity=' + quantity
+    }).done(LoadCartInner());
 }
+
 // COMPANY
 function FilteringCompanyGoods() {
     let cats = [];

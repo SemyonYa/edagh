@@ -2,14 +2,22 @@
 /* @var $order \common\models\Order */
 ?>
 <h1>Заказ №<?= $order->id . '-' . date('Y') ?></h1>
-<h4>Для компании <?= $order->farmer->name ?></h4>
-<br>
-<div class="mail-order-client">
-    <h2>Информация о заказчике:</h2>
-    <p><?= $order->name ?></p>
-    <p><?= $order->email ?></p>
-    <p><?= $order->phone ?></p>
-</div>
+<h4>Поставщик: </h4>
+<table class="mail-order-table">
+    <tr>
+        <td><?= $order->farmer->name ?></td>
+    </tr>
+</table>
+<!--<div class="mail-order-client">-->
+<h2>Информация о заказчике:</h2>
+<table class="mail-order-table">
+    <tr>
+        <td><?= $order->name ?></td>
+        <td><?= $order->email ?></td>
+        <td><?= $order->phone ?></td>
+    </tr>
+</table>
+<!--</div>-->
 <h2>Состав заказа:</h2>
 <table class="mail-order-table">
     <thead>
@@ -60,6 +68,7 @@
         border-color: #4f7b30;
         font-weight: 600;
     }
+
     .mail-order-table tfoot td {
         text-align: right;
     }

@@ -25,19 +25,20 @@ use frontend\models\ImageOverride;
             <p>
                 <span><?= $good->description ?></span>
             </p>
+            <p>Масса: <b><?= $good->quantity . ' ' . $good->measure->name ?></b></p>
             <p class="eda-good-modal-body-price"><?= $good->price ?> руб.</p>
         </div>
         <div class="eda-good-modal-btns">
-            <?php if ($in_cart): ?>
-                <button type="button" class="btn eda-good-modal-cart eda-good-modal-cart-added">
-                    Добавлено &#10004;
-                </button>
-            <?php else: ?>
-                <button type="button" class="btn eda-good-modal-cart"
-                        onclick="GoodToCart(<?= $good->id ?>, <?= $good->farmer_id ?>)">
-                    В корзину
-                </button>
-            <?php endif; ?>
+            <button id="GoodToCartBtn" type="button" class="btn eda-good-modal-cart <?= ($in_cart) ? 'eda-good-modal-cart-added' : '' ?>"
+                    onclick="GoodToCart(<?= $good->id ?>, <?= $good->farmer_id ?>)">
+                <span id="GoodToCartBtnInner">
+                    <?php if ($in_cart): ?>
+                        (<span><?= $in_cart ?></span>) Добавлено &#10004;
+                    <?php else: ?>
+                        В корзину
+                    <?php endif; ?>
+                </span>
+            </button>
         </div>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     </div>

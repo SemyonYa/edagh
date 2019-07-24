@@ -60,11 +60,11 @@ class GoodController extends Controller
         $good = Good::findOne($id);
         $session = \Yii::$app->session;
         $cart = $session->get('cart');
-        $in_cart = false;
+        $in_cart = 0;
         if (count($cart) > 0) {
             foreach ($cart as $farmer_id => $good_items) {
                 if (isset($good_items[$id])) {
-                    $in_cart = true;
+                    $in_cart = $good_items[$id];
                 }
             }
         }
@@ -161,6 +161,7 @@ class GoodController extends Controller
             $cart[$farmer_id][$good_id] = 1;
         }
         $session->set('cart', $cart);
+        return json_encode($cart[$farmer_id][$good_id]);
     }
 
     public function actionCartCounter()
