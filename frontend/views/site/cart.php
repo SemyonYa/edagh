@@ -24,6 +24,10 @@ $this->title = 'Корзина Wanna Fresh';
     -----
 </div>
 
+<div class="modal fade" id="GoodModal" tabindex="-1" role="dialog" aria-labelledby="GoodModalLabel" aria-hidden="true">
+    <!--AJAX-->
+</div>
+
 <script>
     LoadCartInner();
 </script>

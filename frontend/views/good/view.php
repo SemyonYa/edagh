@@ -19,27 +19,23 @@ use frontend\models\ImageOverride;
                 <div class="eda-good-modal-body-farmer-name"><?= $good->farmer->name ?></div>
             </div>
             <h2><?= $good->name ?></h2>
-            <p>
-                <span class="eda-good-modal-body-itemname"><?= $good->brief ?></span>
-            </p>
-            <p>
-                <span><?= $good->description ?></span>
-            </p>
+            <?php if ($good->brief): ?>
+                <p>
+                    <span class="eda-good-modal-body-itemname"><?= $good->brief ?></span>
+                </p>
+            <?php endif; ?>
             <p>Масса: <b><?= $good->quantity . ' ' . $good->measure->name ?></b></p>
-            <p class="eda-good-modal-body-price"><?= $good->price ?> руб.</p>
+            <div class="eda-good-modal-body-price" onclick="GoodToCart(<?= $good->id ?>, <?= $good->farmer_id ?>)">
+                <span><?= $good->price ?> руб.</span>
+                <span id="GoodToCartBtnInner" class="eda-good-modal-body-price-ico"><?= $in_cart ?></span>
+            </div>
         </div>
-        <div class="eda-good-modal-btns">
-            <button id="GoodToCartBtn" type="button" class="btn eda-good-modal-cart <?= ($in_cart) ? 'eda-good-modal-cart-added' : '' ?>"
-                    onclick="GoodToCart(<?= $good->id ?>, <?= $good->farmer_id ?>)">
-                <span id="GoodToCartBtnInner">
-                    <?php if ($in_cart): ?>
-                        (<span><?= $in_cart ?></span>) Добавлено &#10004;
-                    <?php else: ?>
-                        В корзину
-                    <?php endif; ?>
-                </span>
-            </button>
-        </div>
+
+        <?php if ($good->description): ?>
+            <div class="eda-good-modal-body-description">
+                <span><?= $good->description ?></span>
+            </div>
+        <?php endif; ?>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     </div>
 </div>

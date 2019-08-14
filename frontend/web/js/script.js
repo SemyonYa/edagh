@@ -84,6 +84,11 @@ function Search() {
 function LoadGoodModal(id) {
     $('#GoodModal').load('/good/view?id=' + id);
 }
+function LoadGoodModalSearch(id) {
+    LoadGoodModal(id);
+    $('#SearchOnlineResult').empty();
+    $('#SearchInput').val('');
+}
 
 function Filtering() {
     let cIds = [];
@@ -98,10 +103,6 @@ function Filtering() {
         'f_ids': fIds,
         'c_ids': cIds
     });
-    // console.log('cats');
-    // console.log(cIds);
-    // console.log('farmers');
-    // console.log(fIds);
 }
 
 ///
@@ -112,9 +113,6 @@ function GoodToCart(goodId, farmerId) {
     AddGoodToCart(goodId, farmerId);
 }
 
-// function AddGoodQuantityInCart(goodId, farmerId) {
-//
-// }
 
 function GoodToCartSearch(goodId, farmerId) {
     GoodToCart(goodId, farmerId);
@@ -150,11 +148,11 @@ function AddGoodToCart(goodId, farmerId) {
         BuyCounter();
         // alert(msg);
         if (msg == 1) {
-            $('#GoodToCartBtn').addClass('eda-good-modal-cart-added');
-            $('#GoodToCartBtnInner').empty();
-            $('#GoodToCartBtnInner').append('(<span></span>) Добавлено &#10004;');
+            // $('#GoodToCartBtn').addClass('eda-good-modal-cart-added');
+            // $('#GoodToCartBtnInner').empty();
+            // $('#GoodToCartBtnInner').append('(<span></span>) Добавлено &#10004;');
         }
-        $('#GoodToCartBtnInner > span').text(msg);
+        $('#GoodToCartBtnInner').text(msg);
     });
 }
 

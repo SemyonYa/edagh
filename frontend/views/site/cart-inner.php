@@ -37,12 +37,13 @@
             <?php foreach ($farmer_item->cart_good_items as $cart_good_item): ?>
                 <tr>
                     <td><?= $i++ ?></td>
-                    <td><?= $cart_good_item->good->name ?></td>
+                    <td data-toggle="modal" data-target="#GoodModal" class="eda-cart-table-goodname"
+                        onclick="LoadGoodModalSearch(<?= $cart_good_item->good->id ?>)"><?= $cart_good_item->good->name ?></td>
                     <td><?= $cart_good_item->good->price ?> </td>
                     <td>
                         <input min="1" class="form-control" type="number" value="<?= $cart_good_item->quantity ?>"
                                oninput="EditCartQuantity(this)" data-farmerid="<?= $farmer_item->farmer->id ?>"
-                               data-goodid="<?= $cart_good_item->good->id ?>" />
+                               data-goodid="<?= $cart_good_item->good->id ?>"/>
                     </td>
                     <td><?= $cart_good_item->getSum() ?></td>
                     <td><span class="glyphicon glyphicon-remove eda-cart-remove"
@@ -76,13 +77,13 @@
                 data-target="#OrderModal">Подтвердить заказ
         </button>
     </p>
-<!--    <p>-->
-<!--    <pre>-->
-<!--        --><?php
+    <!--    <p>-->
+    <!--    <pre>-->
+    <!--        --><?php
 //        var_dump($cart);
 //        ?>
-<!--        </pre>-->
-<!--    </p>-->
+    <!--        </pre>-->
+    <!--    </p>-->
 <?php else: ?>
     <div class="alert alert-warning">
         Корзина пуста!

@@ -216,7 +216,7 @@ footer a {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .3);
+    /*box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .3);*/
 }
 
 .btn-header {
@@ -238,13 +238,13 @@ footer a {
     color: #4f7b30;
     margin-bottom: 10px;
     font-weight: 600;
-    font-size: 24px;
+    /*font-size: 24px;*/
 }
 
 .eda-main .jumbotron {
     text-align: center;
     padding: 19px 5px;
-    /*box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .3);*/
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .3);
     height: auto;
     margin-bottom: 0;
 }
@@ -343,16 +343,6 @@ footer a {
 
 .eda-search-online-item:hover {
     border: solid 1px #4f7b30;
-}
-
-.eda-search-online-item-ico {
-    width: 30px;
-    height: 30px;
-    background-image: url('/frontend/web/img/cart-ico.svg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    -moz-background-size: contain;
-    margin-left: 10px;
 }
 
 .eda-search-no-results {
@@ -513,7 +503,55 @@ footer a {
         margin: 10px 0;
     }
 }
+@media (orientation: landscape) and (max-height: 500px) {
+    .eda-head-img {
+        height: 30vh;
+    }
+    .eda-search-online-result-wrap {
+        flex-basis: 75%;
+    }
+    .eda-main-ribbon {
+        padding: 20px 5%;
+    }
+    footer {
+        flex-wrap: wrap;
+    }
+    footer .left-block, footer .right-block {
+        flex-basis: 100%;
+    }
 
+    footer .right-block {
+        margin-top: 10px;
+    }
+}
+@media (orientation: landscape) and (max-height: 768px) and (max-width: 1024px) {
+    .eda-head-img-caption p {
+        margin: 0;
+    }
+    .eda-head-img-caption .btn-success {
+        font-size: 18px;
+    }
+    .eda-head-img-caption {
+        width: 75%;
+        padding: 5px 10px;
+    }
+    .eda-head-img-caption h3 {
+        margin: 0;
+        padding-bottom: 10px;
+        font-size: 18px;
+    }
+    .eda-main .jumbotron {
+        padding: 5px;
+    }
+    .eda-main-search-input {
+        font-size: 16px;
+        padding: 2px 7px;
+    }
+    .eda-main-search-btn {
+        font-size: 16px !important;
+        padding: 2px 7px;
+    }
+}
 
 /*
     CATALOG
@@ -756,7 +794,7 @@ footer a {
 }
 
 .eda-good-modal-body-farmer {
-    height: 100px;
+    height: 50px;
     border: solid 2px #4f7b30;
     border-radius: 6px;
     /*border-bottom: solid 5px #4f7b30;*/
@@ -770,7 +808,7 @@ footer a {
 
 .eda-good-modal-body-farmer-icon {
     flex-basis: 50%;
-    height: 98%;
+    height: 95%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
@@ -814,8 +852,22 @@ footer a {
     color: white;
     font-weight: 600;
     box-shadow: 0 0 9px 1px rgba(0, 0, 0, .3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
-
+.eda-good-modal-body-price-ico {
+    width: 30px;
+    height: 30px;
+    background-image: url('/frontend/web/img/cart-ico.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    -moz-background-size: contain;
+    margin-left: 10px;
+    font-size: 14px;
+    text-align: right;
+}
 .eda-good-modal-btns {
     flex-basis: 100%;
     align-self: flex-end;
@@ -825,6 +877,10 @@ footer a {
     padding: 10px;
 }
 
+.eda-good-modal-body-description {
+    padding: 10px;
+    text-align: center;
+}
 .eda-good-modal-cart {
     background-color: transparent;
     font-size: 20px;
@@ -832,6 +888,7 @@ footer a {
     justify-content: center;
     align-items: center;
     border: solid 1px #2b542c;
+    transition: .2s;
 }
 
 .eda-good-modal-cart-added {
@@ -1249,7 +1306,15 @@ footer a {
 .eda-cart-table {
 
 }
+.eda-cart-table-goodname {
+    cursor: pointer;
+    transition: .2s;
+    font-weight: 600;
+}
+.eda-cart-table-goodname:hover {
+    text-decoration: underline;
 
+}
 .eda-cart-table td:nth-child(2) {
     width: 50%;
 }
@@ -1318,10 +1383,10 @@ footer a {
 .btn-submit-order {
     font-size: 20px;
     border: solid 2px #4f7b30;
-    color: #d9534f;
-    color: #d9534f;
+    color: white;
     background-color: #4f7b30;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+    transition: .3s;
 }
 
 .modal-body > .form-control {
