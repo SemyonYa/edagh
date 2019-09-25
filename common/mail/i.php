@@ -1,11 +1,35 @@
 <?php
 /* @var $order \common\models\Order */
 ?>
-<h1>Заказ №<?= $order->id . '-' . date('Y') ?></h1>
+<h1>Заказ №<?= $order->id . '-' . date('Y') ?> от <?= $order->date ?></h1>
 <h4>Поставщик: </h4>
 <table class="mail-order-table">
     <tr>
+        <td>Наименование</td>
         <td><?= $order->farmer->name ?></td>
+    </tr>
+    <tr>
+        <td>Дата доставки</td>
+        <td><?= $order->farmer->getNextDay() ?></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>
+            <a href="http://wanna-fresh.ru/admin/order">
+                <div class="permit-order"
+                     style="padding:4px;font-size:26px;border-radius:4px;background-color:#1f7b1e;color:#fefefe;text-decoration:none;">
+                    Подтвердить заказ
+                </div>
+            </a>
+        </td>
+        <td>
+            <a href="http://wanna-fresh.ru/admin/order">
+                <div style="padding:4px;font-size:26px;border-radius:4px;background-color:darkred;color:#fefefe;margin-left:20px;text-decoration:none;"
+                        class="deny-order">Отклонить заказ</div>
+            </a>
+        </td>
     </tr>
 </table>
 <!--<div class="mail-order-client">-->
@@ -71,5 +95,19 @@
 
     .mail-order-table tfoot td {
         text-align: right;
+    }
+    .permit-order {
+        padding: 15px;
+        font-size: 26px;
+        border-radius: 4px;
+        background-color: #1f7b1e;
+        color: #fefefe;
+    }
+    .deny-order {
+        padding: 15px;
+        font-size: 26px;
+        border-radius: 4px;
+        background-color: darkred;
+        color: #fefefe;
     }
 </style>

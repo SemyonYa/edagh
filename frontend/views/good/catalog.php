@@ -8,6 +8,7 @@ use common\models\Category;
  * @var $cats Category[]
  * @var $farmers Farmer[]
  */
+
 $cats = Category::find()->all();
 $farmers = Farmer::find()->all();
 ?>
@@ -16,47 +17,49 @@ $farmers = Farmer::find()->all();
     <div class="eda-catalog">
         <h1>Каталог продуктов</h1>
         <div id="CatalogFilter" class="eda-catalog-filters">
-            <h3>Фильтры <span id="FilterSlideBtn" class="glyphicon glyphicon-filter eda-catalog-filter-icon"></span>
+            <h3 data-toggle="collapse" data-target="#FilterCollapse">
+                <span id="FilterHideBtn" class="glyphicon glyphicon-remove eda-catalog-filter-hide"></span>
+                Фильтры
             </h3>
-            <button type="button" class="btn btn-success btn-flt" id="FilterApplyBtn">Применить</button>
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                категории
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <?php foreach ($cats as $cat): ?>
-                                <div class="eda-catalog-filters-item">
-                                    <input class="eda-catalog-filters-category" type="checkbox" name="flt_category"
-                                           id="f1<?= $cat->id ?>" value="<?= $cat->id ?>"/>
-                                    <label for="f1<?= $cat->id ?>"><?= $cat->name ?></label></div>
-                            <?php endforeach; ?>
+            <div id="FilterCollapse" class="collapse in">
+                <button type="button" class="btn btn-success btn-flt" id="FilterApplyBtn">Применить</button>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    фермерские продукты
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <?php foreach ($cats as $cat) : ?>
+                                    <div class="eda-catalog-filters-item">
+                                        <input class="eda-catalog-filters-category" type="checkbox" name="flt_category" id="f1<?= $cat->id ?>" value="<?= $cat->id ?>" />
+                                        <label for="f1<?= $cat->id ?>"><?= $cat->name ?></label></div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="panel-group" id="accordion2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                                фермерские хозяйства
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <?php foreach ($farmers as $farmer): ?>
-                                <div class="eda-catalog-filters-item">
-                                    <input class="eda-catalog-filters-farmer" type="checkbox" name="flt_farmer"
-                                           id="f2<?= $farmer->id ?>" value="<?= $farmer->id ?>"/>
-                                    <label for="f2<?= $farmer->id ?>"><?= $farmer->name ?></label></div>
-                            <?php endforeach; ?>
+                <div class="panel-group" id="accordion2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                                    фермерские хозяйства
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <?php foreach ($farmers as $farmer) : ?>
+                                    <div class="eda-catalog-filters-item">
+                                        <input class="eda-catalog-filters-farmer" type="checkbox" name="flt_farmer" id="f2<?= $farmer->id ?>" value="<?= $farmer->id ?>" />
+                                        <label for="f2<?= $farmer->id ?>"><?= $farmer->name ?></label></div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
                 </div>

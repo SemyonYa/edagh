@@ -27,24 +27,12 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
         <header>
             <img class="eda-logo" src="/frontend/web/img/logo.svg" onclick="GoHome()"/>
-            <div>
-                <?php if (Yii::$app->user->isGuest): ?>
-<!--                    <span class="btn btn-header"><a href="/site/signup">Рег</a></span>-->
-<!--                    <span class="btn btn-header"><a href="/site/login">Вход</a></span>-->
-                <?php else: ?>
-                    <?php echo Html::beginForm(['/site/logout'], 'post') ?>
-                    <?php echo Html::submitButton('Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout ']); ?>
-                    <?php Html::endForm(); ?>
-                <?php endif; ?>
-            </div>
-            <div class="eda-header-cart" id="CartBlock" onclick="GoTo('/cart')">
-<!--                        <span></span><img src="/frontend/web/img/fish2-ico.svg" />-->
+             <div class="eda-header-cart" id="CartBlock" onclick="GoTo('/cart')">
                 <span class="eda-header-cart-caption" id="CartCounter">0</span>
             </div>
         </header>
 
         <div class="eda-wrap">
-            <? //= Alert::widget() ?>
             <?= $content ?>
         </div>
 
@@ -56,7 +44,7 @@ AppAsset::register($this);
             </div>
             <div class="right-block">
                 <p>Полезная информация</p>
-                <h4><a href="#">Условия сотрудничества</a></h4>
+                <h4><a href="#">Фермерам</a></h4>
                 <h4><a href="#">Условия доставки и оплаты</a></h4>
                 <h4><a href="#">Контакты</a></h4>
             </div>

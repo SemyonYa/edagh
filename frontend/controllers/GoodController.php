@@ -164,6 +164,29 @@ class GoodController extends Controller
         return json_encode($cart[$farmer_id][$good_id]);
     }
 
+    public function actionFromCart()
+    {
+        $good_id = $_POST['good_id'];
+        $farmer_id = $_POST['farmer_id'];
+        $session = \Yii::$app->session;
+        $cart = $session->get('cart');
+        if (isset($cart[$farmer_id])) {
+            if (isset($cart[$farmer_id][$good_id])) {
+                if ($cart[$farmer_id][$good_id] > 1) {
+                    $cart[$farmer_id][$good_id]--;
+                    $session->set('cart', $cart);
+                    return json_encode($cart[$farmer_id][$good_id]);
+                } else {
+                    unset($cart[$farmer_id][$good_id]);
+                    if (count($cart[$farmer_id]) == 0)
+                        unset($cart[$farmer_id]);
+                }
+            }
+        }
+        $session->set('cart', $cart);
+        return json_encode(0);
+    }
+
     public function actionCartCounter()
     {
         $session = \Yii::$app->session;

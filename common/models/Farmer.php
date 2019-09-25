@@ -12,6 +12,7 @@ namespace common\models;
  * @property string $description
  *
  * @property FarmerUser $farmerUser
+ * @property Day[] $days
  * @property User[] $users
  * @property Good[] $goods
  * @property Order[] $orders
@@ -77,7 +78,8 @@ class Farmer extends \yii\db\ActiveRecord
         return $this->hasMany(Good::className(), ['farmer_id' => 'id']);
     }
 
-    public function getPoster() {
+    public function getPoster()
+    {
         $f_i = FarmerImg::findOne(['farmer_id' => $this->id, 'is_main' => 1]);
         return ($f_i) ? $f_i->img_id : null;
     }
@@ -85,5 +87,23 @@ class Farmer extends \yii\db\ActiveRecord
     public function getOrders()
     {
         return $this->hasMany(Order::className(), ['farmer_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDays()
+    {
+        return $this->hasMany(Day::className(), ['farmer_id' => 'id']);
+    }
+
+    public function getNextDay()
+    {
+        return $this->getDays()->where(['>=', 'date', date('Y-m-d')])->andWhere(['farmer_id' => $this->id])->orderBy('date')->one();
+    }
+
+    public function getNextTenDays()
+    {
+        return $this->getDays()->where(['>=', 'date', date('Y-m-d')])->andWhere(['farmer_id' => $this->id])->orderBy('date')->each(10);
     }
 }

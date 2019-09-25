@@ -30,6 +30,7 @@
     border-radius: 4px;
     padding: 2px 30px;
     border: none;
+    margin: 5px;
 }
 
 .btn-primary, .btn-success {
@@ -923,3 +924,48 @@ input.ad-report-params-item-goods {
     outline: none;
 }
 
+/**
+    DAYS
+ */
+.ad-add-day-form {
+    max-width: 600px;
+    border-bottom: dotted 1px #999;
+}
+
+.date-time, .interval {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.schedule {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+}
+.schedule label {
+    margin: 0;
+    padding-left: 5px;
+}
+.schedule input[type=checkbox] {
+    margin: 0;
+    zoom: 1.8;
+}
+.interval-minus {
+    padding: 0 10px;
+}
+.schedule-days {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 10px;
+}
+
+.schedule-day {
+    padding: 5px;
+    border: solid 2px #4f7b30;
+    border-radius: 4px;
+    background-color: #efefef;
+    margin: 5px;
+}

@@ -257,15 +257,13 @@ function CheckReportParams() {
                 'farmer': farmer
             });
         }
-    }
-    else if (reportType === 'ReportTypeOrder') {
+    } else if (reportType === 'ReportTypeOrder') {
         $('#ReportResult').load('/admin/report/result-order', {
             'date_in': dateIn,
             'date_out': dateOut,
             'farmer': farmer
         });
-    }
-    else if (reportType === 'ReportTypeClient') {
+    } else if (reportType === 'ReportTypeClient') {
         $('#ReportResult').load('/admin/report/result-client', {
             'date_in': dateIn,
             'date_out': dateOut,
@@ -314,6 +312,7 @@ function CheckRadio(id) {
         }
     });
 }
+
 ///
 // MODAL
 ///
@@ -325,6 +324,52 @@ function ShowEdaModal() {
 function CloseEdaModal() {
     $('#EdaModalWrap').removeClass('eda-modal-wrap-on');
     $('#EdaModal').removeClass('eda-modal-on');
+}
+
+///
+// DAYS
+///
+function LoadAddDay() {
+    HideAddDayBtn();
+    $('#AddDay').load('/admin/day/create');
+}
+
+function HideAddDay() {
+    ShowAddDayBtn();
+    $('#AddDay').empty();
+}
+
+function ShowAddDayBtn() {
+    $('#AddDayBtn').css('display', '');
+}
+
+function HideAddDayBtn() {
+    $('#AddDayBtn').css('display', 'none');
+}
+
+function AddDay() {
+    const date = $('#AddDayForm input[name=date]').val();
+    if (date) {
+        $.post({
+            url: '/admin/day/create',
+            data: $('#AddDayForm').serialize(),
+            dataType: 'JSON'
+        }).done(function (msg) {
+            console.log(msg);
+            if (msg) {
+                HideAddDay();
+                LoadAllDays(1);
+            } else {
+                alert('error');
+            }
+        });
+    } else {
+        alert('Обязательно заполнить поле Дата');
+    }
+}
+
+function LoadAllDays(ba) {
+    $('#AllDays').load('/admin/day/all?ba=' + ba)
 }
 
 ///

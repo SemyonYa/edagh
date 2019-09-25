@@ -1,18 +1,13 @@
 $(document).ready(function () {
     $('#FilterSlideBtn').click(function () {
-        // alert('123');
         $('#CatalogFilter').toggleClass('eda-catalog-filters-slided'); //.css('transform', 'translateX(0px)');
     });
     $('#FilterApplyBtn').click(function () {
         Filtering();
     });
-    $('#OrderModal').on('show.bs.modal', function (e) {
+    $('#OrderModal').on('show.bs.modal', function () {
         $('#OrderModal').load('/site/load-create-order-form');
     });
-    // $('.eda-company-goods-item').click(function () {
-    //     let id = $(this).attr('data-good-id');
-    //     LoadGoodModal(id);
-    // });
     BuyCounter();
     $('.eda-main-search-btn').on('click', function () {
         Search();
@@ -35,10 +30,11 @@ $(document).on('load scroll', function () {
     const beginSqueeze = 0;
     const endSqueeze = 500;
     const minHeaderHeight = 50;
+    const maxHeaderHeight = 80;
     if (top > endSqueeze) {
         $('header').css('height', minHeaderHeight + 'px');
     } else if (top > beginSqueeze) {
-        $('header').css('height', (minHeaderHeight + (endSqueeze - top) / ((endSqueeze - beginSqueeze) / (100 - minHeaderHeight))) + 'px');
+        $('header').css('height', (minHeaderHeight + (endSqueeze - top) / ((endSqueeze - beginSqueeze) / (maxHeaderHeight - minHeaderHeight))) + 'px');
     }
 });
 
@@ -113,12 +109,16 @@ function GoodToCart(goodId, farmerId) {
     AddGoodToCart(goodId, farmerId);
 }
 
-
-function GoodToCartSearch(goodId, farmerId) {
-    GoodToCart(goodId, farmerId);
-    $('#SearchOnlineResult').empty();
-    $('#SearchInput').val('');
+function GoodFromCart(goodId, farmerId) {
+    BuyAnimation();
+    SubtructGoodFromCart(goodId, farmerId);
 }
+
+// function GoodToCartSearch(goodId, farmerId) {
+//     GoodToCart(goodId, farmerId);
+//     $('#SearchOnlineResult').empty();
+//     $('#SearchInput').val('');
+// }
 
 function BuyAnimation() {
     $('#CartBlock').addClass('eda-header-cart-anima');
@@ -139,6 +139,26 @@ function AddGoodToCart(goodId, farmerId) {
     // alert(goodId + '-' + farmerId);
     $.ajax({
         url: '/good/to-cart',
+        data: {
+            good_id: goodId,
+            farmer_id: farmerId
+        },
+        method: 'POST'
+    }).done(function (msg) {
+        BuyCounter();
+        // alert(msg);
+        if (msg == 1) {
+            // $('#GoodToCartBtn').addClass('eda-good-modal-cart-added');
+            // $('#GoodToCartBtnInner').empty();
+            // $('#GoodToCartBtnInner').append('(<span></span>) Добавлено &#10004;');
+        }
+        $('#GoodToCartBtnInner').text(msg);
+    });
+}
+
+function SubtructGoodFromCart(goodId, farmerId) {
+    $.ajax({
+        url: '/good/from-cart',
         data: {
             good_id: goodId,
             farmer_id: farmerId
@@ -205,7 +225,7 @@ function CreateOrders() {
         }
     } else {
 
-        alert('+++Валидные данные+++');
+        // alert('+++Валидные данные+++');
         $.post({
             url: '/site/create-orders',
             data: {
@@ -247,7 +267,7 @@ function CreateOrders2() {
         event.preventDefault();
     } else {
 
-        alert('+++Валидные данные+++');
+        // alert('+++Валидные данные+++');
         $.post({
             url: '/site/create-orders',
             data: {
@@ -292,6 +312,20 @@ function FilteringCompanyGoods() {
     console.log(cats);
     // console.log($.inArray('1', cats));
 
+}
+
+function AllChecked() {
+    $('.eda-company-goods-filters-item input:checkbox').each(function () {
+        $(this).prop('checked', true);
+    });
+    FilteringCompanyGoods();
+}
+
+function AllUnchecked() {
+    $('.eda-company-goods-filters-item input:checkbox').each(function () {
+        $(this).prop('checked', false);
+    });
+    FilteringCompanyGoods();
 }
 
 // ТРЕБУЮТ РЕАЛИЗАЦИИ

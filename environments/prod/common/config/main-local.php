@@ -14,7 +14,7 @@ return [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.yandex.ru',
-                'username' => Yii::$app->params['infoEmail'],// 'mygarbage86@yandex.ru',// 'mail@kulturatela.online',
+                'username' => 'info@wanna-fresh.ru',// 'mail@kulturatela.online',
                 'password' => '90-=op[]',
                 'port' => '465',
                 'encryption' => 'ssl'

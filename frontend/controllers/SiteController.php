@@ -134,10 +134,10 @@ class SiteController extends Controller
     {
         $session = \Yii::$app->session;
         $cart = $session->get('cart');
-
-        $phone = $_POST['order_phone'];
-        $email = $_POST['order_email'];
-        $name = $_POST['order_name'];
+        $req = \Yii::$app->request;
+        $phone = $req->post('order_phone');
+        $email = $req->post('order_email');
+        $name = $req->post('order_name');
         $order_ids = [];
 
         if (count($cart) > 0) {

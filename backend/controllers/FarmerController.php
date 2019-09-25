@@ -100,16 +100,16 @@ class FarmerController extends Controller
     public function actionAddUser($f_id, $u_id)
     {
         Au::isAdmin();
-        if (FarmerUser::findOne(['farmer_id' => $f_id, 'user_id' => $u_id]) === null) {
+        if (FarmerUser::findOne(['user_id' => $u_id]) === null) {
+            FarmerUser::deleteAll(['farmer_id' => $f_id]);
             $fu = new FarmerUser();
             $fu->farmer_id = $f_id;
             $fu->user_id = $u_id;
             if ($fu->save()) {
                 return true;
-            } else {
-                return false;
             }
         }
+        return false;
     }
 
     public function actionImageList($farmer_id)

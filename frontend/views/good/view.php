@@ -13,10 +13,17 @@ use frontend\models\ImageOverride;
         <div class="eda-good-modal-img"
              style="background-image: url('<?= ImageOverride::getPath($good->poster) ?>')"></div>
         <div class="eda-good-modal-body">
-            <div class="eda-good-modal-body-farmer" onclick="GoTo('/good/company?id=<?= $good->farmer_id ?>')">
-                <div class="eda-good-modal-body-farmer-icon"
+            <div class="eda-good-modal-body-farmer">
+                <div class="eda-good-modal-body-farmer-icon" onclick="GoTo('/good/company?id=<?= $good->farmer_id ?>')"
                      style="background-image: url('<?= ImageOverride::getPath($good->farmer->poster) ?>')"></div>
-                <div class="eda-good-modal-body-farmer-name"><?= $good->farmer->name ?></div>
+                <div class="eda-good-modal-body-farmer-day">Ближайшая доставка:
+                    <?php if($good->farmer->nextDay): ?>
+                        <b><?= date('d.m.Y', strtotime($good->farmer->nextDay->date)) ?></b>
+                        (<b><?= ($good->farmer->nextDay->place) ? $good->farmer->nextDay->place : 'домой' ?></b>)
+                    <?php else: ?>
+                        <b>нет данных</b>
+                    <?php endif; ?>
+                </div>
             </div>
             <h2><?= $good->name ?></h2>
             <?php if ($good->brief): ?>
@@ -24,10 +31,14 @@ use frontend\models\ImageOverride;
                     <span class="eda-good-modal-body-itemname"><?= $good->brief ?></span>
                 </p>
             <?php endif; ?>
-            <p>Масса: <b><?= $good->quantity . ' ' . $good->measure->name ?></b></p>
-            <div class="eda-good-modal-body-price" onclick="GoodToCart(<?= $good->id ?>, <?= $good->farmer_id ?>)">
+            <p><b><?= $good->quantity . ' ' . $good->measure->name ?></b></p>
+            <div class="eda-good-modal-body-price">
                 <span><?= $good->price ?> руб.</span>
-                <span id="GoodToCartBtnInner" class="eda-good-modal-body-price-ico"><?= $in_cart ?></span>
+                <div class="eda-good-modal-body-price-cart">
+                    <span class="btn-plus-minus" onclick="GoodFromCart(<?= $good->id ?>, <?= $good->farmer_id ?>)">-</span>
+                    <span id="GoodToCartBtnInner" class="eda-good-modal-body-price-ico"><?= $in_cart ?></span>
+                    <span class="btn-plus-minus" onclick="GoodToCart(<?= $good->id ?>, <?= $good->farmer_id ?>)">+</span>
+                </div>
             </div>
         </div>
 
