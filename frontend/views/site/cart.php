@@ -11,6 +11,15 @@ $this->title = 'Корзина Wanna Fresh';
             </span>
             <span class="btn btn-danger eda-cart-clear" onclick="ClearCart()">очистить корзину</span>
         </h1>
+<!--        TEMPORARY-->
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4>ВНИМАНИЕ!!!</h4>
+            <p>В данный момент продажи ещё не ведутся, поэтому заказ офрмить будет невозможно.</p>
+            <p>Дата открытия очень скоро!</p>
+            <p>Будем ждать Вас снова :)</p>
+        </div>
+<!--        TEMPORARY-->
         <div id="CartInner">
             <!--AJAX-->
         </div>

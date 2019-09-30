@@ -30,7 +30,7 @@ class GoodController extends Controller
     {
         Au::isManager();
         $farmer_id = Au::isFarmer();
-        $goods = Good::find()->where(['farmer_id' => $farmer_id])->all();
+        $goods = Good::find()->where(['farmer_id' => $farmer_id, 'is_visible' => 1])->all();
         return $this->render('index', compact('goods'));
     }
 
@@ -46,6 +46,7 @@ class GoodController extends Controller
         $farmer_id = Au::isFarmer();
         $model = new Good();
         $model->farmer_id = $farmer_id;
+        $model->is_visible = 1;
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->farmer_id == $farmer_id) {

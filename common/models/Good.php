@@ -60,7 +60,7 @@ class Good extends \yii\db\ActiveRecord
             'measure_id' => 'Единица измерения',
             'brief' => 'Краткое описание',
             'description' => 'Полное описание',
-            'is_visible' => 'скрыть',
+            'is_visible' => 'опубликовать',
         ];
     }
 

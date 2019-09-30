@@ -507,7 +507,7 @@ footer a {
     .eda-main-farmers-item {
         width: 30vw;
         height: 30vw;
-        margin: 10px 0;
+        margin: 5px;
     }
 }
 
@@ -614,6 +614,14 @@ footer a {
     color: #2b542c;
     font-size: 25px;
 }
+.eda-catalog-filter-hide {
+    transition: .5s;
+    color: darkred;
+}
+.eda-catalog-filter-hidden {
+    transform: rotate(45deg);
+    color: #1f7b1e;
+}
 
 .btn-flt {
     width: 100%;
@@ -705,16 +713,19 @@ footer a {
 @media (max-width: 1023px) {
     .eda-catalog > h1 {
         margin: 0;
+        text-align: center;
     }
 
     .eda-catalog-filters {
-        position: fixed;
-        top: 170px;
-        left: 0;
-        width: 250px;
-        transform: translateX(-220px);
-        background-color: rgba(255, 255, 255, .8);
+        flex-basis: 75%;
         transition: .5s;
+    }
+    .eda-catalog-filters h3 {
+        text-align: center;
+    }
+    .panel-heading {
+        padding: 7px;
+        text-align: center;
     }
 
     .eda-catalog-filters-slided {
@@ -899,13 +910,13 @@ footer a {
 }
 
 .btn-plus-minus {
-    width: 20px;
-    height: 20px;
+    width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
     line-height: 1;
-    font-size: 14px;
+    font-size: 24px;
     font-weight: 900;
     background-color: rgba(255, 255, 255, .3);
     margin: 0 5px;
@@ -914,8 +925,8 @@ footer a {
 }
 
 .eda-good-modal-body-price-ico {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     background-image: url('/frontend/web/img/cart-ico.svg');
     background-position: center center;
     background-repeat: no-repeat;
@@ -1188,7 +1199,7 @@ footer a {
     }
 
     .eda-company-goods-item > p {
-        font-size: 1.5vw;
+        font-size: 11px;
     }
 
     .eda-company-goods-filters {

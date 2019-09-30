@@ -21,6 +21,10 @@ $(document).ready(function () {
             $('#SearchOnlineResult').empty();
         }
     });
+    CheckMenuMobile();
+    $('#FilterHideBtn').click(function () {
+        ToggleFilters();
+    });
 });
 
 
@@ -328,6 +332,26 @@ function AllUnchecked() {
     FilteringCompanyGoods();
 }
 
+// CATALOG
+function CheckMenuMobile() {
+    if ($(window).width() < 1023) {
+        HideFilters();
+    }
+}
+function ShowFilters() {
+    $('#FilterCollapse').addClass('in');
+    $('#FilterHideBtn').removeClass('eda-catalog-filter-hidden');
+}
+
+function HideFilters() {
+    $('#FilterCollapse').removeClass('in');
+    $('#FilterHideBtn').addClass('eda-catalog-filter-hidden');
+}
+
+function ToggleFilters() {
+    $('#FilterHideBtn').toggleClass('eda-catalog-filter-hidden');
+
+}
 // ТРЕБУЮТ РЕАЛИЗАЦИИ
 function SendOrder() {
     $.ajax({

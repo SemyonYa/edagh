@@ -1,6 +1,11 @@
 <?php
-use frontend\models\ImageOverride;
 /* @var $category \common\models\Category */
+
+/* @var $this \yii\web\View */
+
+use frontend\models\ImageOverride;
+
+$this->title = 'Категория ' . mb_strtoupper($category->name);
 ?>
 
 <div class="eda-farmers-and-goods">
@@ -12,23 +17,24 @@ use frontend\models\ImageOverride;
         <!--        </div>-->
     </div>
     <ul class="nav nav-pills">
-        <li class="active"><a href="#farmers" data-toggle="tab"><span>Фермерские хозяйства</span><span
+        <li><a href="#farmers" data-toggle="tab"><span>Фермерские хозяйства</span><span
                         class="glyphicon glyphicon-chevron-down"></span></a></li>
-        <li><a href="#goods" data-toggle="tab"><span>Товары</span><span
+        <li class="active"><a href="#goods" data-toggle="tab"><span>Товары</span><span
                         class="glyphicon glyphicon-chevron-down"></span></a></li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane fade active in eda-farmers-and-goods-f" id="farmers">
-                <div class="eda-farmers-and-goods-f">
-                    <?php foreach ($farmers as $farmer): ?>
-                        <div class="eda-main-farmers-item" style="background-image: url('<?= ImageOverride::getPath($farmer->poster) ?>')"
-                             onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"></div>
-                    <?php endforeach;  ?>
-                </div>
+        <div class="tab-pane fade eda-farmers-and-goods-f" id="farmers">
+            <div class="eda-farmers-and-goods-f">
+                <?php foreach ($farmers as $farmer): ?>
+                    <div class="eda-main-farmers-item"
+                         style="background-image: url('<?= ImageOverride::getPath($farmer->poster) ?>')"
+                         onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"></div>
+                <?php endforeach; ?>
+            </div>
         </div>
-        <div class="tab-pane fade" id="goods">
+        <div class="tab-pane fade active in" id="goods">
             <div class="eda-farmers-and-goods-g">
                 <?php foreach ($category_goods as $good): ?>
                     <div data-toggle="modal" data-target="#GoodModal" class="eda-company-goods-item"
