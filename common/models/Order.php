@@ -14,6 +14,7 @@ use Yii;
  * @property string $name
  * @property string $phone
  * @property string $email
+ * @property string $address
  *
  * @property OrderGood $orderGood
  * @property Good[] $goods
@@ -40,6 +41,7 @@ class Order extends \yii\db\ActiveRecord
             [['no', 'name', 'phone', 'email', 'farmer_id'], 'required'],
             [['date'], 'safe'],
             [['no', 'status', 'farmer_id'], 'integer'],
+            [['address'], 'string'],
             [['name', 'email'], 'string', 'max' => 100],
             [['phone'], 'string', 'max' => 50],
         ];
@@ -96,7 +98,7 @@ class Order extends \yii\db\ActiveRecord
     {
         $order = $this;
         Yii::$app->mailer
-            ->compose('i', compact('order'))
+            ->compose('client', compact('order'))
             ->setFrom(Yii::$app->params['infoEmail'])
 //            ->setFrom([Yii::$app->params['infoEmail'] => Yii::$app->name . ': Заказы'])
             ->setTo(Yii::$app->params['ordersEmail'])
@@ -110,7 +112,7 @@ class Order extends \yii\db\ActiveRecord
     {
         $order = $this;
         Yii::$app->mailer
-            ->compose('i', compact('order'))
+            ->compose('farmer', compact('order'))
             ->setFrom(Yii::$app->params['infoEmail'])
             ->setTo($this->farmer->email)
             ->setSubject('WannaFresh: заказ №' . $this->id)
@@ -123,7 +125,7 @@ class Order extends \yii\db\ActiveRecord
     {
         $order = $this;
         Yii::$app->mailer
-            ->compose('i', compact('order'))
+            ->compose('client', compact('order'))
             ->setFrom(Yii::$app->params['infoEmail'])
             ->setTo($this->email)
             ->setSubject('WannaFresh: заказ №' . $this->id)

@@ -10,6 +10,7 @@
             <input class="form-control" id="CreateOrderName" placeholder="Ваше имя" />
             <input class="form-control" id="CreateOrderPhone" placeholder="Телефон" />
             <input type="email" class="form-control" id="CreateOrderEmail" placeholder="E-mail" />
+            <textarea class="form-control" id="CreateOrderAddress" placeholder="Адрес"></textarea>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>
