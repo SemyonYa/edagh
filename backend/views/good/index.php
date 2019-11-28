@@ -14,6 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Добавить товар', ['create'], ['class' => 'btn btn-primary']) ?>
+        <a href="/admin/good/blocked" class="btn btn-default">Неопубликованные товары</a>
     </p>
     <div class="ad-good-search">
         <input class="ad-good-search-input" id="AdSearchInput"> <div class="ad-good-search-btn"  id="AdSearchClearBtn">Очистить</div>

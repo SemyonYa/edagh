@@ -10,7 +10,10 @@ use frontend\models\ImageOverride;
          data-category-id="<?= $good->category_id ?>"
          style="background-image: url('<?= ImageOverride::getPath($good->poster) ?>');"
          onclick="LoadGoodModal(<?= $good->id ?>)">
-        <p><?= $good->name ?></p>
+        <p class="eda-company-goods-item-name">
+            <?= $good->name ?>741
+            <span class="eda-company-goods-item-price"><?= $good->price ?> руб.</span>
+        </p>
     </div>
 <?php endforeach; ?>
 <?php if (count($goods) === 0): ?>

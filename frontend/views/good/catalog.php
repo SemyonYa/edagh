@@ -66,6 +66,7 @@ $farmers = Farmer::find()->all();
             </div>
         </div>
         <div class="eda-catalog-goods" id="CatalogGoods">
+            <div class="alert alert-success">Загрузка...</div>
             <!--            AJAX-->
         </div>
     </div>

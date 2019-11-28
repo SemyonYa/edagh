@@ -41,7 +41,10 @@ $this->title = 'Категория ' . mb_strtoupper($category->name);
                          data-category-id="<?= $good->category_id ?>"
                          style="background-image: url('<?= ImageOverride::getPath($good->poster) ?>');"
                          onclick="LoadGoodModal(<?= $good->id ?>)">
-                        <p><?= $good->name ?></p>
+                        <p class="eda-company-goods-item-name">
+                            <?= $good->name ?>
+                            <span class="eda-company-goods-item-price"><?= $good->price ?> руб.</span>
+                        </p>
                     </div>
                 <?php endforeach; ?>
             </div>

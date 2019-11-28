@@ -8,7 +8,7 @@ $this->title = 'Wanna Fresh: Доставка продуктов с фермер
         <div class="eda-head-img-caption">
             <h3>Доставка продуктов с фермерских хозяйств</h3>
             <p class="lead">ВКУСНО и ПОЛЕЗНО</p>
-            <p><a class="btn btn-success" href="/good/catalog">Перейти в каталог</a></p>
+<!--            <p><a class="btn btn-success" href="/good/catalog">Перейти в каталог</a></p>-->
         </div>
     </div>
     <div class="jumbotron">
@@ -26,7 +26,8 @@ $this->title = 'Wanna Fresh: Доставка продуктов с фермер
         <?php foreach ($categories as $category): ?>
             <div class="eda-main-ribbon-item"
                  onclick="GoTo('/good/category-companies-and-goods?category_id=<?= $category->id ?>')">
-                <img src="/frontend/web/img/category_icons/<?= $category->img ?>"/>
+<!--                <img src="/frontend/web/img/category_icons/--><?//= $category->img ?><!--" />-->
+                <div class="eda-main-ribbon-item-img" style="background-image: url('/frontend/web/img/category_icons/<?= $category->img ?>')"></div>
                 <span><?= mb_strtoupper($category->name) ?></span>
             </div>
         <?php endforeach; ?>
@@ -35,7 +36,7 @@ $this->title = 'Wanna Fresh: Доставка продуктов с фермер
         <hr/>
     </div>
     <div class="eda-main-f">
-        <h2>Ведущие бренды фермерских хозяйств</h2>
+        <h2>Ведущие фермерские хозяйства</h2>
         <div class="eda-main-farmers">
             <?php foreach ($farmers as $farmer): ?>
                 <div class="eda-main-farmers-item"

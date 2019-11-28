@@ -131,7 +131,7 @@ header {
 footer {
     display: flex;
     justify-content: space-around;
-    align-items: flex-start;
+    /*align-items: flex-start;*/
     padding: 20px;
     box-shadow: 1px -1px 5px 1px rgba(0, 0, 0, .3);
 }
@@ -140,16 +140,25 @@ footer .left-block {
     flex-basis: 30%;
     background-color: #fafafa;
     min-height: 150px;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-footer .left-block h3 {
-    color: #2b542c;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
-    margin: 0;
-    padding: 5px 0;
+footer .left-block .alert {
+    flex-basis: 100%;
+    margin: 5px;
 }
+
+/*footer .left-block h3 {*/
+/*    color: #2b542c;*/
+/*    text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);*/
+/*    margin: 0;*/
+/*    padding: 5px 0;*/
+/*}*/
 
 footer > div > p {
     color: #999;
@@ -225,7 +234,7 @@ footer a {
 
 .eda-head-img-caption {
     border-radius: 3px;
-    padding: 10px 30px;
+    padding: 10px;
     text-align: center;
     background-color: rgba(255, 255, 255, .85);
     border: solid 1px #ccc;
@@ -238,8 +247,9 @@ footer a {
 
 .eda-main .lead {
     color: #4f7b30;
-    margin-bottom: 10px;
+    margin: 0px;
     font-weight: 600;
+    padding: 10px;
     /*font-size: 24px;*/
 }
 
@@ -359,13 +369,13 @@ footer a {
 .eda-main-ribbon {
     display: flex;
     justify-content: center;
-    align-items: center;
+    /*align-items: center;*/
     padding: 20px 20%;
     flex-wrap: wrap;
 }
 
 .eda-main-ribbon-item {
-    flex-basis: 15%;
+    flex-basis: 9vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -373,9 +383,17 @@ footer a {
     margin-bottom: 10px;
 }
 
-.eda-main-ribbon-item > img {
-    width: 75%;
-    height: 75%;
+/*.eda-main-ribbon-item > img {*/
+/*    width: 75%;*/
+/*    height: 75%;*/
+/*}*/
+
+.eda-main-ribbon-item-img {
+    width: 7vw;
+    height: 7vw;
+    background-size: contain;
+    background-position: center bottom;
+    background-repeat: no-repeat;
 }
 
 .eda-main-ribbon-item > span {
@@ -471,7 +489,7 @@ footer a {
     }
 
     .eda-main-search-input {
-        flex-basis: 79%;
+        flex-basis: 75%;
         padding: 5px 7px;
         font-size: 4vw !important;
     }
@@ -488,16 +506,21 @@ footer a {
 
     .eda-main-ribbon {
         padding: 7px;
+        justify-content: space-around;
     }
 
     .eda-main-ribbon-item {
-        flex-wrap: wrap;
+        width: 20vw;
+        /*height: 20vw;*/
+        /*flex-wrap: wrap;*/
         margin: 10px;
     }
 
-    .eda-main-ribbon-item > img {
-        width: 90%;
-        max-height: 15vw;
+    .eda-main-ribbon-item-img {
+        width: 17vw;
+        height: 17vw;
+        /*width: 90%;*/
+        /*max-height: 15vw;*/
     }
 
     .eda-main-farmers {
@@ -512,36 +535,49 @@ footer a {
 }
 
 @media (orientation: landscape) and (max-height: 768px) {
-    .eda-head-img-caption p {
-        /* margin: 0; */
-    }
-
-    .eda-head-img-caption .btn-success {
-        /* font-size: 18px; */
+    .eda-head-img {
+        /*min-height: 25vw;*/
+        height: auto;
+        padding: 4vw 0;
     }
 
     .eda-head-img-caption {
         width: 60%;
-        /* padding: 5px 10px; */
+        margin: 5px;
+        padding: 25px 10px;
     }
+
+    .eda-head-img-caption p {
+        font-size: 16px;
+        /* margin: 0; */
+    }
+
+    .eda-head-img-caption .btn-success {
+        font-size: 16px;
+    }
+
 
     .eda-head-img-caption h3 {
         margin: 0;
         /* padding-bottom: 10px; */
-        /* font-size: 18px; */
+        font-size: 18px;
     }
 
     .eda-main .jumbotron {
-        /* padding: 5px; */
+        padding: 5px;
+    }
+
+    .eda-search-online-result-wrap {
+        flex-basis: 60%;
     }
 
     .eda-main-search-input {
         font-size: 16px;
-        /* padding: 2px 7px; */
+        padding: 2px 7px;
     }
 
     .eda-main-search-btn {
-        font-size: 16px !important;
+        font-size: 16px;
         padding: 2px 7px;
     }
 }
@@ -556,11 +592,22 @@ footer a {
     }
 
     .eda-search-online-result-wrap {
-        /* flex-basis: 75%; */
+        flex-basis: 100%;
     }
 
     .eda-main-ribbon {
         padding: 20px 5%;
+        justify-content: space-around;
+    }
+
+    .eda-main-ribbon-item {
+        width: 20vw;
+        margin: 10px;
+    }
+
+    .eda-main-ribbon-item-img {
+        width: 17vw;
+        height: 17vw;
     }
 
     footer {
@@ -614,10 +661,12 @@ footer a {
     color: #2b542c;
     font-size: 25px;
 }
+
 .eda-catalog-filter-hide {
     transition: .5s;
     color: darkred;
 }
+
 .eda-catalog-filter-hidden {
     transform: rotate(45deg);
     color: #1f7b1e;
@@ -706,7 +755,7 @@ footer a {
 @media (max-width: 1300px) {
     .eda-catalog {
         flex-basis: 100%;
-        padding: 20px;
+        padding: 5px;
     }
 }
 
@@ -720,9 +769,11 @@ footer a {
         flex-basis: 75%;
         transition: .5s;
     }
+
     .eda-catalog-filters h3 {
         text-align: center;
     }
+
     .panel-heading {
         padding: 7px;
         text-align: center;
@@ -749,10 +800,6 @@ footer a {
 }
 
 @media (max-width: 767px) {
-    .eda-catalog {
-        padding-right: 5px;
-    }
-
     .eda-catalog-goods {
         padding: 0;
     }
@@ -829,7 +876,7 @@ footer a {
 }
 
 .eda-good-modal-body-farmer {
-    /*height: 50px;*/
+    height: 50px;
     /*border: solid 2px #4f7b30;*/
     /*border-radius: 6px;*/
     /*border-bottom: solid 5px #4f7b30;*/
@@ -1062,7 +1109,7 @@ footer a {
     height: 3.5vw;
 }
 
-.eda-company-goods-item > p {
+.eda-company-goods-item-name {
     flex-basis: 100%;
     text-align: center;
     margin: 0;
@@ -1071,6 +1118,7 @@ footer a {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     font-weight: 600;
     background-color: rgba(255, 255, 255, .93);
     border-top: solid 1px rgba(0, 0, 0, .5);
@@ -1078,9 +1126,10 @@ footer a {
     transition: .5s;
 }
 
-.eda-company-goods-item:hover > p {
-    /*background-color: rgba(255, 255, 255, .2);*/
-    /*box-shadow: 0px -1px 0px 1px rgba(0, 0, 0, .5);*/
+.eda-company-goods-item-price {
+    font-size: .7vw;
+    flex-basis: 100%;
+    color: #1f7b1e;
 }
 
 .eda-company-goods-item-all {
@@ -1198,8 +1247,12 @@ footer a {
         height: 5vw;
     }
 
-    .eda-company-goods-item > p {
+    .eda-company-goods-item-name {
         font-size: 11px;
+    }
+
+    .eda-company-goods-item-price {
+        font-size: 10px;
     }
 
     .eda-company-goods-filters {
@@ -1226,8 +1279,8 @@ footer a {
     }
 
     .eda-company-goods-item {
-        width: 30vw;
-        height: 30vw;
+        width: 40vw;
+        height: 40vw;
     }
 
     .eda-company-goods-item > img {

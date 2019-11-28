@@ -74,7 +74,7 @@
     <?php endif; ?>
     <p class="eda-btn-submit">
         <button id="OrderSubmit" type="button" class="btn btn-submit-order" data-toggle="modal"
-                data-target="#OrderModal">Подтвердить заказ
+                data-target="#OrderModal">Подтвердить
         </button>
     </p>
     <!--    <p>-->

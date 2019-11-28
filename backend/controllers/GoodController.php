@@ -34,6 +34,14 @@ class GoodController extends Controller
         return $this->render('index', compact('goods'));
     }
 
+    public function actionBlocked()
+    {
+        Au::isManager();
+        $farmer_id = Au::isFarmer();
+        $goods = Good::find()->where(['farmer_id' => $farmer_id, 'is_visible' => 0])->all();
+        return $this->render('blocked', compact('goods'));
+    }
+
     public function actionView($id)
     {
         $model = Good::findOne($id);

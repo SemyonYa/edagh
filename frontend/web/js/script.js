@@ -208,6 +208,7 @@ function CreateOrders() {
     const email = $('#CreateOrderEmail').val();
     const phone = $('#CreateOrderPhone').val();
     const name = $('#CreateOrderName').val();
+    const address = $('#CreateOrderAddress').val();
     let errors = [];
 
     let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -235,7 +236,8 @@ function CreateOrders() {
             data: {
                 'order_email': email,
                 'order_phone': phone,
-                'order_name': name
+                'order_name': name,
+                'order_address': address
             }
         }).done(function (msg) {
             // GoTo('/site/order-registred');

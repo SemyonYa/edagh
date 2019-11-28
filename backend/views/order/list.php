@@ -9,9 +9,9 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($orders as $order): ?>
+    <?php $n = 1; foreach ($orders as $order): ?>
     <tr data-toggle="modal" data-target="#OrderInfoModal" onclick="LoadOrderInfo(<?= $order->id ?>)">
-        <td><?= $order->no ?></td>
+        <td><?= $n++ ?></td>
         <td><?= $order->date ?></td>
         <td><?= $order->name ?></td>
         <td><?= $order->phone ?></td>

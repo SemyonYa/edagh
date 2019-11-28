@@ -138,6 +138,7 @@ class SiteController extends Controller
         $phone = $req->post('order_phone');
         $email = $req->post('order_email');
         $name = $req->post('order_name');
+        $address = $req->post('order_address');
         $order_ids = [];
 
         if (count($cart) > 0) {
@@ -147,6 +148,7 @@ class SiteController extends Controller
                 $order->phone = $phone;
                 $order->email = $email;
                 $order->farmer_id = $farmer_id;
+                $order->address = $address;
                 $order->date = date('Y-m-d');
                 $order->status = 0;
                 $order->no = 123654987;
