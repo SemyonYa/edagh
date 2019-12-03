@@ -14,7 +14,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'delivery')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'min_cost')->textInput(['type' => 'number']) ?>
 
     <?= $form->field($model, 'email')->textInput() ?>
 

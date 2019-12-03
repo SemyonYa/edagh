@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string $name
  * @property string $description
+ * @property string $delivery
  * @property string $email
  * @property int $min_cost
  *
@@ -40,7 +41,7 @@ class Farmer extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['description'], 'string'],
+            [['description', 'delivery'], 'string'],
             [['min_cost'], 'integer'],
             [['name'], 'string', 'max' => 45],
             [['email'], 'string', 'max' => 100],
@@ -58,7 +59,8 @@ class Farmer extends \yii\db\ActiveRecord
             'name' => 'Наименование',
             'description' => 'Описание',
             'email' => 'E-mail',
-            'min_cost' => 'Минимальная стоимость заказа'
+            'min_cost' => 'Минимальная стоимость заказа',
+            'delivery' => 'Условия доставки'
         ];
     }
 

@@ -70,7 +70,9 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $categories = Category::find()->orderBy('ordering')->all();
-        $farmers = Farmer::find()->each(4);
+        $all_farmers = Farmer::find()->all();
+        shuffle($all_farmers);
+        $farmers = array_slice($all_farmers, 0, 4);
         return $this->render('index', compact('categories', 'farmers'));
     }
 

@@ -1118,39 +1118,34 @@ footer a {
 }
 
 .eda-company-links {
-    padding: 5px;
-}
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+} 
 
-a.eda-company-about-link {
+.eda-company-about-link {
     color: #2b542c;
     text-decoration: none;
     cursor: pointer;
-    padding: 10px 10px 3px;
-    margin-right: 0 20px;
+    padding: 0 10px;
+    margin: 0 10px 10px 0;
     border-left: dotted 1px #2b542c;
     border-radius: 4px;
 }
 
-a.eda-company-about-link>span:first-child {
+.eda-company-about-link span:first-child {
     font-size: 25px;
     padding: 5px;
     transition: .3s;
 }
 
-a.eda-company-about-link:hover>span {
+.eda-company-about-link:hover>span {
     color: #4f7b30;
 }
 
-a.eda-company-about-link>span:last-child {
+.eda-company-about-link span:last-child {
     font-size: 16px;
-    padding: 5px;
-}
-
-/* .eda-company-about-link>span:last-child:hover {
-    color: #4f7b30;
-} */
-
-.eda-company-links>a {
     padding: 5px;
 }
 
@@ -1309,10 +1304,28 @@ a.eda-company-about-link>span:last-child {
     display: none;
 }
 
+.btn-delivery {
+    background-color: transparent;
+    padding: 0;
+    color: #2b542c;
+    text-decoration: underline dotted;
+}
+.btn.btn-delivery:active {
+    box-shadow: none;
+}
+.btn.btn-delivery:hover, .btn.btn-delivery:focus {
+    color: #2b542c;
+    text-decoration: underline dotted;
+}
+
 @media (orientation: portrait) {
     .eda-company-description {
         flex-basis: 80%;
         text-align: center;
+    }
+
+    .eda-company-links {
+        justify-content: center;
     }
 
     .eda-company-ava {
@@ -1852,8 +1865,11 @@ a.eda-company-about-link>span:last-child {
 /* POSTS */
 
 .eda-posts-wrap {
+    position: fixed;
+    overflow-y: auto;
+    top: 80px;
     width: 100%;
-    min-height: calc(100vh - 80px);
+    height: calc(100vh - 80px);
     background-image: url('/frontend/web/img/blog_opt.jpg');
     background-size: cover;
     background-position: center center;
@@ -1867,6 +1883,19 @@ a.eda-company-about-link>span:last-child {
     padding: 10px;
     background-color: rgba(255,255,255,0.8);
     /* box-shadow: 0 0 10px 1px rgba(59, 47, 47, 0.4); */
+}
+
+.eda-posts-farmer {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+}
+.eda-posts-farmer img {
+    width: 20%;
+}
+.eda-posts-farmer h1 {
+    /* text-shadow: 0px 0px 2px rgba(255,255,255,0.5); */
+    color: #4f7b30;
 }
 
 .eda-posts-list {
@@ -1888,19 +1917,47 @@ a.eda-company-about-link>span:last-child {
 
 .eda-posts-item-subtitle {}
 
+.eda-posts-item-subtitle img {
+    width: 150px;
+    float: right;
+}
+
 .eda-posts-item-link {
     text-decoration: underline;
     color: #1f7b1e;
     cursor: pointer;
     font-size: 16px;
 }
+.eda-post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.modal-dialog-post img {
+    width: 100%;
+}
+.eda-post > * {
+    flex-basis: 100%;
+}
+.eda-post .btn-primary {
+    background-color: #4f7b30;
+    border: none;
+}
+
+.eda-post .btn-primary:active:hover {
+    background-color: #1f7b1e;
+}
 
 
 /* VIDEOS */
 
 .eda-videos-wrap {
+    position: fixed;
+    overflow-y: auto;
+    top: 80px;
     width: 100%;
-    min-height: calc(100vh - 80px);
+    height: calc(100vh - 80px);
     background-image: url('/frontend/web/img/cam-opt.jpg');
     background-size: cover;
     background-position: center center;
@@ -1909,11 +1966,11 @@ a.eda-company-about-link>span:last-child {
 .eda-videos {
     width: 100%;
     max-width: 800px;
-    min-height: calc(100vh - 80px);
+    height: calc(100vh - 80px);
     margin: auto;
     padding: 10px;
-    background-color: rgba(255,255,255,0.15);
-    box-shadow: 0 0 10px 1px rgba(59, 47, 47, 0.4);
+    /* background-color: rgba(255,255,255,0.15);
+    box-shadow: 0 0 10px 1px rgba(59, 47, 47, 0.4); */
 }
 
 .eda-videos-list {
@@ -1924,24 +1981,36 @@ a.eda-company-about-link>span:last-child {
 }
 
 .eda-videos-item {
-    width: 100%
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px 0px rgba(255,255,255, 0.5);
+    background-color: rgba(0,0,0,.5);
+}
+
+.eda-videos-item h3 {
+    color: #4f7b30;
+}
+
+.eda-videos-item h5 {
+    color: whitesmoke;
 }
 
 .eda-videos-item>iframe {
     width: 100%;
     /* border-radius: 10px; */
     /* border: solid 1px #1f7b1e; */
-    margin: 10px 0;
-    padding: 8px;
-    box-shadow: 0 0 10px 0px rgba(59, 47, 47, 0.2);
 }
 
 /* PROMOS  */
 
 
 .eda-promos-wrap {
+    position: fixed;
+    overflow-y: auto;
+    top: 80px;
     width: 100%;
-    min-height: calc(100vh - 80px);
+    height: calc(100vh - 80px);
     background-image: url('/frontend/web/img/present_opt.jpg');
     background-size: cover;
     background-position: center center;
@@ -1953,12 +2022,21 @@ a.eda-company-about-link>span:last-child {
     min-height: calc(100vh - 80px);
     margin: auto;
     padding: 10px;
-    background-color: rgba(255,255,255,0.15);
+    background-color: rgba(255,255,255,0.55);
     box-shadow: 0 0 10px 1px rgba(59, 47, 47, 0.4);
 }
 
-.eda-promos h1 {
-    text-shadow: 1px 1px 6px rgba(255,255,255,0.5), -1px -1px 6px rgba(255,255,255,.5);
+.eda-promos-farmer {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+}
+.eda-promos-farmer img {
+    width: 20%;
+}
+.eda-promos-farmer h1 {
+    /* text-shadow: 0px 0px 2px rgba(255,255,255,0.5); */
+    color: whitesmoke;
 }
 
 .eda-promos-list {
@@ -1980,6 +2058,7 @@ a.eda-company-about-link>span:last-child {
     background-size: cover;
     background-position: center center;
     cursor: pointer;
+    background-color: whitesmoke;
 }
 
 .eda-promos-item p {
@@ -2022,5 +2101,10 @@ a.eda-company-about-link>span:last-child {
 @media (min-width: 768px) {
     .modal-dialog.modal-dialog-promo {
         width: 400px;
+    }
+}
+@media (max-width: 950px) {
+    .eda-promos {
+        background-color: rgba(255,255,255,.8);
     }
 }

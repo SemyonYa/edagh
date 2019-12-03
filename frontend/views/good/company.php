@@ -3,38 +3,32 @@ $this->title = 'Wanna Fresh: ' . $farmer->name;
 
 use frontend\models\ImageOverride;
 
-/* @var $farmer \common\models\Farmer */
-
 ?>
 <div class="eda-company-wrap">
     <div class="eda-company">
         <div class="eda-company-description">
             <h1><?=$farmer->name?></h1>
             <p><?=$farmer->description?></p>
+            <hr>
+            <p>Минимальная стоимость заказа: <b><?=$farmer->min_cost?> руб.</b></p>
             <p>
-                <a class="eda-company-about-link" href="/farmer/promos?farmer_id=<?=$farmer->id?>">
+                <button type="button" class="btn btn-delivery" data-toggle="popover" title="" data-content="<?= $farmer->delivery ?>">Информация о доставке</button>
+            </p>
+            <hr>
+            <div class="eda-company-links">
+                <div class="eda-company-about-link" onclick="GoTo('/farmer/promos?farmer_id=<?=$farmer->id?>')">
                     <span class="glyphicon glyphicon-gift"></span>
                     <span> Акции</span>
-                </a>
-                <a class="eda-company-about-link" href="/farmer/videos?farmer_id=<?=$farmer->id?>">
+                </div>
+                <div class="eda-company-about-link" onclick="GoTo('/farmer/videos?farmer_id=<?=$farmer->id?>')">
                     <span class="glyphicon glyphicon-play"></span>
                     <span> Видео </span>
-                </a>
-                <a class="eda-company-about-link" href="/farmer/posts?farmer_id=<?=$farmer->id?>">
+                </div>
+                <div class="eda-company-about-link" onclick="GoTo('/farmer/posts?farmer_id=<?=$farmer->id?>')">
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span> Блог </span>
-                </a>
-            </p>
-            <!-- <div>
-                <a class="eda-company-about-link" type="button" data-toggle="collapse" data-target="#collapseAbout" aria-expanded="false" aria-controls="collapseAbout">
-                    Подробнее о компании...
-                </a>
-                <div class="collapse eda-company-links" id="collapseAbout">
-                    <a href="/farmer/posts?farmer_id=<?=$farmer->id?>">Блог</a>
-                    <a href="/farmer/posts?farmer_id=<?=$farmer->id?>">Видео</a>
-                    <a href="/farmer/posts?farmer_id=<?=$farmer->id?>">Акции</a>
                 </div>
-            </div> -->
+            </div>
         </div>
         <div class="eda-company-ava">
             <img src="<?=ImageOverride::getPath($farmer->poster)?>"/>
@@ -65,4 +59,7 @@ use frontend\models\ImageOverride;
 
 <script>
     $('#CompanyGoodList').load('/good/farmer-good-list?farmer_id=<?=$farmer->id?>');
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
 </script>

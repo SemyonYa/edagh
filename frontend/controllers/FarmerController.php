@@ -3,11 +3,13 @@
 namespace frontend\controllers;
 
 use common\models\Farmer;
+use common\models\Post;
 use common\models\Promo;
 use yii\web\Controller;
 
 class FarmerController extends Controller
 {
+    public $layout = 'farmer';
     public function actions()
     {
         return [
@@ -25,8 +27,9 @@ class FarmerController extends Controller
     
     public function actionPosts($farmer_id) {
         $farmer = Farmer::findOne($farmer_id);
+        $posts = $farmer->getPosts()->where(['is_active' => 1])->orderBy('id DESC')->all();
         
-        return $this->render('posts', compact('farmer'));
+        return $this->render('posts', compact('farmer', 'posts'));
     }
 
     public function actionPromos($farmer_id) {
@@ -44,9 +47,9 @@ class FarmerController extends Controller
 
     public function actionPost($id) {
         $this->layout = 'empty';
-        $post = $id; // Promo::findOne($id);
+        $post = Post::findOne($id);
         
-        return $this->render('promo', compact('post'));
+        return $this->render('post', compact('post'));
     }
 
     public function actionVideos($farmer_id) {
