@@ -25,8 +25,22 @@ $(document).ready(function () {
     $('#FilterHideBtn').click(function () {
         ToggleFilters();
     });
+    $('#PromoModal').on('show.bs.modal', function (e) {
+        console.log(e.target);
+    });
 });
 
+//PROMOS
+function ShowPromo(id) {
+    $('#PromoModal').modal('show');
+    $('#PromoModal').load('/farmer/promo?id=' + id);
+}
+
+//POSTS
+function ShowPost(id) {
+    $('#PostModal').modal('show');
+    $('#PostModal').load('/farmer/post?id=' + id);
+}
 
 // squeeze HEADER
 $(document).on('load scroll', function () {

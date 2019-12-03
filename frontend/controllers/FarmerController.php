@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Farmer;
+use common\models\Promo;
 use yii\web\Controller;
 
 class FarmerController extends Controller
@@ -32,6 +33,20 @@ class FarmerController extends Controller
         $farmer = Farmer::findOne($farmer_id);
         
         return $this->render('promos', compact('farmer'));
+    }
+
+    public function actionPromo($id) {
+        $this->layout = 'empty';
+        $promo = $id; // Promo::findOne($id);
+        
+        return $this->render('promo', compact('promo'));
+    }
+
+    public function actionPost($id) {
+        $this->layout = 'empty';
+        $post = $id; // Promo::findOne($id);
+        
+        return $this->render('promo', compact('post'));
     }
 
     public function actionVideos($farmer_id) {

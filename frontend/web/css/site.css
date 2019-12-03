@@ -1854,16 +1854,19 @@ a.eda-company-about-link>span:last-child {
 .eda-posts-wrap {
     width: 100%;
     min-height: calc(100vh - 80px);
+    background-image: url('/frontend/web/img/blog_opt.jpg');
+    background-size: cover;
+    background-position: center center;
 }
 
 .eda-posts {
     width: 100%;
     max-width: 800px;
-    border: solid 1px #e4e4e4;
     min-height: calc(100vh - 80px);
     margin: auto;
     padding: 10px;
-    box-shadow: 0 0 10px 0px rgba(59, 47, 47, 0.1);
+    background-color: rgba(255,255,255,0.8);
+    /* box-shadow: 0 0 10px 1px rgba(59, 47, 47, 0.4); */
 }
 
 .eda-posts-list {
@@ -1875,16 +1878,18 @@ a.eda-company-about-link>span:last-child {
 
 .eda-posts-item {
     flex-basis: 100%;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     border: solid 1px #1f7b1e;
     margin: 10px 0;
     padding: 10px;
+    background-color: rgba(255,255,255,.7);
+    box-shadow: 0 0 5px 1px rgba(59, 47, 47, 0.2);
 }
-.eda-posts-item-subtitle {
 
-}
+.eda-posts-item-subtitle {}
+
 .eda-posts-item-link {
-    text-decoration: underline dotted #1f7b1e;
+    text-decoration: underline;
     color: #1f7b1e;
     cursor: pointer;
     font-size: 16px;
@@ -1896,16 +1901,19 @@ a.eda-company-about-link>span:last-child {
 .eda-videos-wrap {
     width: 100%;
     min-height: calc(100vh - 80px);
+    background-image: url('/frontend/web/img/cam-opt.jpg');
+    background-size: cover;
+    background-position: center center;
 }
 
 .eda-videos {
     width: 100%;
     max-width: 800px;
-    border: solid 1px #e4e4e4;
     min-height: calc(100vh - 80px);
     margin: auto;
     padding: 10px;
-    box-shadow: 0 0 10px 0px rgba(59, 47, 47, 0.1);
+    background-color: rgba(255,255,255,0.15);
+    box-shadow: 0 0 10px 1px rgba(59, 47, 47, 0.4);
 }
 
 .eda-videos-list {
@@ -1916,11 +1924,16 @@ a.eda-company-about-link>span:last-child {
 }
 
 .eda-videos-item {
-    flex-basis: 100%;
-    border-radius: 10px;
-    border: solid 1px #1f7b1e;
+    width: 100%
+}
+
+.eda-videos-item>iframe {
+    width: 100%;
+    /* border-radius: 10px; */
+    /* border: solid 1px #1f7b1e; */
     margin: 10px 0;
-    padding: 10px;
+    padding: 8px;
+    box-shadow: 0 0 10px 0px rgba(59, 47, 47, 0.2);
 }
 
 /* PROMOS  */
@@ -1929,16 +1942,23 @@ a.eda-company-about-link>span:last-child {
 .eda-promos-wrap {
     width: 100%;
     min-height: calc(100vh - 80px);
+    background-image: url('/frontend/web/img/present_opt.jpg');
+    background-size: cover;
+    background-position: center center;
 }
 
 .eda-promos {
     width: 100%;
     max-width: 800px;
-    border: solid 1px #e4e4e4;
     min-height: calc(100vh - 80px);
     margin: auto;
     padding: 10px;
-    box-shadow: 0 0 10px 0px rgba(59, 47, 47, 0.1);
+    background-color: rgba(255,255,255,0.15);
+    box-shadow: 0 0 10px 1px rgba(59, 47, 47, 0.4);
+}
+
+.eda-promos h1 {
+    text-shadow: 1px 1px 6px rgba(255,255,255,0.5), -1px -1px 6px rgba(255,255,255,.5);
 }
 
 .eda-promos-list {
@@ -1959,13 +1979,48 @@ a.eda-company-about-link>span:last-child {
     align-items: center;
     background-size: cover;
     background-position: center center;
+    cursor: pointer;
 }
 
 .eda-promos-item p {
     flex-basis: 100%;
     padding: 10px;
-    background-color: rgba(255,255,255,.8);
+    background-color: rgba(255, 255, 255, .8);
     text-align: center;
     font-size: 16px;
     margin: 0;
+}
+
+.modal-dialog-promo {
+    text-align: center;
+}
+
+.modal-dialog-promo img {
+    width: 100%;
+}
+
+.modal-dialog-promo .modal-content {
+    border-radius: 0;
+}
+
+.eda-promo {
+    padding: 10px;
+}
+
+.eda-promo h3 {
+    color: #1f7b1e
+}
+.eda-promo .btn-primary {
+    background-color: #1f7b1e;
+    margin: 20px 0 10px;
+    border: none;
+    border-radius: 0;
+}
+.eda-promo .btn-primary:active:focus {
+    background-color: #4f7b30;
+}
+@media (min-width: 768px) {
+    .modal-dialog.modal-dialog-promo {
+        width: 400px;
+    }
 }
