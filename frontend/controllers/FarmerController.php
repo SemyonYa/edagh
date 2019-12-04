@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Farmer;
 use common\models\Post;
 use common\models\Promo;
+use common\models\Video;
 use yii\web\Controller;
 
 class FarmerController extends Controller
@@ -34,13 +35,14 @@ class FarmerController extends Controller
 
     public function actionPromos($farmer_id) {
         $farmer = Farmer::findOne($farmer_id);
+        $promos = $farmer->getPromos()->where(['is_active' => 1])->all();
         
-        return $this->render('promos', compact('farmer'));
+        return $this->render('promos', compact('farmer', 'promos'));
     }
 
     public function actionPromo($id) {
         $this->layout = 'empty';
-        $promo = $id; // Promo::findOne($id);
+        $promo = Promo::findOne($id);
         
         return $this->render('promo', compact('promo'));
     }
@@ -54,7 +56,8 @@ class FarmerController extends Controller
 
     public function actionVideos($farmer_id) {
         $farmer = Farmer::findOne($farmer_id);
+        $videos = $farmer->getVideos()->where(['is_active' => 1])->all();
         
-        return $this->render('videos', compact('farmer'));
+        return $this->render('videos', compact('farmer', 'videos'));
     }
 }

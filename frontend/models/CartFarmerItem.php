@@ -26,5 +26,9 @@ class CartFarmerItem
         }
         return $s;
     }
+
+    public function isValidSum() {
+        return $this->getSum() >= $this->farmer->min_cost;
+    }
 }
 

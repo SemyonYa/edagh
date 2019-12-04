@@ -12,36 +12,11 @@ $this->title = $farmer->name . ': Акции';
             <h1>Акции</h1>
         </div>
         <div class="eda-promos-list">
-            <div class="eda-promos-item" onclick="ShowPromo(<?=321?>)" style="background-image: url('/frontend/web/img/tomat2.jpg');">
+            <?php foreach ($promos as $promo): ?>
+            <div class="eda-promos-item" onclick="ShowPromo(<?= $promo->id ?>)" style="background-image: url('<?=ImageOverride::getPath($promo->img_id)?>');">
                 <p>Купи три по цене четырех!!!</p>
             </div>
-            <div class="eda-promos-item" onclick="ShowPromo('<?='qwerrty'?>')" style="background-image: url('/frontend/web/img/vegets.png');">
-                <p> Купи две по цене четырех...</p>
-            </div>
-            <div class="eda-promos-item" onclick="ShowPromo(<?=321?>)" style="background-image: url('/frontend/web/img/tomat2.jpg');">
-                <p>Купи три по цене четырех!!!</p>
-            </div>
-            <div class="eda-promos-item" onclick="ShowPromo('<?='qwerrty'?>')" style="background-image: url('/frontend/web/img/vegets.png');">
-                <p> Купи две по цене четырех...</p>
-            </div>
-            <div class="eda-promos-item" onclick="ShowPromo(<?=321?>)" style="background-image: url('/frontend/web/img/tomat2.jpg');">
-                <p>Купи три по цене четырех!!!</p>
-            </div>
-            <div class="eda-promos-item" onclick="ShowPromo('<?='qwerrty'?>')" style="background-image: url('/frontend/web/img/vegets.png');">
-                <p> Купи две по цене четырех...</p>
-            </div>
-            <div class="eda-promos-item" onclick="ShowPromo(<?=321?>)" style="background-image: url('/frontend/web/img/tomat2.jpg');">
-                <p>Купи три по цене четырех!!!</p>
-            </div>
-            <div class="eda-promos-item" onclick="ShowPromo('<?='qwerrty'?>')" style="background-image: url('/frontend/web/img/vegets.png');">
-                <p> Купи две по цене четырех...</p>
-            </div>
-            <div class="eda-promos-item" onclick="ShowPromo(<?=321?>)" style="background-image: url('/frontend/web/img/tomat2.jpg');">
-                <p>Купи три по цене четырех!!!</p>
-            </div>
-            <div class="eda-promos-item" onclick="ShowPromo('<?='qwerrty'?>')" style="background-image: url('/frontend/web/img/vegets.png');">
-                <p> Купи две по цене четырех...</p>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

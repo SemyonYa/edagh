@@ -52,6 +52,7 @@ use frontend\models\ImageOverride;
 
             <div id="CompanyGoodList" class="eda-company-good-list">
                 <!--                ajax-->
+                <span><b class="text-success"> Загрузка... </b></span>
             </div>
         </div>
     </div>
