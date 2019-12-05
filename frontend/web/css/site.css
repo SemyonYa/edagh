@@ -957,9 +957,10 @@ footer a {
     border: solid 1px #e4e4e4;
     border-radius: 3px;
     text-align: center;
-    /*display: flex;*/
+    /* display: flex; */
     /*justify-content: center;*/
     /*align-items: center;*/
+    display: none;
 }
 
 .eda-good-modal-body-farmer-name {
@@ -1643,6 +1644,9 @@ footer a {
 .modal-body>.form-control {
     margin: 10px 0;
 }
+.eda-cart-delivery {
+    padding: 0 10px;
+}
 
 @media (max-width: 500px) {
     .eda-cart {
@@ -2036,7 +2040,7 @@ footer a {
 }
 .eda-promos-farmer h1 {
     /* text-shadow: 0px 0px 2px rgba(255,255,255,0.5); */
-    color: whitesmoke;
+    color: #2b542c;
 }
 
 .eda-promos-list {
@@ -2106,5 +2110,11 @@ footer a {
 @media (max-width: 950px) {
     .eda-promos {
         background-color: rgba(255,255,255,.8);
+    }
+}
+@media (orientation: portrait) {
+    .eda-promos-item {
+        width: 60vw;
+        height: 60vw;
     }
 }
