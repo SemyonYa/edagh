@@ -42,7 +42,7 @@ class Farmer extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['description', 'delivery'], 'string'],
-            [['min_cost'], 'integer'],
+            [['min_cost', 'is_blocked'], 'integer'],
             [['name'], 'string', 'max' => 45],
             [['email'], 'string', 'max' => 100],
             [['name'], 'unique'],
@@ -60,7 +60,8 @@ class Farmer extends \yii\db\ActiveRecord
             'description' => 'Описание',
             'email' => 'E-mail',
             'min_cost' => 'Минимальная стоимость заказа',
-            'delivery' => 'Условия доставки'
+            'delivery' => 'Условия доставки',
+            'is_blocked' => 'Заблокировать'
         ];
     }
 

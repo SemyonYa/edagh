@@ -86,7 +86,8 @@ class GoodController extends Controller
                 }
             }
         }
-        $goods = Good::find()->where(['like', 'name', $input])->andWhere(['is_visible' => 1])->all();
+        $f_ids = Farmer::find()->where(['is_blocked' => 0])->column();
+        $goods = Good::find()->where(['like', 'name', $input])->andWhere(['is_visible' => 1])->andWhere(['in', 'farmer_id', $f_ids])->all();
         return $this->render('search-online', compact('goods', 'cart_ids'));
     }
 
@@ -99,7 +100,7 @@ class GoodController extends Controller
                 $f_ids[] = $good->farmer_id;
             }
         }
-        $farmers2 = Farmer::find()->where(['like', 'name', $input])->select('id')->all();
+        $farmers2 = Farmer::find()->where(['is_blocked' => 0])->andWhere(['like', 'name', $input])->select('id')->all();
         foreach ($farmers2 as $item) {
             if (!in_array($item->id, $f_ids)) {
                 $f_ids[] = $item->id;
@@ -125,7 +126,7 @@ class GoodController extends Controller
 
     public function actionFarmerList()
     {
-        $farmers = Farmer::find()->all();
+        $farmers = Farmer::find()->where(['is_blocked' => 0])->all();
         return $this->render('farmer-list', compact('farmers'));
     }
 
@@ -134,7 +135,7 @@ class GoodController extends Controller
         $category = Category::findOne($category_id);
         $category_goods = $category->getGoods()->where(['is_visible' => 1])->all();
         $farmers = [];
-        foreach (Farmer::find()->all() as $farmer) {
+        foreach (Farmer::find()->where(['is_blocked' => 0])->all() as $farmer) {
             if ($farmer->getGoods()->where(['category_id' => $category_id])->andWhere(['is_visible' => 1])->count() > 0) {
                 $farmers[] = $farmer;
             }
