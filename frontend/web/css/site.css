@@ -424,7 +424,7 @@ footer a {
     display: flex;
     justify-content: center;
     /*align-items: center;*/
-    padding: 20px 20%;
+    padding: 20px 20% 40px;
     flex-wrap: wrap;
 }
 
@@ -2117,4 +2117,98 @@ footer a {
         width: 60vw;
         height: 60vw;
     }
+}
+
+
+/*
+* IMAGE MANAGER
+*/
+/* .images {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.image {
+    width: 150px;
+    height: 150px;
+    margin: 3px 3px 0 0;
+    background-size: cover;
+    background-position: center center;
+}
+
+.image-chose-btn {
+    font-size: 16px;
+    color: darkcyan;
+    cursor: pointer;
+}
+
+.remove-image {
+    color: darkred;
+    float: right;
+} */
+
+
+#OstroModal .close {
+    color: darkred;
+    opacity: 1;
+}
+#OstroModal .modal-dialog {
+    height: calc(100vh - 60px);
+}
+
+#OstroModal .modal-content {
+    height: 100%;
+}
+
+#OstroModal .modal-body {
+    height: calc(100% - 60px);
+}
+
+@media (min-width: 768px) {
+    #OstroModal .modal-dialog {
+        width: 700px;
+        height: calc(100vh - 60px);
+        margin: 30px auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    #OstroModal .modal-dialog {
+        width: 900px;
+        margin: 30px auto;
+    }
+}
+
+.modal-images {
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.modal-image {
+    width: 150px;
+    height: 150px;
+    margin: 3px 3px 0 0;
+    background-size: cover;
+    background-position: center center;
+}
+
+.ostro-image-manager-btn {
+    font-size: 32px;
+    color: darkcyan;
+}
+
+.img-preview {
+    width: 100px;
+    height: auto;
 }

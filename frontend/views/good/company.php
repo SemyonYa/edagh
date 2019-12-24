@@ -1,8 +1,6 @@
 <?php
 $this->title = 'Wanna Fresh: ' . $farmer->name;
 
-use frontend\models\ImageOverride;
-
 ?>
 <div class="eda-company-wrap">
     <div class="eda-company">
@@ -31,7 +29,7 @@ use frontend\models\ImageOverride;
             </div>
         </div>
         <div class="eda-company-ava">
-            <img src="<?= ImageOverride::getPath($farmer->poster) ?>" />
+            <img src="/backend/web/images/<?= $farmer->getImg() ?>" />
         </div>
         <hr style="flex-basis: 100%; border-color: #1f7b1e" />
         <div class="eda-company-goods">

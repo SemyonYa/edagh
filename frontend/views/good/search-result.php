@@ -1,11 +1,3 @@
-<?php
-
-use frontend\models\ImageOverride;
-
-/* @var $farmers \common\models\Farmer[] */
-/* @var $goods \common\models\Good[] */
-?>
-
 <div class="eda-farmers-and-goods">
     <div class="eda-farmers-and-goods-title">
         <div class="eda-search-result-poster"
@@ -24,7 +16,7 @@ use frontend\models\ImageOverride;
             <div class="eda-farmers-and-goods-f">
                 <?php foreach ($farmers as $farmer): ?>
                     <div class="eda-main-farmers-item"
-                         style="background-image: url('<?= ImageOverride::getPath($farmer->poster) ?>')"
+                         style="background-image: url('/backend/web/images/old_im.svg')"
                          onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"></div>
                 <?php endforeach; ?>
             </div>
@@ -34,7 +26,7 @@ use frontend\models\ImageOverride;
                 <?php foreach ($goods as $good): ?>
                     <div data-toggle="modal" data-target="#GoodModal" class="eda-company-goods-item"
                          data-category-id="<?= $good->category_id ?>"
-                         style="background-image: url('<?= ImageOverride::getPath($good->poster) ?>');"
+                         style="background-image: url('/backend/web/images/old_im.svg');"
                          onclick="LoadGoodModal(<?= $good->id ?>)">
                         <p><?= $good->name ?></p>
                     </div>

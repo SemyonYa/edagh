@@ -969,3 +969,34 @@ input.ad-report-params-item-goods {
     background-color: #efefef;
     margin: 5px;
 }
+
+/*
+* IMAGE MANAGER
+*/
+.images {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.image {
+    width: 150px;
+    height: 150px;
+    margin: 3px 3px 0 0;
+    background-size: cover;
+    background-position: center center;
+}
+
+.image-chose-btn {
+    font-size: 16px;
+    color: darkcyan;
+    cursor: pointer;
+}
+
+.remove-image {
+    color: darkred;
+    float: right;
+}

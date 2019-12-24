@@ -2,22 +2,29 @@
 
 namespace common\models;
 
+use Yii;
 
 /**
  * This is the model class for table "farmer".
  *
  * @property int $id
  * @property string $name
- * @property string $email
  * @property string $description
+ * @property string $delivery
+ * @property string $email
+ * @property int $min_cost
  *
- * @property FarmerUser $farmerUser
  * @property Day[] $days
+ * @property FarmerImg[] $farmerImgs
+ * @property FarmerUser $farmerUser
  * @property User[] $users
  * @property Good[] $goods
  * @property Order[] $orders
+ * @property Post[] $posts
+ * @property Promo[] $promos
+ * @property Video[] $videos
  */
-class ___Farmer extends \yii\db\ActiveRecord
+class _________________Farmer extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -34,9 +41,10 @@ class ___Farmer extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['description', 'delivery'], 'string'],
+            [['min_cost', 'is_blocked'], 'integer'],
             [['name'], 'string', 'max' => 45],
-            [['email'], 'email'],
-            [['description'], 'string'],
+            [['email'], 'string', 'max' => 100],
             [['name'], 'unique'],
         ];
     }
@@ -50,7 +58,10 @@ class ___Farmer extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Наименование',
             'description' => 'Описание',
-            'email' => 'E-mail'
+            'email' => 'E-mail',
+            'min_cost' => 'Минимальная стоимость заказа',
+            'delivery' => 'Условия доставки',
+            'is_blocked' => 'Заблокировать'
         ];
     }
 
@@ -68,6 +79,22 @@ class ___Farmer extends \yii\db\ActiveRecord
     public function getNextTenDays()
     {
         return $this->getDays()->where(['>=', 'date', date('Y-m-d')])->andWhere(['farmer_id' => $this->id])->orderBy('date')->each(10);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDays()
+    {
+        return $this->hasMany(Day::className(), ['farmer_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFarmerImgs()
+    {
+        return $this->hasMany(FarmerImg::className(), ['farmer_id' => 'id']);
     }
 
     /**
@@ -94,6 +121,9 @@ class ___Farmer extends \yii\db\ActiveRecord
         return $this->hasMany(Good::className(), ['farmer_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getOrders()
     {
         return $this->hasMany(Order::className(), ['farmer_id' => 'id']);
@@ -102,8 +132,24 @@ class ___Farmer extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDays()
+    public function getPosts()
     {
-        return $this->hasMany(Day::className(), ['farmer_id' => 'id']);
+        return $this->hasMany(Post::className(), ['farmer_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPromos()
+    {
+        return $this->hasMany(Promo::className(), ['farmer_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVideos()
+    {
+        return $this->hasMany(Video::className(), ['farmer_id' => 'id']);
     }
 }

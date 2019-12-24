@@ -11,56 +11,64 @@ use Yii;
  * @property string $name
  * @property int $farmer_id
  * @property int $category_id
- * @property int $quantity
  * @property string $price
+ * @property int $quantity
  * @property int $measure_id
  * @property string $brief
  * @property string $description
- * @property boolean $invisible
+ * @property int $is_visible
+ * @property string $img
  *
  * @property Category $category
  * @property Farmer $farmer
  * @property Measure $measure
- * @property GoodImg[] $goodImgs
- * @property OrderGood $orderGood
+ * @property OrderGood[] $orderGoods
  * @property Order[] $orders
  */
 class Good extends \yii\db\ActiveRecord
 {
+    /**
+     * {@inheritdoc}
+     */
     public static function tableName()
     {
         return 'good';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function rules()
     {
         return [
-            [['name', 'farmer_id', 'category_id', 'price', 'measure_id', 'quantity'], 'required'],
-            [['farmer_id', 'category_id', 'measure_id', 'quantity'], 'integer'],
-            [['is_visible'], 'boolean'],
+            [['name', 'farmer_id', 'category_id', 'price', 'quantity', 'measure_id'], 'required'],
+            [['farmer_id', 'category_id', 'quantity', 'measure_id', 'is_visible'], 'integer'],
             [['price'], 'number'],
             [['description'], 'string'],
-            [['name', 'brief'], 'string', 'max' => 100],
-//            [['name'], 'unique'],
+            [['name', 'brief', 'img'], 'string', 'max' => 100],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['farmer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Farmer::className(), 'targetAttribute' => ['farmer_id' => 'id']],
             [['measure_id'], 'exist', 'skipOnError' => true, 'targetClass' => Measure::className(), 'targetAttribute' => ['measure_id' => 'id']],
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
             'name' => 'Наименование',
-            'farmer_id' => 'Фермерское хозяйство',
-            'category_id' => 'Категория товара',
+            'farmer_id' => 'Farmer ID',
+            'category_id' => 'Категория',
             'price' => 'Цена',
             'quantity' => 'Количество',
-            'measure_id' => 'Единица измерения',
+            'measure_id' => 'Еденица измерения',
             'brief' => 'Краткое описание',
             'description' => 'Полное описание',
-            'is_visible' => 'опубликовать',
+            'is_visible' => 'Опубликовать',
+            'img' => 'Картинка',
         ];
     }
 
@@ -91,17 +99,9 @@ class Good extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGoodImgs()
+    public function getOrderGoods()
     {
-        return $this->hasMany(GoodImg::className(), ['good_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOrderGood()
-    {
-        return $this->hasOne(OrderGood::className(), ['good_id' => 'id']);
+        return $this->hasMany(OrderGood::className(), ['good_id' => 'id']);
     }
 
     /**
@@ -112,8 +112,11 @@ class Good extends \yii\db\ActiveRecord
         return $this->hasMany(Order::className(), ['id' => 'order_id'])->viaTable('order_good', ['good_id' => 'id']);
     }
 
-    public function getPoster() {
-        $f_i = GoodImg::findOne(['good_id' => $this->id, 'is_main' => 1]);
-        return ($f_i) ? $f_i->img_id : null;
+    public function getThumb() {
+        return $this->img ? $this->getFarmer()->id . '/____' . $this->img : 'fake_im.svg';
+    }
+
+    public function getImg() {
+        return $this->img ? $this->getFarmer()->id . '/' . $this->img : 'fake_im.svg';
     }
 }

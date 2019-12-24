@@ -1,9 +1,7 @@
-<?php
-use frontend\models\ImageOverride;
-?>
+
 <div class="modal-dialog modal-dialog-promo" role="document">
     <div class="modal-content">
-        <img src="<?=ImageOverride::getPath($promo->img_id)?>">
+        <img src="/backend/web/images/<?= $promo->getImg() ?>">
         <div class="eda-promo text-center">
             <h3><?= $promo->title ?></h3>
             <p><b><?= $promo->subtitle ?></b></p>

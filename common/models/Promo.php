@@ -12,7 +12,7 @@ use Yii;
  * @property string $subtitle
  * @property string $description
  * @property int $is_active
- * @property int $img_id
+ * @property string $img
  * @property int $farmer_id
  *
  * @property Farmer $farmer
@@ -35,8 +35,8 @@ class Promo extends \yii\db\ActiveRecord
         return [
             [['title', 'is_active', 'farmer_id'], 'required'],
             [['description'], 'string'],
-            [['is_active', 'img_id', 'farmer_id'], 'integer'],
-            [['title'], 'string', 'max' => 100],
+            [['is_active', 'farmer_id'], 'integer'],
+            [['title', 'img'], 'string', 'max' => 100],
             [['subtitle'], 'string', 'max' => 300],
             [['farmer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Farmer::className(), 'targetAttribute' => ['farmer_id' => 'id']],
         ];
@@ -53,7 +53,7 @@ class Promo extends \yii\db\ActiveRecord
             'subtitle' => 'Подзаголовок',
             'description' => 'Описание',
             'is_active' => 'Опубликовать',
-            'img_id' => 'Картинка',
+            'img' => 'Картинка',
             'farmer_id' => 'Farmer ID',
         ];
     }
@@ -64,5 +64,13 @@ class Promo extends \yii\db\ActiveRecord
     public function getFarmer()
     {
         return $this->hasOne(Farmer::className(), ['id' => 'farmer_id']);
+    }
+
+    public function getThumb() {
+        return $this->img ? $this->getFarmer()->id . '/____' . $this->img : 'fake_im.svg';
+    }
+
+    public function getImg() {
+        return $this->img ? $this->getFarmer()->id . '/' . $this->img : 'fake_im.svg';
     }
 }

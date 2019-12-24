@@ -1,13 +1,11 @@
 <?php
 
-use frontend\models\ImageOverride;
-
 $this->title = $farmer->name . ': Блог';
 ?>
 <div class="eda-posts-wrap">
     <div class="eda-posts">
         <div class="eda-posts-farmer">
-            <img src="<?= ImageOverride::getPath($farmer->poster) ?>" onclick="GoTo('/good/company?id=<?= $farmer->id ?>')">
+            <img src="/backend/web/images/<?= $farmer->getThumb() ?>" onclick="GoTo('/good/company?id=<?= $farmer->id ?>')">
             <h1>Блог</h1>
         </div>
         <div class="eda-posts-list">
@@ -15,7 +13,7 @@ $this->title = $farmer->name . ': Блог';
                 <div class="eda-posts-item">
                     <h3><?= $post->title ?></h3>
                     <div class="eda-posts-item-subtitle">
-                        <img src="<?= ImageOverride::getPath($post->img_id) ?>" />
+                        <img src="/backend/web/images/<?= $post->getImg() ?>" />
                         <p><?= $post->subtitle ?></p>
                         <p class="eda-posts-item-link" onclick="ShowPost(<?= $post->id ?>)">Подробнее...</p>
                     </div>

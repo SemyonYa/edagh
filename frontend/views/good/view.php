@@ -1,9 +1,3 @@
-<?php
-
-use frontend\models\ImageOverride;
-
-/* @var $good \common\models\Good */
-?>
 <!--AJAX-->
 <div class="modal-dialog eda-good-modal">
     <div class="modal-content">
@@ -11,11 +5,11 @@ use frontend\models\ImageOverride;
             <span data-dismiss="modal" aria-hidden="true">&times;</span>
         </p>
         <div class="eda-good-modal-img"
-             style="background-image: url('<?= ImageOverride::getPath($good->poster) ?>')"></div>
+             style="background-image: url('/backend/web/images/<?= $good->getImg() ?>')"></div>
         <div class="eda-good-modal-body">
             <div class="eda-good-modal-body-farmer">
                 <div class="eda-good-modal-body-farmer-icon" onclick="GoTo('/good/company?id=<?= $good->farmer_id ?>')"
-                     style="background-image: url('<?= ImageOverride::getPath($good->farmer->poster) ?>')"></div>
+                     style="background-image: url('/backend/web/images/<?= $good->farmer->getThumb() ?>')"></div>
                 <div class="eda-good-modal-body-farmer-day">Ближайшая доставка:
                     <?php if($good->farmer->nextDay): ?>
                         <b><?= date('d.m.Y', strtotime($good->farmer->nextDay->date)) ?></b>

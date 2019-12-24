@@ -1,14 +1,9 @@
-<?php
 
-use frontend\models\ImageOverride;
-
-/* @var $goods \common\models\Good[] */
-?>
 <?php shuffle($goods); ?>
 <?php foreach ($goods as $good): ?>
     <div data-toggle="modal" data-target="#GoodModal" class="eda-company-goods-item"
          data-category-id="<?= $good->category_id ?>"
-         style="background-image: url('<?= ImageOverride::getPath($good->poster) ?>');"
+         style="background-image: url('/backend/web/images/old_im.svg');"
          onclick="LoadGoodModal(<?= $good->id ?>)">
         <p class="eda-company-goods-item-name">
             <?= $good->name ?>741

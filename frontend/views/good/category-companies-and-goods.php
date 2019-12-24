@@ -3,8 +3,6 @@
 
 /* @var $this \yii\web\View */
 
-use frontend\models\ImageOverride;
-
 $this->title = 'Категория ' . mb_strtoupper($category->name);
 ?>
 
@@ -29,7 +27,7 @@ $this->title = 'Категория ' . mb_strtoupper($category->name);
             <div class="eda-farmers-and-goods-f">
                 <?php foreach ($farmers as $farmer): ?>
                     <div class="eda-main-farmers-item"
-                         style="background-image: url('<?= ImageOverride::getPath($farmer->poster) ?>')"
+                         style="background-image: url('/backend/web/images/<?= $farmer->getThumb() ?>')"
                          onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"></div>
                 <?php endforeach; ?>
             </div>
@@ -39,7 +37,7 @@ $this->title = 'Категория ' . mb_strtoupper($category->name);
                 <?php foreach ($category_goods as $good): ?>
                     <div data-toggle="modal" data-target="#GoodModal" class="eda-company-goods-item"
                          data-category-id="<?= $good->category_id ?>"
-                         style="background-image: url('<?= ImageOverride::getPath($good->poster) ?>');"
+                         style="background-image: url('/backend/web/images/<?= $good->getThumb() ?>');"
                          onclick="LoadGoodModal(<?= $good->id ?>)">
                         <p class="eda-company-goods-item-name">
                             <?= $good->name ?>

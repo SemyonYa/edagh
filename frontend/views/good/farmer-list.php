@@ -1,5 +1,4 @@
 <?php
-use frontend\models\ImageOverride;
 $this->title = 'Список фермерских хозяйств WannaFresh';
 ?>
 <div class="eda-companylist-wrap">
@@ -8,7 +7,7 @@ $this->title = 'Список фермерских хозяйств WannaFresh';
         <div class="eda-companylist-page active">
             <?php foreach ($farmers as $farmer): ?>
             <div class="eda-companylist-page-item" onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"
-                 style="background-image: url('<?= ImageOverride::getPath($farmer->poster, 600, 600) ?>')">
+                 style="background-image: url('/backend/web/images/old_im.svg')">
 
             </div>
             <?php endforeach; ?>
