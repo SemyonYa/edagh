@@ -1000,3 +1000,43 @@ input.ad-report-params-item-goods {
     color: darkred;
     float: right;
 }
+
+@media (min-width: 768px) {
+    #WannaFreshModal .modal-dialog {
+        width: 700px;
+        height: calc(100vh - 60px);
+        margin: 30px auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    #WannaFreshModal .modal-dialog {
+        width: 900px;
+        margin: 30px auto;
+    }
+}
+
+.modal-images {
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.modal-image {
+    width: 150px;
+    height: 150px;
+    margin: 3px 3px 0 0;
+    background-size: cover;
+    background-position: center center;
+}
+
+.img-preview {
+    width: 100px;
+    height: auto;
+}

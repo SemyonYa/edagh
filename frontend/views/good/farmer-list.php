@@ -7,7 +7,7 @@ $this->title = 'Список фермерских хозяйств WannaFresh';
         <div class="eda-companylist-page active">
             <?php foreach ($farmers as $farmer): ?>
             <div class="eda-companylist-page-item" onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"
-                 style="background-image: url('/backend/web/images/old_im.svg')">
+                 style="background-image: url('<?= $farmer->getThumb() ?>')">
 
             </div>
             <?php endforeach; ?>

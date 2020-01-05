@@ -2,10 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
-/* @var $this yii\web\View */
-/* @var $model common\models\Post */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="post-form">
@@ -18,12 +14,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 4]) ?>
 
-    <?= $form->field($model, 'img_id')->widget(\noam148\imagemanager\components\ImageManagerInputWidget::className(), [
-        'aspectRatio' => (16 / 9), //set the aspect ratio
-        'cropViewMode' => 1, //crop mode, option info: https://github.com/fengyuanchen/cropper/#viewmode
-        'showPreview' => true, //false to hide the preview
-        'showDeletePickedImageConfirm' => false, //on true show warning before detach image
-    ]); ?>
+    <?= $form->field($model, 'img')->hiddenInput() ?>
+    <img src="<?= $model->getThumb() ?>" class="img-preview" id="WannaFreshImgPreview" data-toggle="modal" data-target="#WannaFreshModal" onclick="LoadImageManager('post-img')" alt="Нужно выбрать другое изображение...">
 
     <?= $form->field($model, 'is_active')->checkbox() ?>
 

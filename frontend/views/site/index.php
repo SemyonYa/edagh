@@ -24,7 +24,7 @@ $this->title = 'Wanna Fresh: Доставка продуктов с фермер
         <h2>Ведущие фермерские хозяйства</h2>
         <div class="eda-main-farmers">
             <?php foreach ($farmers as $farmer) : ?>
-                <div class="eda-main-farmers-item" style="background-image: url('/backend/web/images/<?= $farmer->getThumb() ?>')" onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"></div>
+                <div class="eda-main-farmers-item" style="background-image: url('<?= $farmer->getThumb() ?>')" onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"></div>
             <?php endforeach; ?>
         </div>
         <h4><a href="/good/farmer-list">Смотреть все...</a></h4>

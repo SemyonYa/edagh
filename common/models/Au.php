@@ -59,6 +59,8 @@ class Au
                     } else {
                         throw new ForbiddenHttpException('Нет назначенгных фермерских хозяйств для текущего пользователя');
                     }
+                } else if ($roles[0]->name === 'r_admin') {
+                    return 0;
                 } else {
                     throw new ForbiddenHttpException('Не в роли управляющего');
                 }

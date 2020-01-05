@@ -39,12 +39,14 @@ class ImageController extends Controller
         ];
     }
 
-    public function actionList()
+    public function actionList($farmer_id = null)
     {
         Au::isManager();
-        $farmer_id = Au::isFarmer();
+        if (is_null($farmer_id)) {
+            $farmer_id = Au::isFarmer();
+        }
         
-        $imgs = MyImage::find()->orderBy('id DESC')->all();
+        $imgs = MyImage::find()->where(['farmer_id' => $farmer_id])->orderBy('id DESC')->all();
 
         if (Yii::$app->request->isPost) {
             $allowable_extetions = [
@@ -77,6 +79,7 @@ class ImageController extends Controller
 
                 $my_img = new MyImage();
                 $my_img->name = $img_name;
+                $my_img->farmer_id = $farmer_id ?: 0;
                 $my_img->save();
             }
 
@@ -86,12 +89,18 @@ class ImageController extends Controller
         return $this->render('list', compact('imgs', 'farmer_id'));
     }
 
-    public function actionListModal()
+    public function actionListModal($farmer_id = null)
     {
         $this->layout = 'empty';
-        $imgs = MyImage::find()->all();
+        
+        Au::isManager();
+        if (is_null($farmer_id)) {
+            $farmer_id = Au::isFarmer();
+        }
 
-        return $this->render('list-modal', compact('imgs'));
+        $imgs = MyImage::find()->where(['farmer_id' => $farmer_id])->all();
+
+        return $this->render('list-modal', compact('imgs', 'farmer_id'));
     }
 
     public function actionRemove($id)

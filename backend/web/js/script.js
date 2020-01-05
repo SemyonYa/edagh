@@ -71,15 +71,19 @@ $(document).ready(function () {
 // IMAGE MANAGER
 ///
 
-function LoadImageManager(attr) {
-    $('#OstroModal').load('/image/list-modal');
-    $('#OstroModal').attr('data-input-id', attr);
+function LoadImageManager(attr, farmerId = null) {
+    if (farmerId) {
+        $('#WannaFreshModal').load('/admin/image/list-modal?farmer_id=' + farmerId);
+    } else {
+        $('#WannaFreshModal').load('/admin/image/list-modal');
+    }
+    $('#WannaFreshModal').attr('data-input-id', attr);
 }
 
-function ChooseImage(name) {
-    $('#' + $('#OstroModal').attr('data-input-id')).val(name);
-    $('#OstroImgPreview').attr('src', '/web/images/' + name);
-    $('#OstroModal').modal('hide');
+function ChooseImage(name, farmerId) {
+    $('#' + $('#WannaFreshModal').attr('data-input-id')).val(name);
+    $('#WannaFreshImgPreview').attr('src', '/backend/web/images/' + farmerId + '/' + name);
+    $('#WannaFreshModal').modal('hide');
 }
 
 ///
@@ -139,29 +143,29 @@ function CategoryImgActivate(obj) {
 ///
 // GOODS
 ///
-function LoadGoodImgList(goodId) {
-    $('#GoodImgs').load('/admin/good/image-list?good_id=' + goodId);
-}
+// function LoadGoodImgList(goodId) {
+//     $('#GoodImgs').load('/admin/good/image-list?good_id=' + goodId);
+// }
 
-function RemoveGoodImg(imgId) {
-    if (confirm('Удалить изображение?')) {
-        const goodId = $('#GoodId').val();
-        $.ajax({
-            url: '/admin/good/remove-image?good_id=' + goodId + '&img_id=' + imgId
-        }).done(function () {
-            LoadGoodImgList(goodId);
-        });
-    }
-}
+// function RemoveGoodImg(imgId) {
+//     if (confirm('Удалить изображение?')) {
+//         const goodId = $('#GoodId').val();
+//         $.ajax({
+//             url: '/admin/good/remove-image?good_id=' + goodId + '&img_id=' + imgId
+//         }).done(function () {
+//             LoadGoodImgList(goodId);
+//         });
+//     }
+// }
 
-function MainGoodImg(imgId) {
-    const goodId = $('#GoodId').val();
-    $.ajax({
-        url: '/admin/good/main-image?good_id=' + goodId + '&img_id=' + imgId
-    }).done(function () {
-        LoadGoodImgList(goodId);
-    });
-}
+// function MainGoodImg(imgId) {
+//     const goodId = $('#GoodId').val();
+//     $.ajax({
+//         url: '/admin/good/main-image?good_id=' + goodId + '&img_id=' + imgId
+//     }).done(function () {
+//         LoadGoodImgList(goodId);
+//     });
+// }
 
 function AdGoodSearching(str) {
     if (str.length > 1) {

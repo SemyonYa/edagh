@@ -61,7 +61,7 @@ class Farmer extends \yii\db\ActiveRecord
             'description' => 'Описание',
             'email' => 'E-mail',
             'min_cost' => 'Миинимальная стоимость заказа',
-            'delivery' => 'Delivery',
+            'delivery' => 'Информация о доставке',
             'is_blocked' => 'Заблокировать',
             'img' => 'Картинка',
         ];
@@ -130,22 +130,22 @@ class Farmer extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Video::className(), ['farmer_id' => 'id']);
     }
-    
-        public function getNextDay()
-        {
-            return $this->getDays()->where(['>=', 'date', date('Y-m-d')])->andWhere(['farmer_id' => $this->id])->orderBy('date')->one();
-        }
-    
-        public function getNextTenDays()
-        {
-            return $this->getDays()->where(['>=', 'date', date('Y-m-d')])->andWhere(['farmer_id' => $this->id])->orderBy('date')->each(10);
-        }
+
+    public function getNextDay()
+    {
+        return $this->getDays()->where(['>=', 'date', date('Y-m-d')])->andWhere(['farmer_id' => $this->id])->orderBy('date')->one();
+    }
+
+    public function getNextTenDays()
+    {
+        return $this->getDays()->where(['>=', 'date', date('Y-m-d')])->andWhere(['farmer_id' => $this->id])->orderBy('date')->each(10);
+    }
 
     public function getThumb() {
-        return $this->img ? $this->id . '/____' . $this->img : 'fake_im.svg';
+        return $this->img ? '/backend/web/images/' . $this->id . '/____' . $this->img : '/backend/web/images/fake_wf.svg';
     }
 
     public function getImg() {
-        return $this->img ? $this->id . '/' . $this->img : 'fake_im.svg';
+        return $this->img ? '/backend/web/images/' . $this->id . '/' . $this->img : '/backend/web/images/fake_wf.svg';
     }
 }

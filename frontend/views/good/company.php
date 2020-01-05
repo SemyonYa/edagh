@@ -29,7 +29,7 @@ $this->title = 'Wanna Fresh: ' . $farmer->name;
             </div>
         </div>
         <div class="eda-company-ava">
-            <img src="/backend/web/images/<?= $farmer->getImg() ?>" />
+            <img src="<?= $farmer->getImg() ?>" />
         </div>
         <hr style="flex-basis: 100%; border-color: #1f7b1e" />
         <div class="eda-company-goods">

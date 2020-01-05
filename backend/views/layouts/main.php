@@ -14,6 +14,7 @@ AppAsset::register($this);
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
+
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,45 +30,56 @@ AppAsset::register($this);
     <link rel="shortcut icon" href="/frontend/web/img/logo-ico.png" type="image/png">
     <?php $this->head() ?>
 </head>
+
 <body>
-<?php $this->beginBody() ?>
-<header>
-    <img onclick="GoTo('/admin')" class="ad-logo" src="/frontend/web/img/logo.svg"/>
-    <div>
-        <?php if (Yii::$app->user->isGuest): ?>
-            <span class="btn btn-header"><a href="/admin/password-reset">Восстановить пароль</a></span>
-            <span class="btn btn-header"><a href="/admin/site/login">Вход</a></span>
-        <?php else: ?>
-            <span class="btn-action" onclick="Logout()">Выход (<?= Yii::$app->user->identity->username ?>)</span>
-            <!--                    --><?php //echo Html::beginForm(['/site/logout'], 'post', ['id' => 'logoutform']) ?>
-            <!--                    --><?php //echo Html::submitButton('Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout ']); ?>
-            <!--                    --><?php //Html::endForm(); ?>
-        <?php endif; ?>
-    </div>
-</header>
+    <?php $this->beginBody() ?>
+    <header>
+        <img onclick="GoTo('/admin')" class="ad-logo" src="/frontend/web/img/logo.svg" />
+        <div>
+            <?php if (Yii::$app->user->isGuest) : ?>
+                <span class="btn btn-header"><a href="/admin/password-reset">Восстановить пароль</a></span>
+                <span class="btn btn-header"><a href="/admin/site/login">Вход</a></span>
+            <?php else : ?>
+                <span class="btn-action" onclick="Logout()">Выход (<?= Yii::$app->user->identity->username ?>)</span>
+                <!--                    --><?php //echo Html::beginForm(['/site/logout'], 'post', ['id' => 'logoutform']) 
+                                            ?>
+                <!--                    --><?php //echo Html::submitButton('Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout ']); 
+                                            ?>
+                <!--                    --><?php //Html::endForm(); 
+                                            ?>
+            <?php endif; ?>
+        </div>
+    </header>
 
-<div class="ad-wrap">
-    <?php
-    $home = 'f';
-    if (\Yii::$app->user->identity) {
-        if (\common\models\User::findOne(\Yii::$app->user->identity->getId())->roles[0]->name === 'r_admin') {
-            $home = 'a';
+    <div class="ad-wrap">
+        <?php
+        $home = 'f';
+        if (\Yii::$app->user->identity) {
+            if (\common\models\User::findOne(\Yii::$app->user->identity->getId())->roles[0]->name === 'r_admin') {
+                $home = 'a';
+            }
         }
-    }
-    ?>
-    <?= Breadcrumbs::widget([
-        'homeLink' => ['label' => 'Главная', 'url' => '/admin/' . $home],
-        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-    ]) ?>
-    <? //= Alert::widget() ?>
-    <?= $content ?>
-</div>
+        ?>
+        <?= Breadcrumbs::widget([
+            'homeLink' => ['label' => 'Главная', 'url' => '/admin/' . $home],
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <? //= Alert::widget() 
+        ?>
+        <?= $content ?>
+    </div>
 
-<footer>
-    &copy; Wanna Fresh: Администрирование <?= date('Y') ?>
-</footer>
+    <footer>
+        &copy; Wanna Fresh: Администрирование <?= date('Y') ?>
+    </footer>
 
-<?php $this->endBody() ?>
+    <!-- Модаль -->
+    <div class="modal fade" id="WannaFreshModal" tabindex="-1" role="dialog" aria-labelledby="WannaFreshModalLabel" data-input-id="-">
+        Загрузка...
+    </div>
+
+    <?php $this->endBody() ?>
 </body>
+
 </html>
 <?php $this->endPage() ?>

@@ -113,10 +113,10 @@ class Good extends \yii\db\ActiveRecord
     }
 
     public function getThumb() {
-        return $this->img ? $this->getFarmer()->id . '/____' . $this->img : 'fake_im.svg';
+        return $this->img ? '/backend/web/images/' . $this->farmer->id . '/____' . $this->img : '/backend/web/images/fake_wf.svg';
     }
 
     public function getImg() {
-        return $this->img ? $this->getFarmer()->id . '/' . $this->img : 'fake_im.svg';
+        return $this->img ? '/backend/web/images/' . $this->farmer->id . '/' . $this->img : '/backend/web/images/fake_wf.svg';
     }
 }

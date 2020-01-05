@@ -2,9 +2,6 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Farmer */
-
 $this->title = 'Новое фермерские хозяйства';
 $this->params['breadcrumbs'][] = ['label' => 'Фермерские хозяйства', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -16,3 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', compact('model')) ?>
 
 </div>
+
+<style>
+    .field-farmer-img {
+        display: none;
+    }
+
+    .img-preview {
+        display: none;
+    }
+</style>

@@ -1,7 +1,6 @@
 <?php
-
 $this->title = "Менеджер изображений";
-
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1><?= $this->title ?></h1>
 <!-- <span href="/image/create"><span class="glyphicon glyphicon-plus-sign"></span></a> -->
@@ -13,7 +12,7 @@ $this->title = "Менеджер изображений";
 <div class="images">
     <?php foreach ($imgs as $img) : ?>
         <div class="image" style="background-image: url('/backend/web/images/<?= $farmer_id ?>/____<?= $img->name ?>')">
-        <a href="/image/remove?id=<?= $img->id ?>"><span class="glyphicon glyphicon-remove remove-image"></span></a>
-    </div>
+            <a href="/image/remove?id=<?= $img->id ?>"><span class="glyphicon glyphicon-remove remove-image"></span></a>
+        </div>
     <?php endforeach; ?>
 </div>

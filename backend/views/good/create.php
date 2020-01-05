@@ -2,9 +2,6 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Good */
-
 $this->title = 'Новый товар';
 $this->params['breadcrumbs'][] = ['label' => 'Мои товары', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
