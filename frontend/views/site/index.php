@@ -20,6 +20,16 @@ $this->title = 'Wanna Fresh: Доставка продуктов с фермер
         </div>
     </div>
 
+    <div class="eda-main-path">
+        <div class="eda-main-path-first">Выберите фермерское хозяйство</div>
+        <div class="eda-main-path-arrow"></div>
+        <div class="eda-main-path-second">Добавьте продукты в корзину и подтвердите заказ</div>
+        <div class="eda-main-path-arrow"></div>
+        <div class="eda-main-path-third">Ожидайте звонка фермера для уточнения заказа</div>
+    </div>
+    <div class="eda-space-line">
+        <hr />
+    </div>
     <div class="eda-main-f">
         <h2>Ведущие фермерские хозяйства</h2>
         <div class="eda-main-farmers">

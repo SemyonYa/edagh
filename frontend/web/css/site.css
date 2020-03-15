@@ -224,8 +224,15 @@ footer .right-block {
     border-radius: 3px;
 }
 
-footer a {
+footer .right-block h5 {
+    color: #4f7b30;
+    text-transform: uppercase;
+}
+
+footer .right-block h4 {
     text-decoration: underline;
+    color: #4f7b30;
+    cursor: pointer;
 }
 
 .eda-space-line {
@@ -235,6 +242,24 @@ footer a {
 
 .eda-space-line hr {
     border: solid 1px #2b542c;
+}
+
+.wannafresh-common-modal-content {
+    text-align: justify;
+    padding: 10px;
+}
+
+.wannafresh-common-modal-content h3 {
+    text-align: center;
+}
+
+.wannafresh-common-modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: darkred;
+    cursor: pointer;
 }
 
 @media (orientation: portrait),
@@ -251,8 +276,6 @@ footer a {
         margin: 5px 0;
     }
 
-    /*}*/
-    /*@media (orientation: portrait) and (max-width: 500px) {*/
     .eda-logo {
         height: 80%;
     }
@@ -414,12 +437,35 @@ footer a {
 }
 
 .eda-search-no-results {
-    color: #4f7b30;
+    color: rgb(79, 123, 48);
     padding: 20px;
     font-size: 20px;
     line-height: 1;
 }
 
+.eda-main-path {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 10px 0;
+}
+
+.eda-main-path-first, .eda-main-path-second, .eda-main-path-third {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 rgba(79, 123, 48, .5);
+    margin: 10px;
+    font-size: 18px;
+}
+.eda-main-path-arrow {
+    width: 30px;
+    height: 30px;
+    background-image: url('/frontend/web/img/chevron.svg');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
 .eda-main-ribbon {
     display: flex;
     justify-content: center;
@@ -1123,7 +1169,7 @@ footer a {
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
-} 
+}
 
 .eda-company-about-link {
     color: #2b542c;
@@ -1183,7 +1229,9 @@ footer a {
     justify-content: center;
     align-items: flex-end;
     flex-wrap: wrap;
-    border: solid 1px #2b542c;
+    /* border: solid 1px #2b542c; */
+    border-radius: 6px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .25);
     margin: 5px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1208,7 +1256,9 @@ footer a {
     flex-wrap: wrap;
     font-weight: 600;
     background-color: rgba(255, 255, 255, .93);
-    border-top: solid 1px rgba(0, 0, 0, .5);
+    /* border-top: solid 1px rgba(0, 0, 0, .5); */
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     /*border-bottom: solid 1px rgba(0, 0, 0, .5);*/
     transition: .5s;
 }
@@ -1301,6 +1351,23 @@ footer a {
     min-height: 30vh;
 }
 
+.eda-company-goods-category {
+    text-align: left;
+    margin-bottom: 0;
+    padding-bottom: 5px;
+    border-bottom: solid 1px #2b542c;
+    flex-basis: 100%;
+    font-size: 24px;
+}
+
+.eda-company-goods-wrap {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 5px 0 15px;
+}
+
 .eda-hidden {
     display: none;
 }
@@ -1311,10 +1378,13 @@ footer a {
     color: #2b542c;
     text-decoration: underline dotted;
 }
+
 .btn.btn-delivery:active {
     box-shadow: none;
 }
-.btn.btn-delivery:hover, .btn.btn-delivery:focus {
+
+.btn.btn-delivery:hover,
+.btn.btn-delivery:focus {
     color: #2b542c;
     text-decoration: underline dotted;
 }
@@ -1443,7 +1513,7 @@ footer a {
 .eda-companylist-page {
     display: none;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     flex-wrap: wrap;
     flex-basis: 100%;
     transition: .3s;
@@ -1453,11 +1523,22 @@ footer a {
     display: flex;
 }
 
+.eda-companylist-page-item-wrap {
+    width: 250px;
+    border-radius: 6px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .25);
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .eda-companylist-page-item {
-    margin: 20px 5px;
-    width: 20vw;
-    height: 20vw;
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .5);
+    /* margin: 20px 5px; */
+    border-radius: 6px;
+    width: 250px;
+    height: 250px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center center;
@@ -1467,6 +1548,13 @@ footer a {
     justify-content: center;
     align-items: center;
 
+}
+
+.eda-companylist-page-item-name {
+    text-align: center;
+    padding: 5px;
+    flex-basis: 100%;
+    color: #2b542c;
 }
 
 .eda-companylist-indicators {
@@ -1503,18 +1591,23 @@ footer a {
         flex-basis: 95%;
     }
 
-    .eda-companylist-page-item {
+    /* .eda-companylist-page-item {
         width: 25vw;
         height: 25vw;
+    } */
+}
+
+@media (max-width: 767px) {
+    .eda-companylist-page-item-wrap {
+        width: 170px;
+    }
+
+    .eda-companylist-page-item {
+        width: 170px;
+        height: 170px;
     }
 }
 
-/*@media (orientation: portrait) and (max-width: 500px) {*/
-/*.eda-companylist-page-item {*/
-/*width: 35vw;*/
-/*height: 35vw;*/
-/*}*/
-/*}*/
 
 /*
     CART
@@ -1644,6 +1737,7 @@ footer a {
 .modal-body>.form-control {
     margin: 10px 0;
 }
+
 .eda-cart-delivery {
     padding: 0 10px;
 }
@@ -1741,6 +1835,27 @@ footer a {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.eda-farmers-and-goods-g-farmer {
+    flex-basis: 100%;
+    border-bottom: solid 2px #2b542c;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+}
+
+.eda-farmers-and-goods-g-farmer>span {
+    color: #4f7b30;
+    text-decoration: underline dotted;
+    font-size: 12px;
+}
+
+.eda-farmers-and-goods-g-goods {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: flex-start;
+    /* align-items: center; */
+
 }
 
 .eda-farmers-and-goods-f {
@@ -1885,7 +2000,7 @@ footer a {
     min-height: calc(100vh - 80px);
     margin: auto;
     padding: 10px;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     /* box-shadow: 0 0 10px 1px rgba(59, 47, 47, 0.4); */
 }
 
@@ -1894,9 +2009,11 @@ footer a {
     text-align: center;
     padding-top: 10px;
 }
+
 .eda-posts-farmer img {
     width: 20%;
 }
+
 .eda-posts-farmer h1 {
     /* text-shadow: 0px 0px 2px rgba(255,255,255,0.5); */
     color: #4f7b30;
@@ -1915,7 +2032,7 @@ footer a {
     border: solid 1px #1f7b1e;
     margin: 10px 0;
     padding: 10px;
-    background-color: rgba(255,255,255,.7);
+    background-color: rgba(255, 255, 255, .7);
     box-shadow: 0 0 5px 1px rgba(59, 47, 47, 0.2);
 }
 
@@ -1932,18 +2049,22 @@ footer a {
     cursor: pointer;
     font-size: 16px;
 }
+
 .eda-post {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
+
 .modal-dialog-post img {
     width: 100%;
 }
-.eda-post > * {
+
+.eda-post>* {
     flex-basis: 100%;
 }
+
 .eda-post .btn-primary {
     background-color: #4f7b30;
     border: none;
@@ -1988,8 +2109,8 @@ footer a {
     width: 100%;
     padding: 8px;
     margin: 10px 0;
-    box-shadow: 0 0 10px 0px rgba(255,255,255, 0.5);
-    background-color: rgba(0,0,0,.5);
+    box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, .5);
 }
 
 .eda-videos-item h3 {
@@ -2026,7 +2147,7 @@ footer a {
     min-height: calc(100vh - 80px);
     margin: auto;
     padding: 10px;
-    background-color: rgba(255,255,255,0.55);
+    background-color: rgba(255, 255, 255, 0.55);
     box-shadow: 0 0 10px 1px rgba(59, 47, 47, 0.4);
 }
 
@@ -2035,9 +2156,11 @@ footer a {
     text-align: center;
     padding-top: 10px;
 }
+
 .eda-promos-farmer img {
     width: 20%;
 }
+
 .eda-promos-farmer h1 {
     /* text-shadow: 0px 0px 2px rgba(255,255,255,0.5); */
     color: #2b542c;
@@ -2093,25 +2216,30 @@ footer a {
 .eda-promo h3 {
     color: #1f7b1e
 }
+
 .eda-promo .btn-primary {
     background-color: #1f7b1e;
     margin: 20px 0 10px;
     border: none;
     border-radius: 0;
 }
+
 .eda-promo .btn-primary:active:focus {
     background-color: #4f7b30;
 }
+
 @media (min-width: 768px) {
     .modal-dialog.modal-dialog-promo {
         width: 400px;
     }
 }
+
 @media (max-width: 950px) {
     .eda-promos {
-        background-color: rgba(255,255,255,.8);
+        background-color: rgba(255, 255, 255, .8);
     }
 }
+
 @media (orientation: portrait) {
     .eda-promos-item {
         width: 60vw;
@@ -2156,6 +2284,7 @@ footer a {
     color: darkred;
     opacity: 1;
 }
+
 #OstroModal .modal-dialog {
     height: calc(100vh - 60px);
 }

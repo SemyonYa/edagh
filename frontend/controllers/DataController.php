@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Category;
 use common\models\Farmer;
 use common\models\Good;
+use common\models\Info;
 use common\models\Promo;
 use yii\db\Query;
 use yii\helpers\Json;
@@ -46,15 +47,6 @@ class DataController extends Controller
 
     public function actionFarmers()
     {
-        // $farmers = (new Query())
-        //     ->select([
-
-        //     ])
-        //     ->from([
-        //         'f' => 'farmer'
-        //     ])
-        //     ->leftJoin('good AS g', 's.good_id = g.id')
-        //     ->all();
         return Json::encode(Farmer::find()->all());
     }
 
@@ -65,76 +57,73 @@ class DataController extends Controller
 
     public function actionPromos()
     {
-        return Json::encode(Promo::find()->all());
+        $farmer_ids = Farmer::find()->where(['is_blocked' => 0])->select('id')->column();
+        $promos = (new Query())
+            ->select([
+                'p.id',
+                'p.title',
+                'p.subtitle',
+                'p.description',
+                'p.img',
+                'p.farmer_id',
+                'p.category_id',
+                'f.name AS farmer_name',
+                'f.img AS farmer_img',
+            ])
+            ->from([
+                'p' => 'promo'
+            ])
+            ->leftJoin('farmer AS f', 'f.id = p.farmer_id')
+            ->where([
+                'is_active' => 1
+            ])
+            ->andWhere(['in', 'p.farmer_id', $farmer_ids])
+            ->all();
+        shuffle($promos);
+        return Json::encode($promos);
     }
 
-    public function actionFarmerCategoryGoods($farmer_id)
-    {
-        $farmer = Farmer::findOne($farmer_id);
-        $category_ids = Good::find()->where(['farmer_id' => $farmer_id])->select(['category_id'])->distinct()->column();
-        $categories = Category::findAll($category_ids);
-        $category_goods = [];
-        foreach ($categories as $category) {
-            $goods = (new Query())
-                ->select([
-                    'g.id',
-                    'g.name',
-                    'g.brief',
-                    'g.description',
-                    'g.farmer_id',
-                    'g.price',
-                    'g.quantity',
-                    'm.name AS measure',
-                    'g.img'
-                ])
-                ->from([
-                    'g' => 'good'
-                ])
-                ->leftJoin('measure as m', 'm.id = g.measure_id')
-                ->where([
-                    'g.farmer_id' => $farmer_id
-                ])
-                ->all();
-            $category_goods[] = [
-                'category' => $category,
-                'goods' => $goods
-            ];
-        }
-        // $goods = (new Query())
-        // ->select([
-        //     'g.id',
-        //     'g.name',
-        //     'g.brief',
-        //     'g.description',
-        //     'g.farmer_id',
-        //     'f.name as farmer_name',
-        //     'c.id AS category_id',
-        //     'c.name AS category_name',
-        //     'g.price',
-        //     'g.quantity',
-        //     'm.name AS measure',
-        //     'g.img'
-        // ])
-        // ->from([
-        //     'g' => 'good'
-        // ])
-        // ->leftJoin('category as c', 'c.id = g.category_id')
-        // ->leftJoin('measure as m', 'm.id = g.measure_id')
-        // ->leftJoin('farmer as f', 'f.id = g.farmer_id')
-        // ->where([
-        //     'g.farmer_id' => $farmer_id
-        // ])
-        // ->all();
-        // return Json::encode($goods);
-        return Json::encode($category_goods);
-    }
+    // public function actionFarmerCategoryGoods($farmer_id)
+    // {
+    //     $farmer = Farmer::findOne($farmer_id);
+    //     $category_ids = Good::find()->where(['farmer_id' => $farmer_id])->select(['category_id'])->distinct()->column();
+    //     $categories = Category::findAll($category_ids);
+    //     $category_goods = [];
+    //     foreach ($categories as $category) {
+    //         $goods = (new Query())
+    //             ->select([
+    //                 'g.id',
+    //                 'g.name',
+    //                 'g.brief',
+    //                 'g.description',
+    //                 'g.farmer_id',
+    //                 'g.price',
+    //                 'g.quantity',
+    //                 'm.name AS measure',
+    //                 'g.img'
+    //             ])
+    //             ->from([
+    //                 'g' => 'good'
+    //             ])
+    //             ->leftJoin('measure as m', 'm.id = g.measure_id')
+    //             ->where([
+    //                 'g.farmer_id' => $farmer_id
+    //             ])
+    //             ->all();
+    //         $category_goods[] = [
+    //             'category' => $category,
+    //             'goods' => $goods
+    //         ];
+    //     }
+    //     return Json::encode($category_goods);
+    // }
 
     public function actionFarmersFull()
     {
         $farmers = Farmer::find()->where(['is_blocked' => 0])->all();
         $data = [];
         foreach ($farmers as $farmer) {
-            $category_ids = Good::find()->where(['farmer_id' => $farmer->id])->select(['category_id'])->distinct()->column();
+            $category_ids = Good::find()->where(['farmer_id' => $farmer->id, 'is_visible' => 1])->select(['category_id'])->distinct()->column();
             $categories = Category::findAll($category_ids);
 
             $category_goods = [];
@@ -146,6 +135,7 @@ class DataController extends Controller
                         'g.brief',
                         'g.description',
                         'g.farmer_id',
+                        'g.category_id',
                         'g.price',
                         'g.quantity',
                         'm.name AS measure',
@@ -168,9 +158,32 @@ class DataController extends Controller
             }
             $data[] = [
                 'farmer' => $farmer,
-                'categories' => $category_goods
+                'categories' => $category_goods,
+                'promos' => $farmer->getPromos()->where(['is_active' => 1])->all(),
+                'posts' => $farmer->getPosts()->where(['is_active' => 1])->all(),
+                'videos' => $farmer->getVideos()->where(['is_active' => 1])->all(),
             ];
         }
-       return Json::encode($data); 
+        return Json::encode($data);
+    }
+
+    public function actionForFarmer()
+    {
+        return Json::encode(
+            Info::find()
+                ->where(['name' => 'for-farmer'])
+                ->orderBy('ordering ASC')
+                ->all()
+        );
+    }
+
+    public function actionTerms()
+    {
+        return Json::encode(
+            Info::find()
+                ->where(['name' => 'terms'])
+                ->orderBy('ordering ASC')
+                ->all()
+        );
     }
 }

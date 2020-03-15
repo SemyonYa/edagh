@@ -7,6 +7,7 @@ use common\models\Farmer;
 use common\models\Good;
 use common\models\Order;
 use common\models\OrderGood;
+use common\models\Info;
 use frontend\models\CartFarmerItem;
 use frontend\models\CartGoodItem;
 use yii\web\Controller;
@@ -209,6 +210,30 @@ class SiteController extends Controller
 //            ->setTextBody('Текст сообщения')
 //            ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
             ->send();
+    }
+
+    public function actionForFarmers() {
+        $this->layout = 'empty';
+        $info = Info::find()
+                ->where(['name' => 'for-farmer'])
+                ->orderBy('ordering ASC')
+                ->all();
+        return $this->render('for-farmers', compact('info'));
+    }
+
+    public function actionDelivery() {
+        $this->layout = 'empty';
+        $info = Info::find()
+                ->where(['name' => 'terms'])
+                ->orderBy('ordering ASC')
+                ->all();
+        return $this->render('delivery', compact('info'));
+    }
+
+    public function actionContact() {
+        $this->layout = 'empty';
+
+        return $this->render('contact');
     }
 
 }

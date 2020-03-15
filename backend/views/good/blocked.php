@@ -30,11 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <tr onclick="GoTo('/admin/good/update?id=<?= $good->id ?>')">
                 <td><?= $good->id ?></td>
                 <td>
-                    <?php if ($good->poster): ?>
-                        <img src="<?= Yii::$app->imagemanager->getImagePath($good->poster) ?>" height="100"/>
-                    <?php else: ?>
-                        <span>нет изображения</span>
-                    <?php endif; ?>
+                    <?php //if ($good->poster): ?>
+                        <img src="<?= $good->getThumb() ?>" height="100"/>
+                    <?php //else: ?>
+                        <!-- <span>нет изображения</span> -->
+                    <?php //endif; ?>
                 </td>
                 <td><?= $good->name ?></td>
                 <td><?= $good->brief ?></td>

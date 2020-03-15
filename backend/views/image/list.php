@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="images">
     <?php foreach ($imgs as $img) : ?>
         <div class="image" style="background-image: url('/backend/web/images/<?= $farmer_id ?>/____<?= $img->name ?>')">
-            <a href="/image/remove?id=<?= $img->id ?>"><span class="glyphicon glyphicon-remove remove-image"></span></a>
+            <a href="/admin/image/remove?id=<?= $img->id ?>"><span class="glyphicon glyphicon-remove remove-image"></span></a>
         </div>
     <?php endforeach; ?>
 </div>

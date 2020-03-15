@@ -29,6 +29,18 @@ $(document).ready(function () {
         console.log(e.target);
     });
 });
+//FOOTER
+function ForFarmersLoad() {
+    $('#WannaFreshCommonModalContent').load('/site/for-farmers');
+}
+
+function DeliveryLoad() {
+    $('#WannaFreshCommonModalContent').load('/site/delivery');
+}
+
+function ContactLoad() {
+    $('#WannaFreshCommonModalContent').load('/site/contact');
+}
 
 //PROMOS
 function ShowPromo(id) {

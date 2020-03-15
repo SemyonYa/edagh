@@ -52,12 +52,12 @@ AppAsset::register($this);
         <div class="right-block">
             <!--        <p>О компании</p>-->
             <h3>&copy; Wanna Fresh <?= date('Y') ?></h3>
-            <h4>Доставка натуральных продуктов из фермерских хозяйств на стол потребителя</h4>
+            <h5>Доставка натуральных продуктов из фермерских хозяйств на стол потребителя</h4>
             <hr>
             <p>Полезная информация</p>
-            <h4><a href="#">Фермерам</a></h4>
-            <h4><a href="#">Условия доставки и оплаты</a></h4>
-            <h4><a href="#">Контакты</a></h4>
+            <h4 data-toggle="modal" data-target="#WannaFreshCommonModal" onclick="ForFarmersLoad()">Фермерам</h4>
+            <h4 data-toggle="modal" data-target="#WannaFreshCommonModal" onclick="DeliveryLoad()">Условия доставки и оплаты</h4>
+            <h4 data-toggle="modal" data-target="#WannaFreshCommonModal" onclick="ContactLoad()">Контакты</h4>
         </div>
     </footer>
 
@@ -66,6 +66,16 @@ AppAsset::register($this);
 
 </html>
 <?php $this->endPage() ?>
+
+<!-- Modal -->
+<div class="modal fade" id="WannaFreshCommonModal" tabindex="-1" role="dialog" aria-labelledby="WannaFreshCommonModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content wannafresh-common-modal-content" id="WannaFreshCommonModalContent">
+            <!-- AJAX -->
+        </div>
+        <span class="glyphicon glyphicon-remove wannafresh-common-modal-close-btn" data-dismiss="modal"></span>
+    </div>
+</div>
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">

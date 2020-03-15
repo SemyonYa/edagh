@@ -33,9 +33,9 @@ $this->title = 'Wanna Fresh: ' . $farmer->name;
         </div>
         <hr style="flex-basis: 100%; border-color: #1f7b1e" />
         <div class="eda-company-goods">
-            <h3 onclick="FilteringCompanyGoods()">Продукты компании</h3>
+            <h3>Продукты компании</h3>
             <div class="eda-company-goods-filters">
-                <div class="eda-company-goods-filters-all-checked" title="выбрать все" onclick="AllChecked()"></div>
+                <!-- <div class="eda-company-goods-filters-all-checked" title="выбрать все" onclick="AllChecked()"></div> -->
                 <div class="eda-company-goods-filters-items">
                     <?php foreach ($categories as $category) : ?>
                         <label class="eda-company-goods-filters-item" for="f1<?= $category->id ?>">
@@ -44,7 +44,7 @@ $this->title = 'Wanna Fresh: ' . $farmer->name;
                         </label>
                     <?php endforeach; ?>
                 </div>
-                <div class="eda-company-goods-filters-all-unchecked" title="отменить выбор всех" onclick="AllUnchecked()"></div>
+                <!-- <div class="eda-company-goods-filters-all-unchecked" title="отменить выбор всех" onclick="AllUnchecked()"></div> -->
             </div>
 
             <div id="CompanyGoodList" class="eda-company-good-list">
