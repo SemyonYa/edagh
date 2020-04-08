@@ -366,6 +366,9 @@ footer .right-block h4 {
     font-size: 20px;
 }
 
+/* 
+SEARCH
+ */
 .eda-main-search-input {
     padding: 7px 21px;
     border-radius: 3px;
@@ -391,11 +394,9 @@ footer .right-block h4 {
     flex-basis: 100%;
     height: 1px;
     z-index: 100000;
-    /*padding-top: 2px;*/
 }
 
 .eda-search-online-result {
-    /*width: calc(40vw + 96px);*/
     flex-basis: 100%;
     border: solid 1px #4f7b30;
     border-top: none;
@@ -443,21 +444,26 @@ footer .right-block h4 {
     line-height: 1;
 }
 
+/* PATH */
 .eda-main-path {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 10px 0;
+    padding: 20px 10px 0;
 }
 
-.eda-main-path-first, .eda-main-path-second, .eda-main-path-third {
+.eda-main-path-first,
+.eda-main-path-second,
+.eda-main-path-third {
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 4px;
+    border: dotted 1px #1f7b1e;
     box-shadow: 0 0 5px 0 rgba(79, 123, 48, .5);
     margin: 10px;
     font-size: 18px;
 }
+
 .eda-main-path-arrow {
     width: 30px;
     height: 30px;
@@ -466,6 +472,56 @@ footer .right-block h4 {
     background-position: center center;
     background-repeat: no-repeat;
 }
+
+@media (max-width: 1024px) {
+
+    .eda-main-path-first,
+    .eda-main-path-second,
+    .eda-main-path-third {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 767px) {
+    .eda-main-path {
+        flex-wrap: wrap;
+    }
+
+    .eda-main-path>* {
+        flex-basis: 100%;
+    }
+    .eda-main-path-first,
+    .eda-main-path-second,
+    .eda-main-path-third {
+        text-align: center;
+        margin: 2px 10vw;
+        padding: 5px;
+    }
+    .eda-main-path-arrow {
+        height: 20px;
+        transform: rotate(90deg);
+    }
+}
+
+@media (max-width: 450px) {
+    .eda-main-path-first,
+    .eda-main-path-second,
+    .eda-main-path-third {
+        margin: 2px 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .eda-main-path-first,
+    .eda-main-path-second,
+    .eda-main-path-third {
+        font-size: 11px;
+    }
+}
+
+/* 
+RIBBON
+ */
 .eda-main-ribbon {
     display: flex;
     justify-content: center;
@@ -482,11 +538,6 @@ footer .right-block h4 {
     cursor: pointer;
     margin-bottom: 10px;
 }
-
-/*.eda-main-ribbon-item > img {*/
-/*    width: 75%;*/
-/*    height: 75%;*/
-/*}*/
 
 .eda-main-ribbon-item-img {
     width: 7vw;

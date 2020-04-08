@@ -15,11 +15,13 @@ $(document).ready(function () {
     $('#SearchInput').on('input', function () {
         let input = $(this).val().trim().toLowerCase();
         if (input.length > 2) {
-            console.log(input);
             $('#SearchOnlineResult').load('/good/search-online?input=' + input);
         } else {
             $('#SearchOnlineResult').empty();
         }
+    });
+    $('#SearchInput').keydown(function (e) {
+        if (e.keyCode === 13) Search();
     });
     CheckMenuMobile();
     $('#FilterHideBtn').click(function () {
@@ -330,10 +332,8 @@ function FilteringCompanyGoods() {
     $('.eda-company-goods-filters-item input:checkbox:checked').each(function () {
         cats.push($(this).attr('data-id'))
     });
-    $('.eda-company-goods-item').each(function () {
-        // console.log($(this).attr('data-category-id'));
-        // console.log(typeof $(this).attr('data-category-id'));
-        // console.log($.inArray($(this).attr('data-category-id'), cats));
+    $('.eda-company-goods-item, .eda-company-goods-category').each(function () {
+        console.log($(this));
         if ($.inArray($(this).attr('data-category-id'), cats) >= 0) {
             $(this).removeClass('eda-hidden');
         } else {
@@ -341,7 +341,6 @@ function FilteringCompanyGoods() {
         }
     });
 
-    console.log(cats);
     // console.log($.inArray('1', cats));
 
 }

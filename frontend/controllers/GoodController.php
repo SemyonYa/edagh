@@ -93,21 +93,30 @@ class GoodController extends Controller
 
     public function actionSearchResult($input)
     {
-        $goods = Good::find()->where(['like', 'name', $input])->andWhere(['is_visible' => 1])->all();
-        $f_ids = [];
-        foreach ($goods as $good) {
-            if (!in_array($good->farmer_id, $f_ids)) {
-                $f_ids[] = $good->farmer_id;
-            }
+        $ingood_farmer_ids = Good::find()
+            ->where(['like', 'name', $input])
+            ->andWhere(['is_visible' => 1])
+            ->select(['farmer_id'])
+            ->distinct()
+            ->column();
+        $active_farmer_ids = Farmer::find()
+            ->where(['is_blocked' => 0])
+            ->select(['id'])
+            ->column();
+        $farmer_ids = array_intersect($ingood_farmer_ids, $active_farmer_ids);
+        $farmer_goods = [];
+        foreach ($farmer_ids as $farmer_id) {
+            $farmer_goods[] = [
+                'farmer' => Farmer::findOne($farmer_id),
+                'goods' => Good::find()
+                    ->where(['like', 'name', $input])
+                    ->andWhere(['is_visible' => 1, 'farmer_id' => $farmer_id])
+                    // ->where(['is_visible' => 1, 'farmer_id' => $farmer_id, 'category_id' => $category_id])
+                    ->all()
+            ];
         }
-        $farmers2 = Farmer::find()->where(['is_blocked' => 0])->andWhere(['like', 'name', $input])->select('id')->all();
-        foreach ($farmers2 as $item) {
-            if (!in_array($item->id, $f_ids)) {
-                $f_ids[] = $item->id;
-            }
-        }
-        $farmers = Farmer::findAll($f_ids);
-        return $this->render('search-result', compact('goods', 'farmers', 'f_ids'));
+
+        return $this->render('search-result', compact('farmer_goods'));
     }
 
     public function actionCompany($id)
@@ -119,15 +128,6 @@ class GoodController extends Controller
             ->distinct()
             ->column();
         $categories = Category::findAll($category_ids);
-        // $category_goods = [];
-        // foreach ($categories as $category) {
-        //     $category_goods[] = [
-        //         'category' => $category,
-        //         'goods' => Good::find()
-        //             ->where(['farmer_id' => $id, 'category_id' => $category->id, 'is_visible' => 1])
-        //             ->all()
-        //     ];
-        // }
         return $this->render('company', compact('farmer', 'categories'));
     }
 
@@ -184,15 +184,7 @@ class GoodController extends Controller
                 'goods' => Good::find()->where(['is_visible' => 1, 'farmer_id' => $farmer_id, 'category_id' => $category_id])->all()
             ];
         }
-
-        $farmers = [];
-        foreach (Farmer::find()->where(['is_blocked' => 0])->all() as $farmer) {
-            if ($farmer->getGoods()->where(['category_id' => $category_id])->andWhere(['is_visible' => 1])->count() > 0) {
-                $farmers[] = $farmer;
-            }
-        }
-
-        return $this->render('category-companies-and-goods', compact('category', 'farmers', 'farmer_goods'));
+        return $this->render('category-companies-and-goods', compact('category', 'farmer_goods'));
     }
 
 

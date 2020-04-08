@@ -19,8 +19,8 @@ $this->title = 'Категория ' . mb_strtoupper($category->name);
     <div class="tab-content">
         <div class="tab-pane fade active in eda-farmers-and-goods-f" id="farmers">
             <div class="eda-farmers-and-goods-f">
-                <?php foreach ($farmers as $farmer) : ?>
-                    <div class="eda-main-farmers-item" style="background-image: url('<?= $farmer->getThumb() ?>')" onclick="GoTo('/good/company?id=<?= $farmer->id ?>')"></div>
+                <?php foreach ($farmer_goods as $farmer_item) : ?>
+                    <div class="eda-main-farmers-item" style="background-image: url('<?= $farmer_item['farmer']->getThumb() ?>')" onclick="GoTo('/good/company?id=<?= $farmer_item['farmer']->id ?>')"></div>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -39,10 +39,6 @@ $this->title = 'Категория ' . mb_strtoupper($category->name);
                         <?php endforeach; ?>
                     </div>
                 <?php endforeach; ?>
-                <?php //foreach ($category_goods as $good) : 
-                ?>
-                <?php //endforeach; 
-                ?>
             </div>
         </div>
     </div>
